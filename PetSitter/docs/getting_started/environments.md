@@ -1,1 +1,0 @@
-dev/stage/prod 개념, base URL
