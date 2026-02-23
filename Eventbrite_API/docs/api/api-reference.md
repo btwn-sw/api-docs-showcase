@@ -1,18 +1,16 @@
 # Eventbrite API Reference
 
----
 
 The Eventbrite API provides programmatic access to Eventbrite data and functionality available at the [API Reference](https://www.eventbrite.com/platform/api). This reference documents a focused subset of **Event-related endpoints**. Eventbrite refers to API resources as **objects**.
 
-## Table of Contents
+### Table of Contents
 
 - [Overview](#overview)
-- Authentication
-- Rate Limiting
-- Error Handling
-- Event Endpoints
+- [Authentication](#authentication)
+- [Rate Limiting](#rate-limiting)
+- [Error Handling](#error-handling)
+- [Event Endpoints](#event-endpoints)
 
----
 
 ## Overview
 
@@ -35,10 +33,8 @@ https://www.eventbriteapi.com/v3
 ### **Try-it-out**
 
 Eventbrite API provides try-it-out features in the right pane to call requests routed via *Apiary*. You can see the detailed information about endpoints and try out a request by clicking the “*Blocked title*” for endpoints (e.g., **Retrieve an Event**). 
+``![image.png](attachment:a677808d-48ee-4973-8847-cff6659162da:image.png)``
 
-![image.png](attachment:a677808d-48ee-4973-8847-cff6659162da:image.png)
-
----
 
 ## Authentication
 
@@ -59,7 +55,6 @@ Eventbrite API provides try-it-out features in the right pane to call requests r
 - All Eventbrite API requests require authentication.
 - See the Authentication Guide for the detailed authentication flow.
 
----
 
 ## Rate Limiting
 
@@ -85,8 +80,6 @@ Eventbrite enforces rate limits on API calls across all integrated applications 
     ```
     
 
----
-
 ## Error Handling
 
 Event-related endpoints may return the following error responses. For error handling strategies, see the Response Handling Guide.
@@ -110,7 +103,6 @@ Event-related endpoints may return the following error responses. For error hand
 }
 ```
 
----
 
 ## Event Endpoints
 
@@ -412,11 +404,13 @@ curl --include \
 }
 ```
 
----
 
 ## Nest steps
 
-- Authentication Guide
-- Response Handling Guide
-- Code Examples
-- SDKs
+- [Authentication Guide](../guides/authentication.md)
+- [Response Handling Guide](../guides/response_handling.md)
+- [Code Examples](../examples/code-examples.md)
+- [SDKs](../sdks/sdks.md)
+
+
+---
