@@ -24,6 +24,7 @@ Eventbrite API requires the following:
 **Step 1. Get a Private Token**
 
 To authenticate API requests, you need a private token. If you have not yet created the token, follow the instructions in the [Authentication Guide](../guides/authentication.md).
+
 <br>
 
 **Step 2. Select an API Endpoint**
@@ -34,6 +35,7 @@ You will retrieve details for a single event.
 2. In the sidebar, select a desired endpoint through **Reference > Event > Retrieve an Event**.
 
 ***Note**: Reference represents all available Eventbrite endpoints.*
+
 <br>
 
 **Step 3. Enable Try-it-out**
@@ -42,6 +44,7 @@ Eventbrite provides an interactive console powered by Apiary.
 
 1. In the right-hand pane, click the **Try** button.
 2. This enables you to call a live API request.
+
 <br>
 
 **Step 4. Configure Request Parameters**
@@ -63,6 +66,7 @@ Next, configure the required request details.
     
 3. **Request Body**: Not required for this endpoint.
 4. Click **Call Resource**.
+
 <br>
 
 **Step 5. Inspect the API Response**
@@ -73,6 +77,7 @@ After the request completes, scroll to the **Response Body** section. You can se
 - Description
 - Start and end time
 - Status
+
 <br>
 
 **Step 6. Generate a Code Example**
@@ -93,6 +98,7 @@ You can change the language you preferred from the language dropdown.
          --header "Content-Type: application/json" \
       'https://www.eventbriteapi.com/v3/events/12345/'
     ```
+
 <br>
 
 **Step 7. Test the Request in Postman**
@@ -117,7 +123,7 @@ Then, Postman automatically populates a new tab with the OAuth information under
 You can switch the response format to dropdown **‘{ } JSON’** if needed.
     
 ``![image.png](attachment:262c44c8-6006-4216-9e37-def9808f12f4:image.png)``
-    
+
 <br>
 
 ## Next steps
