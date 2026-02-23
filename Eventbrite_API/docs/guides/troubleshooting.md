@@ -4,9 +4,9 @@ This troubleshooting guide helps you diagnose and resolve common issues encounte
 
 ### Table of Contents
 
-- [Authentication Issues](#authentication-issues)
-- [Authorization and Permission Errors](#authorization-and-permission-errors)
-- [Resource Not Found Errors](#resource-not-found-errors)
+- [401 Authentication Issues](#401-authentication-issues)
+- [403 Authorization and Permission Errors](#403-authorization-and-permission-errors)
+- [404 Resource Not Found Errors](#404-resource-not-found-errors)
 - [Unexpected or Missing Response Data](#unexpected-or-missing-response-data)
 - [Handling HTML Content Issues](#handling-html-content-issues)
 - [Rate Limiting Issues](#rate-limiting-issues)
@@ -15,7 +15,7 @@ This troubleshooting guide helps you diagnose and resolve common issues encounte
 
 <br>
 
-## Authentication Issues
+## 401 Authentication Issues
 
 ### Symptom
 
@@ -49,7 +49,7 @@ This troubleshooting guide helps you diagnose and resolve common issues encounte
 
 <br>
 
-## Authorization and Permission Errors
+## 403 Authorization and Permission Errors
 
 ### Symptom
 
@@ -75,7 +75,7 @@ This troubleshooting guide helps you diagnose and resolve common issues encounte
 
 <br>
 
-## Resource Not Found Errors
+## 404 Resource Not Found Errors
 
 ### Symptom
 
