@@ -34,7 +34,6 @@ https://www.eventbriteapi.com/v3
 ### **Try-it-out**
 
 Eventbrite API provides try-it-out features in the right pane to call requests routed via *Apiary*. You can see the detailed information about endpoints and try out a request by clicking the “*Blocked title*” for endpoints (e.g., **Retrieve an Event**). 
-``![image.png](attachment:a677808d-48ee-4973-8847-cff6659162da:image.png)``
 
 <br>
 
