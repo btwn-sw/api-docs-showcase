@@ -1,33 +1,28 @@
 # Code Examples
 
----
-
 This document provides practical code examples for interacting with the Eventbrite API. The examples fucus on illustrating common request patterns, authentication, and basic response handling. They are designed to complement the API Reference and tutorials, not to serve as complete application implementations.
 
 ### Table of Contents
 
-- Authentication
-- cURL
-- JavaScript
-- Response Handling
+- [Authentication](#authentication)
+- [cURL](#curl)
+- [JavaScript](#javascript)
+- [Response Handling](#response-handling)
 
----
+<br>
 
 ## Authentication
 
 All examples assume the use of a private token issued by Eventbrite.
 
 **Authorization Header**
-
-- Replace `YOUR_OAUTH_TOKEN` with your own token.
-
 ```bash
 Authorization: Bearer YOUR_OAUTH_TOKEN
 ```
+- Replace `YOUR_OAUTH_TOKEN` with your own token.
+- For details on obtaining tokens, see the [Authentication Guide](../guides/authentication.md).
 
-- For details on obtaining tokens, see the Authentication Guide.
-
----
+<br>
 
 ## cURL
 
@@ -42,7 +37,7 @@ curl --request GET \
   'https://www.eventbriteapi.com/v3/events/12345/'
 ```
 
----
+<br>
 
 ## JavaScript
 
@@ -73,7 +68,7 @@ fetch("https://www.eventbriteapi.com/v3/events/12345/", {
   });
 ```
 
----
+<br>
 
 ## Node.js
 
@@ -109,7 +104,7 @@ async function getEvent(eventId) {
 }
 ```
 
----
+<br>
 
 ## Response Handling
 
@@ -117,13 +112,17 @@ async function getEvent(eventId) {
 - Validate responses and handle errors defensively.
 - Treat HTML fields such as `description.html` separately from plain text.
 
-For detailed guidance, see the Response Handling Guide.
+For detailed guidance, see the [Response Handling Guide](../guides/response_handling.md).
 
----
+<br>
 
 ## Next steps
 
-- API Reference
-- Step-by-step Tutorial
-- Authentication Guide
-- SDKs
+- [API Reference](../api/api-reference.md)
+- [Step-by-step Tutorial](../getting-started/step-by-step.md)
+- [Authentication Guide](../guides/authentication.md)
+- [SDKs](../sdks/sdks.md)
+
+<br>
+
+---
