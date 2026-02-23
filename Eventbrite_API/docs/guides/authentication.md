@@ -1,18 +1,16 @@
 # Authentication Guide
 
----
-
 This guide describes how to authenticate requests to the Eventbrite API, using OAuth 2.0. All Eventbrite API endpoints require authentication. This guide focuses on token types used by Eventbrite, how to obtain tokens, and how to include tokens in API requests.
 
-## Table of Contents
+### Table of Contents
 
-- OAuth 2.0
-- Eventbrite API Keys and Token
-- Authentication Methods
-- Environment Configuration
-- Best Practices
+- [OAuth 2.0](#oauth-20)
+- [Eventbrite API Keys and Token](#eventbrite-api-keys-and-token)
+- [Authentication Methods](#authentication-methods)
+- [Environment Configuration](#environment-configuration)
+- [Best Practices](#best-practices)
 
----
+<br>
 
 ## OAuth 2.0
 
@@ -28,7 +26,7 @@ Eventbrite uses multiple token concepts that are often confused but Private (OAu
 
 ***Note**: This documentation primarily uses **Private Token** for simplicity.*
 
----
+<br>
 
 ## Eventbrite API Keys and Token
 
@@ -41,9 +39,7 @@ To use the Eventbrite API, you must first create an application. If you have not
 3. Navigate to **Developer Links > API Keys**.
 4. Click **Create API Key**.
 5. Fill in the required information and create the app.
-    
-    ![image.png](attachment:77c6513b-91cf-42a5-8358-d349a170b87c:image.png)
-    
+    ``![image.png](attachment:77c6513b-91cf-42a5-8358-d349a170b87c:image.png)``
 6. Click the `Create Key` button. 
 7. Copy your **Private token**.
 
@@ -52,15 +48,13 @@ To use the Eventbrite API, you must first create an application. If you have not
 **App Existed**
 
 - If you have already created a API key, visit your [API Key Management page](https://www.eventbrite.com/account-settings/apps). The page lists existed apps. In the following example, it shows an existed app, *Practice*. Click ‘Show API key, client secret and tokens' to see the details.
-    
-    ![image.png](attachment:1dc98135-e872-42ad-a19d-6f8eafff80ed:image.png)
-    
+``![image.png](attachment:1dc98135-e872-42ad-a19d-6f8eafff80ed:image.png)``
 
 **No App Existed**
 
 - In such a case that you cannot find the app listed on the page, click `Create API Key` to create a new app and generate a new API key and a token.
 
----
+<br>
 
 ## Authentication Methods
 
@@ -86,7 +80,7 @@ Authentication is required for all Eventbrite API endpoints. To call API request
 /v3/users/me/?token=PERSONAL_OAUTH_TOKEN
 ```
 
----
+<br>
 
 ## Environment Configuration
 
@@ -133,7 +127,7 @@ Redirect users to the Eventbrite authorization URL, including the following info
 https://www.eventbrite.com/oauth/authorize?response_type=token&client_id=YOUR_API_KEY&redirect_uri=YOUR_REDIRECT_URI
 ```
 
----
+<br>
 
 ## Best Practices
 
@@ -148,10 +142,14 @@ https://www.eventbrite.com/oauth/authorize?response_type=token&client_id=YOUR_AP
 - Do not use API keys in your client-side code before making them publicly available.
 - Monitor API key usage and delete API keys and any private tokens that are no longer needed.
 
----
+<br>
 
 ## Next steps
 
-- API Reference
-- Code Examples
-- SDKs
+- [API Reference](../api/api-reference.md)
+- [Code Examples](../examples/code-examples.md)
+- [SDKs](../sdks/sdks.md)
+
+<br>
+
+---
