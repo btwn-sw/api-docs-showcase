@@ -39,9 +39,6 @@ To use the Eventbrite API, you must first create an application. If you have not
 3. Navigate to **Developer Links > API Keys**.
 4. Click **Create API Key**.
 5. Fill in the required information and create the app.
-
-``![image.png](attachment:77c6513b-91cf-42a5-8358-d349a170b87c:image.png)
-
 6. Click the `Create Key` button. 
 7. Copy your **Private token**.
 
@@ -50,7 +47,6 @@ To use the Eventbrite API, you must first create an application. If you have not
 **App Existed**
 
 - If you have already created a API key, visit your [API Key Management page](https://www.eventbrite.com/account-settings/apps). The page lists existed apps. In the following example, it shows an existed app, *Practice*. Click ‘Show API key, client secret and tokens' to see the details.
-``image``
 
 **No App Existed**
 
