@@ -1,23 +1,21 @@
 # Quick Reference Guide
 
----
-
 This Quick Reference Guide provides a concise overview of the most commonly used Eventbrite API information. It is intended for developers who are already familiar with the API and need fast access to essential details.
 
 ### Table of Contents
 
-- Base Information
-- Authentication
-- Common Event Endpoints
-- Common Request Headers
-- Common Response Fields
-- Common HTTP Status Codes
-- Rate Limiting
-- Code Example
-- Common Troubleshooting Shortcuts
-- When to Use This Guide
+- [Base Information](#base-information)
+- [Authentication](#authentication)
+- [Common Event Endpoints](#common-event-endpoints)
+- [Common Request Headers](#common-request-headers)
+- [Common Response Fields](#common-response-fields)
+- [Common HTTP Status Codes](#common-http-status-codes)
+- [Rate Limiting](#rate-limiting)
+- [Code Example](#code-example)
+- [Common Troubleshooting Shortcuts](#common-troubleshooting-shortcuts)
+- [When to Use This Guide](#when-to-use-this-guide)
 
----
+<br>
 
 ## Base Information
 
@@ -37,7 +35,7 @@ https://www.eventbriteapi.com/v3
 application/json
 ```
 
----
+<br>
 
 ## Authentication
 
@@ -52,9 +50,9 @@ Authorization: Bearer PERSONAL_OAUTH_TOKEN
 - Tokens should be stored securely (e.g., environment variables).
 - Do not expose tokens in client-side code.
 
-See Authentication Guide for details.
+See [Authentication Guide](../guides/authentication.md) for details.
 
----
+<br>
 
 ## Common Event Endpoints
 
@@ -67,9 +65,9 @@ See Authentication Guide for details.
 | Update an Event | POST | `/events/{event_id}` |
 | Delete an Event | DELETE | `/events/{event_id}` |
 
-See API Reference for details.
+See [API Reference](../api/api-reference.md) for details.
 
----
+<br>
 
 ## Common Request Headers
 
@@ -78,7 +76,7 @@ Authorization: Bearer PERSONAL_OAUTH_TOKEN
 Content-Type: application/json
 ```
 
----
+<br>
 
 ## Common Response Fields
 
@@ -91,9 +89,9 @@ Content-Type: application/json
 | `start.utc` | Event start time |
 | `end.utc` | Event end time |
 
-See Response Handling Guide for details.
+See [Response Handling Guide](../guides/response_handling.md) for details.
 
----
+<br>
 
 ## Common HTTP Status Codes
 
@@ -105,9 +103,9 @@ See Response Handling Guide for details.
 | `403` | Forbidden (permission issue) |
 | `404` | Resource not found |
 
-See Troubleshooting for error handling details.
+See [Troubleshooting](../guides/troubleshooting.md) for error handling details.
 
----
+<br>
 
 ## Rate Limiting
 
@@ -123,9 +121,9 @@ X-Apiary-RateLimit-Limit
 X-Apiary-RateLimit-Remaining
 ```
 
-See API Reference - Rate Limiting for details.
+See [API Reference](../api/api-reference.md) - Rate Limiting for details.
 
----
+<br>
 
 ## Code Example
 
@@ -137,9 +135,9 @@ curl --request GET \
   https://www.eventbriteapi.com/v3/events/{event_id}/
 ```
 
-See Code Examples for more details.
+See [Code Examples](../examples/code-examples.md) for more details.
 
----
+<br>
 
 ## Common Troubleshooting Shortcuts
 
@@ -150,9 +148,9 @@ See Code Examples for more details.
 | `403` | NOT_AUTHORIZED | Insufficient permissions |
 | `404`  | NOT_FOUND | Event not found |
 
-See Troubleshooting Guide for full diagnostics.
+See [Troubleshooting Guide](../guides/troubleshooting.md) for full diagnostics.
 
----
+<br>
 
 ## When to Use This Guide
 
@@ -161,5 +159,7 @@ See Troubleshooting Guide for full diagnostics.
 - Need a quick reminder of endpoints or headers.
 - Debug a request quickly.
 - Already know the API but forgot exact syntax.
+
+<br>
 
 ---
