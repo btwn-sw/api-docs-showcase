@@ -1,20 +1,20 @@
 # Quick Start Guide
 
----
+<br>
 
 This guide helps you make your first successful request to the Eventbrite API. It will guide you to prepare the required prerequisites, authenticate using a private token, make your first API request, and verify the response using common tools. It designs to get you from zero to your first API response as quickly as possible.
 
 ### Table of Contents
 
-- Prerequisites
-- Step 1: Get Your Authentication Token
-- Step 2: Choose an Endpoint
-- Step 3: Make Your First API Request
-- Step 4: Verify the Response
-- Step 5: Develop Your Integration
-- Step 6: Prepare for Deployment
+- [Prerequisites](#prerequisites)
+- [Step 1: Get Your Authentication Token](#step-1-get-your-authentication-token)
+- [Step 2: Choose an Endpoint](#step-2-choose-an-endpoint)
+- [Step 3: Make Your First API Request](#step-3-make-your-first-api-request)
+- [Step 4: Verify the Response](#step-4-verify-the-response)
+- [Step 5: Develop Your Integration](#step-5-develop-your-integration)
+- [Step 6: Prepare for Deployment](#step-6-prepare-for-deployment)
 
----
+<br>
 
 ## Prerequisites
 
@@ -26,18 +26,18 @@ This guide helps you make your first successful request to the Eventbrite API. I
     - Postman
     - Command-line tool (for cURL)
 
-For detailed token setup, see the Authentication Guide.
+For detailed token setup, see the [Authentication Guide](../guides/authentication.md).
 
----
+<br>
 
 ## Step 1: Get Your Authentication Token
 
 All Eventbrite API requests require authentication.
 
 - Get your **Private Token**, which is suitable for testing and server-side integrations.
-- If you have not had a token, follow the steps in the Authentication Guide to create one.
+- If you have not had a token, follow the steps in the [Authentication Guide](../guides/authentication.md) to create one.
 
----
+<br>
 
 ## Step 2: Choose an Endpoint
 
@@ -53,7 +53,7 @@ The endpoint returns an Event object containing basic event information.
 **GET** /events/{event_id}
 ```
 
----
+<br>
 
 ## Step 3: Make Your First API Request
 
@@ -87,7 +87,7 @@ Use an Eventbrite API console.
     ```
     
 
----
+<br>
 
 ## Step 4: Verify the Response
 
@@ -100,7 +100,7 @@ Use an Eventbrite API console.
     - Start and end time
     - Status
 
----
+<br>
 
 ## Step 5: Develop Your Integration
 
@@ -112,9 +112,9 @@ Now, you can begin integrating the API into your application.
 2. Handle optional and nullable fields defensively.
 3. Separate HTML content from plain text.
 
-For practical examples, see the Code Examples.
+For practical examples, see the [Code Examples](../examples/code-examples.md).
 
----
+<br>
 
 ## Step 6: Prepare for Deployment
 
@@ -128,14 +128,18 @@ Before deploying your integration, review the following best practices.
 
 ### Related Documents
 
-- SDKs
-- Troubleshooting
+- [SDKs](../sdks/sdks.md)
+- [Troubleshooting](../guides/troubleshooting.md)
 
----
+<br>
 
 ## Next steps
 
-- Step-by-Step Tutorial
-- API Reference
-- Response Handling Guide
-- Troubleshooting
+- [Step-by-Step Tutorial](../getting-started/step-by-step.md)
+- [API Reference](../api/api-reference.md)
+- [Response Handling Guide](../guides/response_handling.md)
+- [Troubleshooting](../guides/troubleshooting.md)
+
+<br>
+
+---
