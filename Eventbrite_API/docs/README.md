@@ -73,12 +73,31 @@ The documentation is organized to reflect a typical developer journey:
 
 <br>
 
-## Getting Started
-If you are new to this repository, begin with:
+## Choose Your Path
+This documentation supports different types of readers. Choose the path that best matches your experience level and goal.
 
+### I want to finish in 3 minutes (Experienced Developer)
 👉 [**Quick Start Guide**](../docs/getting-started/quick-start.md)
+- Minimal explanation
+- Docs-as-code approaches
+- Direct API request
+- Fast validation of authentication and response
+- Ideal for developers who want immediate results
 
-From there, follow the documentation in order based on your needs.
+### I want to understand procedures steyp by step (Beginner)
+👉 [**Step-by-Step Tutorial**](../docs/getting-started/step-by-step.md)
+- Guided walkthrough
+- Uses Eventbrite Console and Postman
+- Explains each step in detail
+- Suitable for first-time API users
+
+### I already know the API - I just need a quick reminder (Advanced User)
+👉 [**Quick Reference Guide**](../docs/reference/quick-reference.md)
+- Base URL and version
+- Common endpoints
+- Required headers
+- Frequent status codes
+- Rate limit summary
 
 <br>
 
