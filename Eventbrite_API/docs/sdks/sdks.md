@@ -1,15 +1,13 @@
 # Eventbrite API SDKs
 
----
-
 Eventbrite does not officially provide maintained SDKs for specific programming languages. Instead, the Eventbrite API is designed to be consumed directly using standard HTTP clients. This guide explains how to integrate with the Eventbrite API in the absence of official SDKs, and outlines recommended alternatives.
 
 ### Table of Contents
 
-- SDK Availability
-- Recommended Integration
+- [SDK Availability](#sdk-availability)
+- [Recommended Integration](#recommended-integration)
 
----
+<br>
 
 ## SDK Availability
 
@@ -26,7 +24,7 @@ Eventbrite does not officially provide maintained SDKs for specific programming 
 - They may lag behind API changes or updates.
 - Users need to be careful when adopting third-party SDKs in production environments.
 
----
+<br>
 
 ## Recommended Integration
 
@@ -51,10 +49,14 @@ In the absence of official SDKs, direct HTTP integration is the recommended appr
 - Users generate client code using automated tools.
 - Generated clients help reduce boilerplate code, but still require validation and customization.
 
----
+<br>
 
 ## Next steps
 
-- Authentication Guide
-- Code Examples
-- Response Handling Guide
+- [Authentication Guide](../guides/authentication.md)
+- [Code Examples](../examples/code-examples.md)
+- [Response Handling Guide](../guides/response_handling.md)
+
+<br>
+
+---
