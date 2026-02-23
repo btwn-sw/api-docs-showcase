@@ -11,6 +11,7 @@ The Eventbrite API provides programmatic access to Eventbrite data and functiona
 - [Error Handling](#error-handling)
 - [Event Endpoints](#event-endpoints)
 
+<br>
 
 ## Overview
 
