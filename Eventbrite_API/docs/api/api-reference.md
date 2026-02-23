@@ -6,7 +6,7 @@ The Eventbrite API provides programmatic access to Eventbrite data and functiona
 
 ## Table of Contents
 
-- Overview
+- [Overview](#overview)
 - Authentication
 - Rate Limiting
 - Error Handling
