@@ -30,6 +30,7 @@ Focus areas include:
 - Endpoint reference structure
 - Authentication documentation
 - Developer guides
+- Error handling
 
 ### 2. Trackit API Documentation
 A fictional but fully structured API specification project created to demonstrate OpenAPI-based documentation skills.
