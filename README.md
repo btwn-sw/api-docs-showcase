@@ -20,6 +20,8 @@ All projects follow these principles:
 - Developer-friendly explanations
 The focus is not only on describing endpoints but on building usable developer documentation.
 
+<br>
+
 ## Current Projects
 
 ### 1. Eventbrite API Documentation
