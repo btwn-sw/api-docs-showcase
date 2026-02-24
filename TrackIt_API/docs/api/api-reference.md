@@ -1,39 +1,37 @@
-Track It API Reference
-
 # Trackit API Reference
 
 Trackit is a lightweight personal task management API that helps users organize tasks across daily routines, work, hobbies, and more.
 
 ### Table of Contents
 
-- Overview
-- Authentication
-- Error Handling
-- Authentication Endpoints
-    - Register a New User
-    - Log In
-- User Endpoints
-    - Retrieve a User
-    - Update a User
-    - Upload Profile Image
-- Project Endpoints
-    - Create a New Project
-    - Get All Projects
-    - Update Projects
-    - Delete Projects
-- Task Endpoints
-    - Create a New Task in a Project
-    - Get Tasks in a Project
-    - Retrieve a Task
-    - Update a Task
-    - Delete a Task
-- Overview Endpoints
-    - Get Tasks Overview
-- Notifications Endpoints
-    - Get Notifications
-    - Mark Notification as Read
-- Schemas
-- Enums
+- [Overview](#overview)
+- [Authentication](#authentication)
+- [Error Handling](#error-handling)
+- [Authentication Endpoints](#authentication-endpoints)
+    - [Register a New User](#register-a-new-user)
+    - [Log In](#log-in)
+- [User Endpoints](#user-endpoints)
+    - [Retrieve a User](#retrieve-a-user)
+    - [Update a User](#update-a-user)
+    - [Upload Profile Image](#upload-profile-image)
+- [Project Endpoints](#project-endpoints)
+    - [Create a New Project](#create-a-new-project)
+    - [Get All Projects](#get-all-projects)
+    - [Update Projects](#update-projects)
+    - [Delete Projects](#delete-projects)
+- [Task Endpoints](#task-endpoints)
+    - [Create a New Task in a Project](#create-a-new-task-in-a-project)
+    - [Get Tasks in a Project](#get-tasks-in-a-project)
+    - [Retrieve a Task](#retrieve-a-task)
+    - [Update a Task](#update-a-task)
+    - [Delete a Task](#delete-a-task)
+- [Overview Endpoints](#overview-endpoints)
+    - [Get Tasks Overview](#get-tasks-overview)
+- [Notifications Endpoints](#notifications-endpoints)
+    - [Get Notifications](#get-notifications)
+    - [Mark Notification as Read](#mark-notification-as-read)
+- [Schemas](#schemas)
+- [Enums](#enums)
 
 <br>
 
@@ -52,7 +50,7 @@ https://mock.pstmn.io/v1
 **Example:**
 
 ```json
-**GET** /v1/user
+GET /v1/user
 ```
 
 ### Content-Type
@@ -134,7 +132,7 @@ Trackit uses standard HTTP status codes. Depending on the endpoint, responses ma
 
 <br>
 
-## Authentication
+## Authentication Endpoints
 
 ### Register a New User
 
@@ -143,7 +141,7 @@ Trackit uses standard HTTP status codes. Depending on the endpoint, responses ma
 Creates a new user account.
 
 ```bash
-**POST** /v1/register
+POST /v1/register
 ```
 
 **Request Body**
@@ -186,7 +184,7 @@ Creates a new user account.
 **Endpoint**
 
 ```bash
-**POST** /v1/login
+POST /v1/login
 ```
 
 **Request Body**
@@ -233,7 +231,7 @@ These endpoints allow an authenticated user to retrieve and update their profile
 Returns the authenticated user’s profile information.
 
 ```bash
-**GET** /v1/me
+GET /v1/me
 ```
 
 **Header Parameter**
@@ -270,7 +268,7 @@ Authorization: Bearer <token>
 Updates the authenticated user’s profile information.
 
 ```bash
-**PATCH** /v1/me
+PATCH /v1/me
 ```
 
 **Header Parameter**
@@ -314,7 +312,7 @@ Example Request
 Uploads a profile image for the authenticated user.
 
 ```bash
-**POST** /v1/me/profile-image
+POST /v1/me/profile-image
 ```
 
 **Header Parameter**
@@ -368,7 +366,7 @@ curl -X POST https://api.trackit.com/v1/me/profile-image \
 Creates a new project under the authenticated user’s account.
 
 ```bash
-**POST** /v1/projects
+POST /v1/projects
 ```
 
 **Header Parameter**
@@ -422,7 +420,7 @@ Authorization: Bearer <token>
 Retrieves all projects created by the authenticated user.
 
 ```bash
-**GET** /v1/projects
+GET /v1/projects
 ```
 
 **Header Parameter**
@@ -467,7 +465,7 @@ Authorization: Bearer <token>
 Updates the title, colour, or deletable status of an existing project. 
 
 ```bash
-**PATCH** /v1/projects/{projectId}
+PATCH /v1/projects/{projectId}
 ```
 
 **Header Parameter**
@@ -529,7 +527,7 @@ At least one of the fields must be provided.
 Deletes the specified project if it is deletable and owned by the authenticated user.
 
 ```bash
-**DELETE** /v1/projects/{projectId}
+DELETE /v1/projects/{projectId}
 ```
 
 **Header Parameter**
@@ -570,7 +568,7 @@ These endpoints let an authenticated user create and manage tasks inside project
 Creates a new task under the specified proejct.
 
 ```bash
-**POST** /v1/projects/{projectId}/tasks
+POST /v1/projects/{projectId}/tasks
 ```
 
 **Header Parameter**
@@ -637,7 +635,7 @@ Authorization: Bearer <token>
 Retrieves all tasks for a given project.
 
 ```bash
-**GET** /v1/projects/{projectId}/tasks
+GET /v1/projects/{projectId}/tasks
 ```
 
 **Header Parameter**
@@ -684,7 +682,7 @@ Authorization: Bearer <token>
 Retrieves a single task by its ID.
 
 ```bash
-**GET** /v1/tasks/{taskId}
+GET /v1/tasks/{taskId}
 ```
 
 **Header Parameter**
@@ -729,7 +727,7 @@ Authorization: Bearer <token>
 Updates fields on an existing task.
 
 ```bash
-**PATCH** /v1/tasks/{taskId}
+PATCH /v1/tasks/{taskId}
 ```
 
 **Header Parameter**
@@ -795,7 +793,7 @@ Provide one or more fields to update.
 Deletes a task by its ID.
 
 ```json
-**DELETE** /v1/tasks/{taskId}
+DELETE /v1/tasks/{taskId}
 ```
 
 **Header Parameter**
@@ -832,7 +830,7 @@ Authorization: Bearer <token>
 Returns tasks within a date range, optionally filtered by status or project.
 
 ```json
-**GET** /v1/tasks/overview
+GET /v1/tasks/overview
 ```
 
 **Header Parameter**
@@ -892,7 +890,7 @@ Authorization: Bearer <token>
 Retrieves notifications for upcoming/overdue tasks or system-generated task alerts.
 
 ```json
-**GET** /v1/notifications
+GET /v1/notifications
 ```
 
 **Header Parameter**
@@ -939,7 +937,7 @@ Authorization: Bearer <token>
 Marks a notification as read to indicate it has been acknowledged.
 
 ```json
-**PATCH** /v1/notifications/{notificationId}
+PATCH /v1/notifications/{notificationId}
 ```
 
 **Header Parameter**
