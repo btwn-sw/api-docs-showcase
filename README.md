@@ -24,7 +24,7 @@ The focus is not only on describing endpoints but on building usable developer d
 
 ## Current Projects
 
-### [1. Eventbrite API Documentation](../api-documentation/Eventbrite_API/docs/README.md)
+### [1. Eventbrite API Documentation](../Eventbrite_API/docs/README.md)
 A structured documentation project based on the public Eventbrite API.
 Focus areas include:
 - Endpoint reference structure
@@ -32,7 +32,7 @@ Focus areas include:
 - Developer guides
 - Error handling
 
-### [2. Trackit API Documentation](../api-documentation/TrackIt_API/docs/README.md)
+### [2. Trackit API Documentation](../TrackIt_API/docs/README.md)
 A fictional but fully structured API specification project created to demonstrate OpenAPI-based documentation skills.
 This project includes:
 - OpenAPI specification file
