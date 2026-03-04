@@ -2,7 +2,7 @@
 
 This repository contains multiple API documentation projects designed to demonstrate structured, production-ready API documentation practices.
 
-As a technical writer specializing in API documentation, I created these projects to showcase not only writing skills but also documentation architecture and developer experience thinking.
+As a **technical writer** specializing in API documentation, I created these projects to showcase not only writing skills but also documentation architecture and developer experience thinking.
 
 Each Project includes a complete documentation set such as API references, guides, authentication flows, and supporting materials.
 
