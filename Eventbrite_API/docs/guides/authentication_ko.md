@@ -5,6 +5,8 @@
 요청에 추가하고, 안전하게 저장하는 방법을 알아볼게요.
 Eventbrite API의 모든 엔드포인트는 인증을 요구합니다.
 
+<br>
+
 ## 목차
 
 - [Eventbrite 인증 방식](#eventbrite-인증-방식)
@@ -13,7 +15,7 @@ Eventbrite API의 모든 엔드포인트는 인증을 요구합니다.
 - [토큰 보안 관리](#토큰-보안-관리)
 - [서버 사이드 OAuth 흐름](#서버-사이드-oauth-흐름)
 
----
+<br>
 
 ## Eventbrite 인증 방식
 
@@ -33,7 +35,7 @@ Eventbrite는 두 가지 인증 자격 증명을 제공합니다.
 사용자별 인증이 필요한 프로덕션 애플리케이션은
 [서버 사이드 OAuth 흐름](#서버-사이드-oauth-흐름)을 참고하세요.
 
----
+<br>
 
 ## 프라이빗 토큰 생성
 
@@ -60,7 +62,7 @@ curl -H "Authorization: Bearer YOUR_PRIVATE_TOKEN" \\
 앱 옆의 **API 키, 클라이언트 시크릿 및 토큰 보기**를 클릭하고
 프라이빗 토큰을 복사하세요.
 
----
+<br>
 
 ## 요청에 토큰 추가하기
 
@@ -82,7 +84,7 @@ URL에 포함된 토큰은 서버와 브라우저 로그에 기록되므로
 <https://www.eventbrite.com/api/v3/users/me/?token=YOUR_PRIVATE_TOKEN>
 ```
 
----
+<br>
 
 ## 토큰 보안 관리
 
@@ -96,7 +98,7 @@ URL에 포함된 토큰은 서버와 브라우저 로그에 기록되므로
 [API 키 관리 페이지](https://www.eventbrite.com/account-settings/apps)에서
 삭제하세요.
 
----
+<br>
 
 ## 서버 사이드 OAuth 흐름
 
@@ -145,10 +147,12 @@ curl --request POST \\
 요청이 성공하면 `access_token`이 포함된 JSON 객체를 반환합니다.
 이후 요청에서는 이 토큰을 `Authorization` 헤더에 넣어서 사용하세요.
 
----
+<br>
 
 ## 다음 단계
 
 - [API 레퍼런스]
 - [코드 예제]
 - [SDK]
+
+<br>
