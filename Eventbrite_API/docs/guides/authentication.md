@@ -39,7 +39,7 @@ applications that require user-level authorization, see
 ## Generate a Private Token
 
 **Prerequisites:** An Eventbrite account.
-[Create one here](https://www.eventbrite.com/signin/) if you don't have one.
+[Create an account here](https://www.eventbrite.com/signin/) if you don't have one.
 
 1. Log in to [Eventbrite](https://www.eventbrite.com/signin/).
 2. Click your profile, then go to **Account Settings**.
