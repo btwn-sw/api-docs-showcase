@@ -1,226 +1,245 @@
 # Response Handling Guide
 
-The Eventbrite API returns structured JSON responses that often include nested objects, optional fields, and HTML-formatted content. This guide explains how to safely and consistently consume Eventbrite API responses in real-world applications.
+Eventbrite API responses contain nested JSON objects, optional fields, and
+HTML-formatted content. This guide shows you how to read the response
+structure, handle nullable and optional fields safely, and process
+HTML content correctly.
 
-***Note**: This guide complements the API Reference and focuses on response consumption rather than schema definition.* 
+> **Note:** This guide focuses on response consumption. For endpoint
+schemas and parameter definitions, see the
+[API Reference](../api/api-reference.md).
+> 
 
-### Table of Contents
+<br>
 
-- [Eventbrite API Responses](#eventbrite-api-responses)
-- [Common Response Structure](#common-response-structure)
+## Table of Contents
+
+- [Response Structure](#response-structure)
 - [Handling HTML-Formatted Content](#handling-html-formatted-content)
+- [Handling Optional and Nullable Fields](#handling-optional-and-nullable-fields)
 - [Error Responses](#error-responses)
 - [Best Practices](#best-practices)
 
 <br>
 
-## Eventbrite API Responses
-
-- Responses are structured as nested JSON objects.
-- Not all fields are guaranteed to be present.
-- Some fields contain pre-formatted HTML content.
-
-<br>
-
-## Common Response Structure
+## Response Structure
 
 ### Event Object
 
-Most Event-related endpoints return an Event object. An event object typically includes: 
+Most Event-related endpoints return an Event object. The object contains
+four categories of fields:
 
-- Identification fields: `id`
-- Text and HTML content: `name`, `description`
-- Scheduling information: `start`, `end`
-- Status and metadata fields: `currency`, `capacity`, `source`
+| Category | Fields |
+| --- | --- |
+| Identification | `id` |
+| Text content | `name`, `description` — each contains both `text` and `html` variants |
+| Scheduling | `start`, `end` — each contains `utc`, `local`, and `timezone` |
+| Metadata | `status`, `currency`, `capacity`, `url` |
+
+**Example response:**
 
 ```json
 {
   "id": "12345",
   "name": {
-    "text": "Some text",
-    "html": "<p>Some text</p>"
+    "text": "My Event",
+    "html": "<p>My Event</p>"
   },
   "description": {
-    "text": "Some text",
-    "html": "<p>Some text</p>"
+    "text": "Event description here",
+    "html": "<p>Event description here</p>"
   },
   "start": {
     "timezone": "America/Los_Angeles",
-    "utc": "2018-05-12T02:00:00Z",
-    "local": "2018-05-11T19:00:00"
+    "utc": "2026-06-01T09:00:00Z",
+    "local": "2026-06-01T02:00:00"
   },
   "end": {
     "timezone": "America/Los_Angeles",
-    "utc": "2018-05-12T02:00:00Z",
-    "local": "2018-05-11T19:00:00"
+    "utc": "2026-06-01T17:00:00Z",
+    "local": "2026-06-01T10:00:00"
   },
-  "url": "https://www.eventbrite.com/e/45263283700",
-  "vanity_url": "https://testevent.eventbrite.com",
-  "created": "2017-02-19T20:28:14Z",
-  "changed": "2017-02-19T20:28:14Z",
-  "published": "2017-02-19T20:28:14Z",
   "status": "live",
   "currency": "USD",
-  "show_remaining": true,
-  "password": "12345",
   "capacity": 100,
-  "source": "api",
-  "version": "null",
-  },
-    ...
-    
- }
+  "url": "<https://www.eventbrite.com/e/12345>"
+}
 ```
 
 ### Key Fields
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `name` | multipart-text | Yes | Event name. |
-| `description`  | multipart-text | optional | Event description. |
-| `status`  | string | Yes | Event status which can be `draft`, `live`, `started`, `ended`, `completed`, and `canceled`. |
-| `hide_start_date`  | boolean | Yes | Start date for event scheduling (UTC timestamps). |
-| `hide_end_date` | boolean | Yes | End date for event scheduling (UTC timestamps). |
+| `id` | String | Yes | Unique identifier for the event |
+| `name` | Object | Yes | Event name — contains `text` (plain text) and `html` (HTML-formatted) variants |
+| `description` | Object | No | Event description — contains `text` and `html` variants. May be `null` for draft events. |
+| `status` | String | Yes | Event status — `draft`, `live`, `started`, `ended`, `completed`, or `canceled` |
+| `start` | Object | Yes | Start time — contains `utc`, `local`, and `timezone` |
+| `end` | Object | Yes | End time — contains `utc`, `local`, and `timezone` |
+| `hide_start_date` | Boolean | No | When `true`, the start date is hidden from the public event page |
+| `hide_end_date` | Boolean | No | When `true`, the end date is hidden from the public event page |
 
 <br>
 
 ## Handling HTML-Formatted Content
 
-Sometimes, Eventbrite API fields contain HTML-formatted content.
+Eventbrite returns HTML content in two patterns.
 
-### Fully HTML-Formatted Content
+### Pattern 1 — Full HTML response
 
-Some endpoint returns raw HTML content.
+Some endpoints return a raw HTML string as the entire response body.
 
-**Event Description Endpoint**
+**Endpoint:**
 
-```bash
-**GET** /events/{event_id}/description/
+```
+GET /events/{event_id}/description/
 ```
 
-**Response Body**
-
-```html
-{
- "description: <div>Example summary!<\/div>\n<div><P>My <EM>event's<\/EM> description would go <STRONG>here<\/STRONG>.<\/P><\/div>"
-}
-```
-
-### Partially HTML-formatted Content
-
-Some endpoints return objects containing both plain text and HTML variants.
-
-**Ticket Buyer Settings Endpoint**
-
-```bash
-**GET** /events/{event_id}/ticket_buyer_settings/
-```
-
-**Response Body**
+**Response:**
 
 ```json
 {
-    "confirmation_message": {
-        "text": "<H1>Confirmation Message</H1>",
-        "html": "Confirmation Message"
-    },
-    "instructions": {
-        "text": "<H1>Instructions</H1>",
-        "html": "Instructions"
-    },
-    "sales_ended_message": {
-        "text": "<H1>Sales Ended Message</H1>",
-        "html": "Sales Ended Message"
-    },
-     "survey_info": {
-        "text": "<b>Filling in this survey is required to attend the event</b>",
-        "html": "Filling in this survey is required to attend the event"
-    },
-    "event_id": "43253626762",
-    "survey_name": "Registration Page Title",
-    "refund_request_enabled": true,
-    "allow_attendee_update": true,
-    "survey_time_limit": 15,
-    "redirect_url": null,
-    "survey_respondent": "attendee",
-    "survey_ticket_classes": ["125", "374"]
+  "description": "<div>Example summary!</div>\\n<div><p>My <em>event's</em> description goes <strong>here</strong>.</p></div>"
 }
 ```
 
-### Handling Partial or Nullable Fields
+Use an HTML parser to render this content. Do not display the raw string
+directly to users.
 
-The Eventbrite API responses may include optional or conditional fields. Check field existence before accessing nested properties.
+### Pattern 2 — Dual text/html fields
 
-**Common scenarios**:
+Some endpoints return objects that contain both a plain text variant
+and an HTML variant for the same content.
+
+**Example — Ticket Buyer Settings:**
+
+```
+GET /events/{event_id}/ticket_buyer_settings/
+```
+
+**Response:**
+
+```json
+{
+  "confirmation_message": {
+    "text": "Confirmation Message",
+    "html": "<h1>Confirmation Message</h1>"
+  },
+  "instructions": {
+    "text": "Instructions",
+    "html": "<h1>Instructions</h1>"
+  }
+}
+```
+
+Use `text` when you need plain string content — for example, in
+notifications or metadata. Use `html` when rendering content in a
+web interface.
+
+<br>
+
+## Handling Optional and Nullable Fields
+
+Not all fields are present in every response. Fields may be missing or
+`null` in the following cases:
 
 - Draft events with incomplete data
-- Fields set to `null`
-- Fields omitted due to permission constraints.
+- Fields the token does not have permission to access
+- Fields the event organizer has not filled in
+
+Check for field existence before accessing nested properties.
+
+**JavaScript example:**
+
+```jsx
+const name = event?.name?.text ?? 'Untitled Event';
+const description = event?.description?.text ?? '';
+const capacity = event?.capacity ?? null;
+```
+
+**Python example:**
+
+```python
+name = event.get('name', {}).get('text', 'Untitled Event')
+description = event.get('description', {}).get('text', '')
+capacity = event.get('capacity')
+```
 
 <br>
 
 ## Error Responses
 
-Event-related endpoints may return error responses when a request fails.
+All Event endpoints return a consistent error format:
 
-### 400 Bad Request
+```json
+{
+  "error": "ERROR_CODE",
+  "error_description": "Human-readable explanation",
+  "status_code": 400
+}
+```
 
-- Response: The token is invalid or missing. Include a valid private token.
-    
-    ```json
-    {
-      "error_description": "",
-      "error_detail": {},
-      "status_code": 400,
-      "error": "FIELD_INVALID"
-    }
-    ```
-    
+### Common Error Codes
 
-### **403 Forbidden**
-
-- Response: The token is valid, but no permission to access the content.
-    
-    ```json
-    {
-      "error_description": "",
-      "error_detail": {},
-      "status_code": 403,
-      "error": "NOT_AUTHORIZED"
-    }
-    ```
-    
-
-### **404 Not Found**
-
-- Response: The requested resource does not exist or is no longer accessible.
-    
-    ```json
-    {
-      "error_description": "",
-      "error_detail": {},
-      "status_code": 404,
-      "error": "NOT_FOUND"
-    }
-    ```
+| Status code | Error code | Cause | Action |
+| --- | --- | --- | --- |
+| `400` | `FIELD_INVALID` | The request contains an invalid or conflicting parameter | Check the request body and parameters against the [API Reference](../api/api-reference.md) |
+| `401` | `NO_AUTH` | No token provided, or the token is invalid | Include a valid Private Token in the `Authorization` header |
+| `403` | `NOT_AUTHORIZED` | The token does not have permission to access this resource | Check token scopes or use a token with the correct permissions |
+| `404` | `NOT_FOUND` | The requested event does not exist | Verify the `event_id` is correct and the event has not been deleted |
 
 <br>
 
 ## Best Practices
 
-- Extract only the fields required for use cases.
-- Validate field existence before accessing properties.
-- Treat HTML fields separately from plain text fields.
-- Convert API error responses into user-friendly messages.
+### Extract only the fields you need
+
+Avoid storing the full response object. Access only the fields your
+application uses.
+
+```jsx
+// Extract only what you need
+const { id, status } = response;
+const name = response.name?.text;
+const startUtc = response.start?.utc;
+```
+
+### Separate HTML from plain text
+
+Never use `html` fields where plain text is expected, and never pass
+`text` fields to an HTML renderer.
+
+```jsx
+// Display in UI — use html
+container.innerHTML = event.name.html;
+
+// Pass to notification system — use text
+sendNotification({ title: event.name.text });
+```
+
+### Convert errors to user-facing messages
+
+Map API error codes to messages your users understand.
+
+```jsx
+const ERROR_MESSAGES = {
+  NO_AUTH:        'Authentication failed. Check your API token.',
+  NOT_AUTHORIZED: 'You do not have permission to access this event.',
+  NOT_FOUND:      'This event could not be found.',
+  FIELD_INVALID:  'The request contained an invalid value.',
+};
+
+function handleApiError(error) {
+  return ERROR_MESSAGES[error.error] ?? 'An unexpected error occurred.';
+}
+```
 
 <br>
 
-## Next steps
+## Next Steps
 
-- [API Reference](../api/api-reference.md)
-- [Authentication Guide](../guides/authentication.md)
-- [Code Examples](../examples/code-examples.md)
+- [API Reference]()
+- [Authentication Guide]()
+- [Code Examples]()
 
 <br>
-
----
