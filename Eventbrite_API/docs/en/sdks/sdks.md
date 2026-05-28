@@ -1,62 +1,80 @@
 # Eventbrite API SDKs
 
-Eventbrite does not officially provide maintained SDKs for specific programming languages. Instead, the Eventbrite API is designed to be consumed directly using standard HTTP clients. This guide explains how to integrate with the Eventbrite API in the absence of official SDKs, and outlines recommended alternatives.
+Eventbrite does not provide official SDKs. You can integrate with the
+Eventbrite API directly using standard HTTP clients — no SDK required.
+This guide explains what is available, what to avoid, and how to get
+started with direct integration.
 
-### Table of Contents
+<br>
+
+## Table of Contents
 
 - [SDK Availability](#sdk-availability)
-- [Recommended Integration](#recommended-integration)
+- [Direct HTTP Integration](#direct-http-integration)
+- [Client Code Generation](#client-code-generation)
 
 <br>
 
 ## SDK Availability
 
-### Official SDK
+Eventbrite does not maintain official SDKs for any programming language.
+The API is a standard RESTful HTTP interface, and Eventbrite expects
+developers to handle authentication, requests, and responses directly.
 
-- Eventbrite does not offer officially supported SDKs for languages such as JavaScript, Python, or Java.
-- The API is exposed as a RESTful HTTP interface.
-- Developers are expected to manage authentication, requests, and responses directly.
+### Community SDKs
 
-### Community and Third-Party SDKs
+Some community-maintained libraries wrap the Eventbrite API, but
+Eventbrite does not support them. Before using a community SDK in
+production, consider the following:
 
-- Some community-maintained wrappers or libraries offer the Eventbrite API, but Eventbrite does not officially support them.
-- They may not cover all endpoints or features.
-- They may lag behind API changes or updates.
-- Users need to be careful when adopting third-party SDKs in production environments.
+- Coverage may be incomplete — not all endpoints or features are
+guaranteed to be supported.
+- Maintenance may lag behind API changes, which can cause silent
+failures after an API update.
+- Debugging is harder when an abstraction layer sits between your
+code and the API response.
 
-<br>
-
-## Recommended Integration
-
-In the absence of official SDKs, direct HTTP integration is the recommended approach.
-
-### Standard HTTP Clients
-
-- Use `fetch` or `axios` in JavaScript-based applications.
-- Use server-side HTTP libraries in backend services.
-- Use API tools such as Postman for testing and exploration.
-
-### Key Features
-
-- Common model for APIs that prioritize flexibility and broad compatibility.
-- Full control over request and response handling.
-- No dependency on external SDK maintenance.
-- Easier debugging and customization.
-
-### Client Code Generation
-
-- Users may choose to generate client code, using automated tools if an OpenAPI specification is available.
-- Users generate client code using automated tools.
-- Generated clients help reduce boilerplate code, but still require validation and customization.
+For production integrations, direct HTTP is the safer and more
+predictable choice.
 
 <br>
 
-## Next steps
+## Direct HTTP Integration
 
-- [Authentication Guide](../guides/authentication.md)
-- [Code Examples](../examples/code-examples.md)
-- [Response Handling Guide](../guides/response_handling.md)
+Direct HTTP integration is the recommended approach. It gives you full
+control over request construction, error handling, and response parsing
+without any external dependency.
+
+### Recommended tools
+
+| Context | Tool |
+| --- | --- |
+| Browser-based JavaScript | `fetch` (built-in) |
+| Node.js / server-side JavaScript | `node-fetch` or `axios` |
+| Testing and exploration | Postman |
+| Other backend languages | Standard HTTP library for your language |
+
+For working request examples in cURL, JavaScript, and Node.js, see
+[Code Examples]().
 
 <br>
 
----
+## Client Code Generation
+
+If an OpenAPI specification is available, you can use code generation
+tools to produce a typed HTTP client for your language. Generated clients
+reduce boilerplate but still require validation and customization before
+use in production.
+
+The Eventbrite API OpenAPI specification is available at:
+[openapi.yaml]()
+
+<br>
+
+## Next Steps
+
+- [Authentication Guide]()
+- [Code Examples]()
+- [Response Handling Guide]()
+
+<br>
