@@ -1,39 +1,38 @@
-# Code Examples
+# 코드 예제
 
-Copy and adapt these examples to make common Eventbrite API requests.
-Each section shows the same operations in a different language or tool.
-For full parameter and response field definitions, see the
-[API Reference](../api/api-reference.md).
+아래 예제를 복사해서 Eventbrite API 요청에 바로 활용하세요.
+각 섹션은 같은 작업을 다른 언어나 도구로 보여줍니다.
+전체 파라미터와 응답 필드 정의는
+[API 레퍼런스]()를 참고하세요.
 
 ---
 
-## Table of Contents
+## 목차
 
-- [Authentication](#authentication)
+- [인증](#인증)
 - [cURL](#curl)
 - [JavaScript](#javascript)
 - [Node.js](#nodejs)
-- [Response Handling](#response-handling)
+- [응답 처리](#응답-처리)
 
 <br>
 
-## Authentication
+## 인증
 
-All examples use a Private Token in the `Authorization` header.
-Replace `YOUR_PRIVATE_TOKEN` with your own token in every example below.
+모든 예제는 `Authorization` 헤더에 프라이빗 토큰을 사용합니다.
+아래 모든 예제에서 `YOUR_PRIVATE_TOKEN`을 내 토큰으로 바꾸세요.
 
 ```
 Authorization: Bearer YOUR_PRIVATE_TOKEN
 ```
 
-To generate a token, see the
-[Authentication Guide](../guides/authentication.md).
+토큰 생성 방법은 [인증 가이드]()를 참고하세요.
 
 <br>
 
 ## cURL
 
-### Retrieve an Event
+### 이벤트 조회
 
 ```bash
 curl --request GET \\
@@ -42,7 +41,7 @@ curl --request GET \\
   "<https://www.eventbriteapi.com/v3/events/{event_id}/>"
 ```
 
-### Create an Event
+### 이벤트 생성
 
 ```bash
 curl --request POST \\
@@ -50,7 +49,7 @@ curl --request POST \\
   --header "Content-Type: application/json" \\
   --data '{
     "event": {
-      "name": { "html": "<p>My Event</p>" },
+      "name": { "html": "<p>내 이벤트</p>" },
       "start": { "timezone": "UTC", "utc": "2026-06-01T09:00:00Z" },
       "end":   { "timezone": "UTC", "utc": "2026-06-01T17:00:00Z" },
       "currency": "USD"
@@ -63,9 +62,9 @@ curl --request POST \\
 
 ## JavaScript
 
-These examples use the Fetch API, supported in all modern browsers.
+아래 예제는 모든 최신 브라우저에서 지원하는 Fetch API를 사용합니다.
 
-### Retrieve an Event
+### 이벤트 조회
 
 ```jsx
 async function getEvent(eventId) {
@@ -81,14 +80,14 @@ async function getEvent(eventId) {
   );
 
   if (!response.ok) {
-    throw new Error(`Request failed: ${response.status}`);
+    throw new Error(`요청 실패: ${response.status}`);
   }
 
   return response.json();
 }
 ```
 
-### Create an Event
+### 이벤트 생성
 
 ```jsx
 async function createEvent(organizationId) {
@@ -102,7 +101,7 @@ async function createEvent(organizationId) {
       },
       body: JSON.stringify({
         event: {
-          name: { html: "<p>My Event</p>" },
+          name: { html: "<p>내 이벤트</p>" },
           start: { timezone: "UTC", utc: "2026-06-01T09:00:00Z" },
           end:   { timezone: "UTC", utc: "2026-06-01T17:00:00Z" },
           currency: "USD"
@@ -112,7 +111,7 @@ async function createEvent(organizationId) {
   );
 
   if (!response.ok) {
-    throw new Error(`Request failed: ${response.status}`);
+    throw new Error(`요청 실패: ${response.status}`);
   }
 
   return response.json();
@@ -123,14 +122,14 @@ async function createEvent(organizationId) {
 
 ## Node.js
 
-These examples use `node-fetch` for server-side requests and read the
-token from an environment variable.
+아래 예제는 서버 사이드 요청에 `node-fetch`를 사용하고
+환경 변수에서 토큰을 읽습니다.
 
 ```bash
 npm install node-fetch
 ```
 
-### Retrieve an Event
+### 이벤트 조회
 
 ```jsx
 import fetch from "node-fetch";
@@ -147,7 +146,7 @@ async function getEvent(eventId) {
   );
 
   if (!response.ok) {
-    throw new Error(`Request failed: ${response.status}`);
+    throw new Error(`요청 실패: ${response.status}`);
   }
 
   const event = await response.json();
@@ -160,7 +159,7 @@ async function getEvent(eventId) {
 }
 ```
 
-### Create an Event
+### 이벤트 생성
 
 ```jsx
 import fetch from "node-fetch";
@@ -179,7 +178,7 @@ async function createEvent(organizationId, eventData) {
   );
 
   if (!response.ok) {
-    throw new Error(`Request failed: ${response.status}`);
+    throw new Error(`요청 실패: ${response.status}`);
   }
 
   return response.json();
@@ -188,36 +187,36 @@ async function createEvent(organizationId, eventData) {
 
 <br>
 
-## Response Handling
+## 응답 처리
 
-### Extract specific fields
+### 필요한 필드만 추출하기
 
-Access only the fields your application needs.
+애플리케이션에서 필요한 필드만 접근하세요.
 
 ```jsx
 const event = await getEvent("12345");
 
-const title       = event.name?.text        ?? "Untitled";
+const title       = event.name?.text        ?? "제목 없음";
 const description = event.description?.text ?? "";
 const startTime   = event.start?.utc        ?? null;
 ```
 
-### Separate HTML from plain text
+### HTML과 일반 텍스트 분리하기
 
-Use `html` fields for rendering in a web interface.
-Use `text` fields for plain string contexts such as notifications or logs.
+웹 인터페이스에서 렌더링할 때는 `html` 필드를 사용하세요.
+알림이나 로그 같은 일반 문자열 컨텍스트에서는 `text` 필드를 사용하세요.
 
 ```jsx
-// Render in UI
+// UI에 렌더링
 container.innerHTML = event.description.html;
 
-// Pass to notification system
+// 알림 시스템에 전달
 sendNotification({ title: event.name.text });
 ```
 
-### Handle API errors
+### API 오류 처리하기
 
-Map error codes to messages your application can display.
+오류 코드를 애플리케이션에서 표시할 수 있는 메시지로 변환하세요.
 
 ```jsx
 async function safeGetEvent(eventId) {
@@ -233,11 +232,13 @@ async function safeGetEvent(eventId) {
   if (!response.ok) {
     const error = await response.json();
     const messages = {
-      NO_AUTH:        "Invalid or missing token.",
-      NOT_AUTHORIZED: "You do not have permission to access this event.",
-      NOT_FOUND:      "Event not found."
+      NO_AUTH:        "유효하지 않거나 없는 토큰입니다.",
+      NOT_AUTHORIZED: "이 이벤트에 접근할 권한이 없습니다.",
+      NOT_FOUND:      "이벤트를 찾을 수 없습니다."
     };
-    throw new Error(messages[error.error] ?? `Unexpected error: ${response.status}`);
+    throw new Error(
+      messages[error.error] ?? `예기치 않은 오류: ${response.status}`
+    );
   }
 
   return response.json();
@@ -246,12 +247,12 @@ async function safeGetEvent(eventId) {
 
 <br>
 
-## Next Steps
+## 다음 단계
 
-- [API Reference]()
-- [Step-by-Step Tutorial]()
-- [Authentication Guide]()
-- [Response Handling Guide]()
-- [SDKs]()
+- [API 레퍼런스]()
+- [단계별 튜토리얼]()
+- [인증 가이드]()
+- [응답 처리 가이드]()
+- [SDK]()
 
 <br>
