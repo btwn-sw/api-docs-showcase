@@ -46,7 +46,7 @@ Authorization: Bearer YOUR_PRIVATE_TOKEN
 Replace `YOUR_PRIVATE_TOKEN` with the token from your
 [Eventbrite API Keys page](https://www.eventbrite.com/account-settings/apps).
 For full setup instructions, see the
-[Authentication Guide](https://www.notion.so/guides/authentication.md).
+[Authentication Guide](../guides/authentication.md).
 
 <br>
 
@@ -98,7 +98,7 @@ All Event endpoints may return the following error responses.
 ```
 
 For error handling strategies, see the
-[Response Handling Guide](https://www.notion.so/guides/response_handling.md).
+[Response Handling Guide](../guides/response_handling.md).
 
 <br>
 
@@ -288,7 +288,7 @@ POST /events/{event_id}/
 **Request Body Parameters**
 
 Include only the fields you want to update.
-The request body structure is identical to [Create an Event](https://www.notion.so/api-reference_en-md-36ea5679c0d580c4b135ccf8d82f1252?pvs=21).
+The request body structure is identical to [Create an Event](#create-an-event).
 
 **Request Example**
 
@@ -308,7 +308,7 @@ curl --request POST \\
 **Response: `200 OK`**
 
 Returns the updated event object. Fields are identical to
-[Retrieve an Event](https://www.notion.so/api-reference_en-md-36ea5679c0d580c4b135ccf8d82f1252?pvs=21) response fields.
+[Retrieve an Event](#retrieve-an-event) response fields.
 
 
 
