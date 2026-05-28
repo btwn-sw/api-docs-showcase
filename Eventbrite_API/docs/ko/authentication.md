@@ -58,7 +58,7 @@ curl -H "Authorization: Bearer YOUR_PRIVATE_TOKEN" \\
   <https://www.eventbrite.com/api/v3/users/me/>
 ```
 
-**이미 API 키가 있다면:** [API 키 관리 페이지](https://www.eventbrite.com/account-settings/apps)에서
+**이미 API 키가 있다면:** [API Keys page](https://www.eventbrite.com/account-settings/apps)에서
 앱 옆의 **API 키, 클라이언트 시크릿 및 토큰 보기**를 클릭하고
 프라이빗 토큰을 복사하세요.
 
@@ -95,7 +95,7 @@ URL에 포함된 토큰은 서버와 브라우저 로그에 기록되므로
 - 개발 환경과 프로덕션 환경에서는 별도의 토큰을 사용하세요.
 - 버전 관리 시스템에 토큰을 커밋하거나 공개 저장소에 포함하지 마세요.
 - 더 이상 사용하지 않는 토큰은
-[API 키 관리 페이지](https://www.eventbrite.com/account-settings/apps)에서
+[API Keys page](https://www.eventbrite.com/account-settings/apps)에서
 삭제하세요.
 
 <br>
@@ -105,7 +105,7 @@ URL에 포함된 토큰은 서버와 브라우저 로그에 기록되므로
 각 사용자가 자신의 Eventbrite 계정으로 로그인하는 웹 앱처럼,
 사용자별 인증이 필요한 경우에 서버 사이드 OAuth 흐름을 사용하세요.
 
-**사전 요구사항:**[API 키 관리 페이지](https://www.eventbrite.com/account-settings/apps)에서
+**사전 요구사항:**[API Keys page](https://www.eventbrite.com/account-settings/apps)에서
 발급받은 API 키와 클라이언트 시크릿.
 
 ### 1단계. 사용자를 리디렉션하기
