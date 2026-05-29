@@ -1,16 +1,17 @@
 # 빠른 참조 가이드
 
-Eventbrite API 핵심 정보를 빠르게 알아보세요. API를 이미 알고 있고
+Eventbrite API 핵심 정보를 빠르게 확인하세요. API를 이미 알고 있고
 엔드포인트, 헤더, 상태 코드, 요청 제한을 빠르게 확인해야 할 때
-사용하는 가이드입니다.
+사용하는 페이지입니다.
 
-전체 문서는 [API 레퍼런스]()에서 시작하세요.
+전체 파라미터 정의, 요청 본문 스키마, 응답 필드 설명은
+[API 레퍼런스](../api/api-reference.md)를 참고하세요.
 
 <br>
 
 ## 목차
 
-- [Base URL 및 버전](#base-url-및-버전)
+- [Base URL](#base-url)
 - [인증](#인증)
 - [이벤트 엔드포인트](#이벤트-엔드포인트)
 - [요청 헤더](#요청-헤더)
@@ -21,14 +22,14 @@ Eventbrite API 핵심 정보를 빠르게 알아보세요. API를 이미 알고 
 
 <br>
 
-## Base URL 및 버전
+## Base URL
 
 ```
 https://www.eventbriteapi.com/v3
 ```
 
 - API 버전: `v3`
-- 모든 엔드포인트는 `/v3/`로 시작합니다.
+- 모든 엔드포인트는 `/v3/`로 시작합니다
 - 요청 및 응답 형식: `application/json`
 
 <br>
@@ -40,10 +41,10 @@ Authorization: Bearer YOUR_PRIVATE_TOKEN
 ```
 
 - 토큰을 환경 변수에 저장하세요 — 소스 코드에 넣지 마세요.
-- [계정 설정 → API 키](https://www.eventbrite.com/account-settings/apps)에서
-토큰을 재발급할 수 있습니다.
+- [계정 설정 → API Keys](https://www.eventbrite.com/account-settings/apps)에서
+토큰을 생성하거나 재발급할 수 있습니다.
 
-→ [인증 가이드]()
+→ [인증 가이드](../guides/authentication.md)
 
 <br>
 
@@ -51,12 +52,14 @@ Authorization: Bearer YOUR_PRIVATE_TOKEN
 
 | 작업 | 메서드 | 엔드포인트 |
 | --- | --- | --- |
+| 조직별 이벤트 목록 조회 | `GET` | `/organizations/{organization_id}/events/` |
 | 이벤트 생성 | `POST` | `/organizations/{organization_id}/events/` |
 | 이벤트 조회 | `GET` | `/events/{event_id}/` |
 | 이벤트 수정 | `POST` | `/events/{event_id}/` |
+| 이벤트 게시 | `POST` | `/events/{event_id}/publish/` |
 | 이벤트 삭제 | `DELETE` | `/events/{event_id}/` |
 
-→ [API 레퍼런스]()
+→ [API 레퍼런스](../api/api-reference.md)
 
 <br>
 
@@ -67,6 +70,9 @@ Authorization: Bearer YOUR_PRIVATE_TOKEN
 | `Authorization` | `Bearer YOUR_PRIVATE_TOKEN` |
 | `Content-Type` | `application/json` |
 
+`Content-Type`은 모든 POST 요청에 필수입니다. GET과 DELETE에서는 선택
+사항입니다.
+
 <br>
 
 ## 응답 필드
@@ -76,13 +82,18 @@ Authorization: Bearer YOUR_PRIVATE_TOKEN
 | `id` | String | 이벤트 고유 식별자 |
 | `name.text` | String | 일반 텍스트 형식의 이벤트 제목 |
 | `name.html` | String | HTML 형식의 이벤트 제목 |
-| `description.text` | String | 일반 텍스트 형식의 이벤트 설명 |
-| `description.html` | String | HTML 형식의 이벤트 설명 |
+| `description.text` | String | 일반 텍스트 형식의 이벤트 설명. 설명이 없는 초안(draft)에서는 `null`. |
+| `description.html` | String | HTML 형식의 이벤트 설명. 설명이 없는 초안(draft)에서는 `null`. |
 | `status` | String | 이벤트 상태 — `draft`, `live`, `started`, `ended`, `completed`, `canceled` |
-| `start.utc` | String | UTC 시작 시간 |
-| `end.utc` | String | UTC 종료 시간 |
+| `start.utc` | String | UTC 시작 시간 — 형식: `YYYY-MM-DDTHH:MM:SSZ` |
+| `start.local` | String | 이벤트 현지 시간대 기준 시작 시간 |
+| `end.utc` | String | UTC 종료 시간 — 형식: `YYYY-MM-DDTHH:MM:SSZ` |
+| `end.local` | String | 이벤트 현지 시간대 기준 종료 시간 |
+| `capacity` | Integer | 최대 참석자 수. 설정하지 않으면 `null`. |
+| `currency` | String | ISO 4217 통화 코드 |
+| `url` | String | Eventbrite 이벤트 공개 페이지 URL |
 
-→ [응답 처리 가이드]()
+→ [응답 처리 가이드](../guides/response-handling.md)
 
 <br>
 
@@ -91,13 +102,15 @@ Authorization: Bearer YOUR_PRIVATE_TOKEN
 | 코드 | 오류 코드 | 의미 | 조치 |
 | --- | --- | --- | --- |
 | `200` | — | 요청 성공 | — |
-| `400` | `FIELD_INVALID` | 유효하지 않거나 충돌하는 파라미터 | API 레퍼런스에서 요청 본문 확인 |
-| `401` | `NO_AUTH` | 토큰이 없거나 유효하지 않음 | `Authorization` 헤더 형식과 토큰 값 확인 |
-| `403` | `NOT_AUTHORIZED` | 권한 부족 | 이벤트가 내 계정에 속하는지 확인 |
-| `404` | `NOT_FOUND` | 리소스를 찾을 수 없음 | `event_id`가 올바른지 확인 |
-| `429` | — | 요청 제한 초과 | `X-Apiary-RateLimit-Remaining` 헤더 확인 |
+| `400` | `FIELD_INVALID` | 유효하지 않거나 누락된 필드 | API 레퍼런스에서 요청 본문 확인 |
+| `400` | `VENUE_AND_ONLINE` | 장소와 online_event가 함께 설정됨 | 장소를 제거하거나 online_event를 false로 설정 |
+| `400` | `BAD_CONTINUATION_TOKEN` | 페이지네이션 토큰이 잘못됐거나 만료됨 | 1페이지부터 페이지네이션 다시 시작 |
+| `401` | `NO_AUTH` | 토큰이 없거나 유효하지 않음 | Authorization 헤더 형식과 토큰 값 확인 |
+| `403` | `NOT_AUTHORIZED` | 권한 부족 | 리소스가 내 계정에 속하는지 확인 |
+| `404` | `NOT_FOUND` | 리소스를 찾을 수 없음 | event_id가 올바른지 확인 |
+| `429` | — | 요청 제한 초과 | X-Apiary-RateLimit-Remaining 헤더 확인 |
 
-→ [트러블슈팅 가이드]()
+→ [오류 레퍼런스](../api/error-reference.md)
 
 <br>
 
@@ -114,9 +127,9 @@ Authorization: Bearer YOUR_PRIVATE_TOKEN
 | 헤더 | 설명 |
 | --- | --- |
 | `X-Apiary-RateLimit-Limit` | 현재 윈도우에서 허용된 최대 요청 수 |
-| `X-Apiary-RateLimit-Remaining` | 제한 초기화 전 남은 요청 수 |
+| `X-Apiary-RateLimit-Remaining` | 제한이 초기화되기 전까지 남은 요청 수 |
 
-→ [API 레퍼런스 — 요청 제한]()
+→ [오류 레퍼런스 — 429](../api/error-reference.md#429-too-many-requests)
 
 <br>
 
@@ -125,11 +138,19 @@ Authorization: Bearer YOUR_PRIVATE_TOKEN
 **이벤트 조회:**
 
 ```bash
-curl --request GET \\
-  --header "Authorization: Bearer YOUR_PRIVATE_TOKEN" \\
-  "<https://www.eventbriteapi.com/v3/events/{event_id}/>"
+curl --request GET \
+  --header "Authorization: Bearer YOUR_PRIVATE_TOKEN" \
+  "https://www.eventbriteapi.com/v3/events/{event_id}/"
 ```
 
-→ [코드 예제]()
+**조직별 이벤트 목록 조회:**
+
+```bash
+curl --request GET \
+  --header "Authorization: Bearer YOUR_PRIVATE_TOKEN" \
+  "https://www.eventbriteapi.com/v3/organizations/{organization_id}/events/"
+```
+
+→ [코드 예제](../examples/code-examples.md)
 
 <br>
