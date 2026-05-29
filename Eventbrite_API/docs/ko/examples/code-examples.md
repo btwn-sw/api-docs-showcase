@@ -3,9 +3,9 @@
 아래 예제를 복사해서 Eventbrite API 요청에 바로 활용하세요.
 각 섹션은 같은 작업을 다른 언어나 도구로 보여줍니다.
 전체 파라미터와 응답 필드 정의는
-[API 레퍼런스]()를 참고하세요.
+[API 레퍼런스](../api/api-reference.md)를 참고하세요.
 
----
+<br>
 
 ## 목차
 
@@ -13,40 +13,50 @@
 - [cURL](#curl)
 - [JavaScript](#javascript)
 - [Node.js](#nodejs)
+- [Python](#python)
 - [응답 처리](#응답-처리)
+- [페이지네이션](#페이지네이션)
+- [요청 제한](#요청-제한)
 
 <br>
 
 ## 인증
 
-모든 예제는 `Authorization` 헤더에 프라이빗 토큰을 사용합니다.
-아래 모든 예제에서 `YOUR_PRIVATE_TOKEN`을 내 토큰으로 바꾸세요.
+모든 예제는 환경 변수에서 프라이빗 토큰을 읽습니다.
+예제를 실행하기 전에 아래 명령어로 토큰을 한 번만 설정하세요.
 
-```
-Authorization: Bearer YOUR_PRIVATE_TOKEN
+```bash
+export EVENTBRITE_TOKEN=your_token_here
 ```
 
-토큰 생성 방법은 [인증 가이드]()를 참고하세요.
+토큰 설정 방법은 [인증 가이드](../guides/authentication.md)를 참고하세요.
 
 <br>
 
 ## cURL
 
+### 조직별 이벤트 목록 조회
+
+```bash
+curl --request GET \
+  --header "Authorization: Bearer $EVENTBRITE_TOKEN" \
+  "https://www.eventbriteapi.com/v3/organizations/{organization_id}/events/"
+```
+
 ### 이벤트 조회
 
 ```bash
-curl --request GET \\
-  --header "Authorization: Bearer YOUR_PRIVATE_TOKEN" \\
-  --header "Content-Type: application/json" \\
-  "<https://www.eventbriteapi.com/v3/events/{event_id}/>"
+curl --request GET \
+  --header "Authorization: Bearer $EVENTBRITE_TOKEN" \
+  "https://www.eventbriteapi.com/v3/events/{event_id}/"
 ```
 
 ### 이벤트 생성
 
 ```bash
-curl --request POST \\
-  --header "Authorization: Bearer YOUR_PRIVATE_TOKEN" \\
-  --header "Content-Type: application/json" \\
+curl --request POST \
+  --header "Authorization: Bearer $EVENTBRITE_TOKEN" \
+  --header "Content-Type: application/json" \
   --data '{
     "event": {
       "name": { "html": "<p>내 이벤트</p>" },
@@ -54,8 +64,40 @@ curl --request POST \\
       "end":   { "timezone": "UTC", "utc": "2026-06-01T17:00:00Z" },
       "currency": "USD"
     }
-  }' \\
-  "<https://www.eventbriteapi.com/v3/organizations/{organization_id}/events/>"
+  }' \
+  "https://www.eventbriteapi.com/v3/organizations/{organization_id}/events/"
+```
+
+### 이벤트 수정
+
+```bash
+curl --request POST \
+  --header "Authorization: Bearer $EVENTBRITE_TOKEN" \
+  --header "Content-Type: application/json" \
+  --data '{
+    "event": {
+      "name": { "html": "<p>수정된 이벤트 이름</p>" },
+      "capacity": 200
+    }
+  }' \
+  "https://www.eventbriteapi.com/v3/events/{event_id}/"
+```
+
+### 이벤트 게시
+
+```bash
+curl --request POST \
+  --header "Authorization: Bearer $EVENTBRITE_TOKEN" \
+  --header "Content-Type: application/json" \
+  "https://www.eventbriteapi.com/v3/events/{event_id}/publish/"
+```
+
+### 이벤트 삭제
+
+```bash
+curl --request DELETE \
+  --header "Authorization: Bearer $EVENTBRITE_TOKEN" \
+  "https://www.eventbriteapi.com/v3/events/{event_id}/"
 ```
 
 <br>
@@ -63,6 +105,28 @@ curl --request POST \\
 ## JavaScript
 
 아래 예제는 모든 최신 브라우저에서 지원하는 Fetch API를 사용합니다.
+`YOUR_PRIVATE_TOKEN`을 내 토큰으로 바꾸세요.
+
+### 조직별 이벤트 목록 조회
+
+```jsx
+async function listEvents(organizationId) {
+  const response = await fetch(
+    `https://www.eventbriteapi.com/v3/organizations/${organizationId}/events/`,
+    {
+      headers: {
+        "Authorization": "Bearer YOUR_PRIVATE_TOKEN"
+      }
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`요청 실패: ${response.status}`);
+  }
+
+  return response.json();
+}
+```
 
 ### 이벤트 조회
 
@@ -71,10 +135,8 @@ async function getEvent(eventId) {
   const response = await fetch(
     `https://www.eventbriteapi.com/v3/events/${eventId}/`,
     {
-      method: "GET",
       headers: {
-        "Authorization": "Bearer YOUR_PRIVATE_TOKEN",
-        "Content-Type": "application/json"
+        "Authorization": "Bearer YOUR_PRIVATE_TOKEN"
       }
     }
   );
@@ -90,7 +152,7 @@ async function getEvent(eventId) {
 ### 이벤트 생성
 
 ```jsx
-async function createEvent(organizationId) {
+async function createEvent(organizationId, eventData) {
   const response = await fetch(
     `https://www.eventbriteapi.com/v3/organizations/${organizationId}/events/`,
     {
@@ -99,14 +161,53 @@ async function createEvent(organizationId) {
         "Authorization": "Bearer YOUR_PRIVATE_TOKEN",
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({
-        event: {
-          name: { html: "<p>내 이벤트</p>" },
-          start: { timezone: "UTC", utc: "2026-06-01T09:00:00Z" },
-          end:   { timezone: "UTC", utc: "2026-06-01T17:00:00Z" },
-          currency: "USD"
-        }
-      })
+      body: JSON.stringify({ event: eventData })
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`요청 실패: ${response.status}`);
+  }
+
+  return response.json();
+}
+```
+
+### 이벤트 수정
+
+```jsx
+async function updateEvent(eventId, updates) {
+  const response = await fetch(
+    `https://www.eventbriteapi.com/v3/events/${eventId}/`,
+    {
+      method: "POST",
+      headers: {
+        "Authorization": "Bearer YOUR_PRIVATE_TOKEN",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ event: updates })
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`요청 실패: ${response.status}`);
+  }
+
+  return response.json();
+}
+```
+
+### 이벤트 삭제
+
+```jsx
+async function deleteEvent(eventId) {
+  const response = await fetch(
+    `https://www.eventbriteapi.com/v3/events/${eventId}/`,
+    {
+      method: "DELETE",
+      headers: {
+        "Authorization": "Bearer YOUR_PRIVATE_TOKEN"
+      }
     }
   );
 
@@ -129,6 +230,29 @@ async function createEvent(organizationId) {
 npm install node-fetch
 ```
 
+### 조직별 이벤트 목록 조회
+
+```jsx
+import fetch from "node-fetch";
+
+async function listEvents(organizationId) {
+  const response = await fetch(
+    `https://www.eventbriteapi.com/v3/organizations/${organizationId}/events/`,
+    {
+      headers: {
+        "Authorization": `Bearer ${process.env.EVENTBRITE_TOKEN}`
+      }
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`요청 실패: ${response.status}`);
+  }
+
+  return response.json();
+}
+```
+
 ### 이벤트 조회
 
 ```jsx
@@ -139,8 +263,7 @@ async function getEvent(eventId) {
     `https://www.eventbriteapi.com/v3/events/${eventId}/`,
     {
       headers: {
-        "Authorization": `Bearer ${process.env.EVENTBRITE_TOKEN}`,
-        "Content-Type": "application/json"
+        "Authorization": `Bearer ${process.env.EVENTBRITE_TOKEN}`
       }
     }
   );
@@ -153,7 +276,7 @@ async function getEvent(eventId) {
 
   return {
     title:       event.name?.text,
-    description: event.description?.html,
+    description: event.description?.text,
     status:      event.status
   };
 }
@@ -183,6 +306,155 @@ async function createEvent(organizationId, eventData) {
 
   return response.json();
 }
+```
+
+### 이벤트 수정
+
+```jsx
+import fetch from "node-fetch";
+
+async function updateEvent(eventId, updates) {
+  const response = await fetch(
+    `https://www.eventbriteapi.com/v3/events/${eventId}/`,
+    {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${process.env.EVENTBRITE_TOKEN}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ event: updates })
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`요청 실패: ${response.status}`);
+  }
+
+  return response.json();
+}
+```
+
+### 이벤트 삭제
+
+```jsx
+import fetch from "node-fetch";
+
+async function deleteEvent(eventId) {
+  const response = await fetch(
+    `https://www.eventbriteapi.com/v3/events/${eventId}/`,
+    {
+      method: "DELETE",
+      headers: {
+        "Authorization": `Bearer ${process.env.EVENTBRITE_TOKEN}`
+      }
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`요청 실패: ${response.status}`);
+  }
+
+  return response.json();
+}
+```
+
+<br>
+
+## Python
+
+아래 예제는 `requests` 라이브러리를 사용하고
+환경 변수에서 토큰을 읽습니다.
+
+```bash
+pip install requests
+```
+
+### 조직별 이벤트 목록 조회
+
+```python
+import os
+import requests
+
+def list_events(organization_id):
+    response = requests.get(
+        f"https://www.eventbriteapi.com/v3/organizations/{organization_id}/events/",
+        headers={"Authorization": f"Bearer {os.environ['EVENTBRITE_TOKEN']}"}
+    )
+    response.raise_for_status()
+    return response.json()
+```
+
+### 이벤트 조회
+
+```python
+import os
+import requests
+
+def get_event(event_id):
+    response = requests.get(
+        f"https://www.eventbriteapi.com/v3/events/{event_id}/",
+        headers={"Authorization": f"Bearer {os.environ['EVENTBRITE_TOKEN']}"}
+    )
+    response.raise_for_status()
+    event = response.json()
+    return {
+        "title":       event.get("name", {}).get("text"),
+        "description": event.get("description", {}).get("text"),
+        "status":      event.get("status")
+    }
+```
+
+### 이벤트 생성
+
+```python
+import os
+import requests
+
+def create_event(organization_id, event_data):
+    response = requests.post(
+        f"https://www.eventbriteapi.com/v3/organizations/{organization_id}/events/",
+        headers={
+            "Authorization": f"Bearer {os.environ['EVENTBRITE_TOKEN']}",
+            "Content-Type": "application/json"
+        },
+        json={"event": event_data}
+    )
+    response.raise_for_status()
+    return response.json()
+```
+
+### 이벤트 수정
+
+```python
+import os
+import requests
+
+def update_event(event_id, updates):
+    response = requests.post(
+        f"https://www.eventbriteapi.com/v3/events/{event_id}/",
+        headers={
+            "Authorization": f"Bearer {os.environ['EVENTBRITE_TOKEN']}",
+            "Content-Type": "application/json"
+        },
+        json={"event": updates}
+    )
+    response.raise_for_status()
+    return response.json()
+```
+
+### 이벤트 삭제
+
+```python
+import os
+import requests
+
+def delete_event(event_id):
+    response = requests.delete(
+        f"https://www.eventbriteapi.com/v3/events/{event_id}/",
+        headers={"Authorization": f"Bearer {os.environ['EVENTBRITE_TOKEN']}"}
+    )
+    response.raise_for_status()
+    return response.json()
 ```
 
 <br>
@@ -247,12 +519,99 @@ async function safeGetEvent(eventId) {
 
 <br>
 
+## 페이지네이션
+
+컨티뉴에이션 토큰을 사용해서 여러 페이지에 걸친 이벤트를 모두 가져오세요.
+
+```jsx
+import fetch from "node-fetch";
+
+async function getAllEvents(organizationId) {
+  const events = [];
+  let continuation = null;
+
+  do {
+    const url = new URL(
+      `https://www.eventbriteapi.com/v3/organizations/${organizationId}/events/`
+    );
+
+    if (continuation) {
+      url.searchParams.set("continuation", continuation);
+    }
+
+    const response = await fetch(url.toString(), {
+      headers: {
+        "Authorization": `Bearer ${process.env.EVENTBRITE_TOKEN}`
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`요청 실패: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    events.push(...data.events);
+
+    continuation = data.pagination.has_more_items
+      ? data.pagination.continuation
+      : null;
+
+  } while (continuation);
+
+  return events;
+}
+```
+
+페이지네이션 작동 방식에 대한 자세한 설명은
+[페이지네이션 가이드](../guides/pagination.md)를 참고하세요.
+
+<br>
+
+## 요청 제한
+
+대량 작업을 처리할 때는 요청 사이에 시간 간격을 두고
+허용된 요청 수를 유지하세요.
+
+```jsx
+import fetch from "node-fetch";
+
+async function fetchWithDelay(eventIds, delayMs = 500) {
+  const results = [];
+
+  for (const id of eventIds) {
+    const response = await fetch(
+      `https://www.eventbriteapi.com/v3/events/${id}/`,
+      {
+        headers: {
+          "Authorization": `Bearer ${process.env.EVENTBRITE_TOKEN}`
+        }
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`이벤트 ${id} 요청 실패: ${response.status}`);
+    }
+
+    results.push(await response.json());
+    await new Promise(resolve => setTimeout(resolve, delayMs));
+  }
+
+  return results;
+}
+```
+
+요청 제한에 대한 자세한 내용은
+[오류 레퍼런스 — 429](../api/error-reference.md#429-too-many-requests)를
+참고하세요.
+
+<br>
+
 ## 다음 단계
 
-- [API 레퍼런스]()
-- [단계별 튜토리얼]()
-- [인증 가이드]()
-- [응답 처리 가이드]()
-- [SDK]()
+- [API 레퍼런스](../api/api-reference.md)
+- [페이지네이션 가이드](../guides/pagination.md)
+- [응답 처리 가이드](../guides/response-handling.md)
+- [인증 가이드](../guides/authentication.md)
 
 <br>
