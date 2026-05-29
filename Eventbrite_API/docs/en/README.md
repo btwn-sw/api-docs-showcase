@@ -1,39 +1,32 @@
 # Eventbrite API Documentation
 
-A complete, structured documentation set for the Eventbrite API, built as
-a technical writing portfolio project. Each document reflects a specific
-documentation type — tutorial, how-to, reference, or explanation — and
-is designed to support developers at different stages of API integration.
+A complete documentation set for the Eventbrite API, covering
+authentication, event management, response handling, and troubleshooting.
+Built as a technical writing portfolio project.
 
 <br>
 
-## Repository Structure
+## Documentation Structure
 
 ```
-/docs
-├─ README.md                    # Documentation overview & navigation
-│
-├─ getting-started/
-│  ├─ quick-start.md            # Quick Start Guide
-│  └─ step-by-step.md          # Step-by-Step Tutorial
-│
-├─ guides/
-│  ├─ authentication.md        # Authentication Guide
-│  ├─ response-handling.md     # Response Handling Guide
-│  └─ troubleshooting.md       # Troubleshooting Guide
-│
-├─ api/
-│  ├─ openapi.yaml             # OpenAPI specification
-│  └─ api-reference.md        # API Reference
-│
-├─ examples/
-│  └─ code-examples.md        # Code Examples
-│
-├─ sdks/
-│  └─ sdks.md                 # SDK Availability Guide
-│
-└─ reference/
-└─ quick-reference.md      # Quick Reference Guide
+docs/en/
+├── get-started/
+│   └── quick-start.md
+├── tutorials/
+│   └── first-api-call.md
+├── guides/
+│   ├── authentication.md
+│   ├── pagination-guide.md
+│   ├── response-handling.md
+│   └── troubleshooting.md
+├── api/
+│   ├── api-reference.md
+│   ├── error-reference.md
+│   └── quick-reference.md
+├── examples/
+│   └── code-examples.md
+└── reference/
+    └── glossary.md
 ```
 
 <br>
@@ -42,15 +35,17 @@ is designed to support developers at different stages of API integration.
 
 | Document | Type | Description |
 | --- | --- | --- |
-| [Quick Start Guide](../en/getting-started/quick-start.md) | How-to | Make your first API request in under 3 minutes |
-| [Step-by-Step Tutorial](../en/getting-started/step-by-step.md) | Tutorial | Guided walkthrough using the Eventbrite API Console and Postman |
-| [Authentication Guide](../en/guides/authentication.md) | How-to | Generate a Private Token and authenticate API requests |
-| [API Reference](../en/api/api-reference.md) | Reference | Endpoint signatures, parameters, and response fields for Event endpoints |
-| [Code Examples](../en/examples/code-examples.md) | Reference | Request examples in cURL, JavaScript, and Node.js |
-| [Response Handling Guide](../en/guides/response_handling.md) | Explanation | How to safely consume nested JSON, optional fields, and HTML content |
-| [SDK Availability Guide](../en/sdks/sdks.md) | Explanation | Why Eventbrite has no official SDK and how to integrate without one |
+| [Quick Start Guide](../en/get-started/quick-start.md) | How-to | Make your first API request in under 3 minutes |
+| [First API Call Tutorial](../en/tutorials/first-api-call.md) | Tutorial | Guided walkthrough using the Eventbrite API Console and Postman |
+| [Authentication Guide](../en/guides/authentication.md) | How-to | Choose a credential type, generate a Private Token, and authenticate requests |
+| [Pagination Guide](../en/guides/pagination.md) | How-to | Retrieve multiple pages of events using continuation tokens |
+| [Response Handling Guide](../en/guides/response_handling.md) | Explanation | Why responses are structured the way they are, and how to consume them safely |
 | [Troubleshooting Guide](../en/guides/troubleshooting.md) | How-to | Diagnose and fix common API errors by symptom |
-| [Quick Reference Guide](../en/reference/quick-reference.md) | Reference | Base URL, endpoints, headers, status codes, and rate limits at a glance |
+| [API Reference](../en/api/api-reference.md) | Reference | Endpoint signatures, parameters, and response fields for all Event endpoints |
+| [Error Reference](../en/api/error-reference.md) | Reference | All error codes, their causes, and resolution steps |
+| [Quick Reference](../en/api/quick-reference.md) | Reference | Endpoints, headers, status codes, and rate limits at a glance |
+| [Code Examples](../en/examples/code-examples.md) | Reference | Request examples in cURL, JavaScript, Node.js, and Python |
+| [Glossary](../en/reference/glossary.md) | Reference | Definitions for key terms used across the documentation |
 
 <br>
 
@@ -58,14 +53,14 @@ is designed to support developers at different stages of API integration.
 
 ### I want to make my first API request fast
 
-👉 [**Quick Start Guide**](../en/getting-started/quick-start.md)
+👉 [**Quick Start Guide**](../en/get-started/quick-start.md)
 
 Get from zero to a working API response in under 3 minutes.
 No prior Eventbrite API experience required.
 
 ### I want to learn the API step by step
 
-👉 [**Step-by-Step Tutorial**](../en/getting-started/step-by-step.md)
+👉 [**First API Call Tutorial**](../en/tutorials/first-api-call.md)
 
 A guided walkthrough using the Eventbrite API Console and Postman.
 Covers authentication, live requests, response inspection, and
@@ -73,10 +68,10 @@ exporting to cURL.
 
 ### I need to look something up
 
-👉 [**Quick Reference Guide**](../en/reference/quick-reference.md)
+👉 [**Quick Reference**](../en/api/quick-reference.md)
 
-Base URL, endpoints, request headers, response fields, status codes,
-and rate limits — all on one page.
+Endpoints, request headers, response fields, status codes, and rate
+limits — all on one page.
 
 ### I need to fix something that's broken
 
@@ -84,6 +79,32 @@ and rate limits — all on one page.
 
 Organized by error symptom. Each section covers cause, fix steps,
 and a verification request.
+
+### I don't understand a term
+
+👉 [**Glossary**](../en/reference/glossary.md)
+
+Definitions for Private Token, continuation token, draft vs live,
+UTC vs local, and all other key terms used across the documentation.
+
+<br>
+
+## Direct HTTP Integration
+
+Eventbrite does not provide official SDKs for any programming language.
+The API is a standard RESTful HTTP interface — authentication,
+requests, and responses are handled directly using standard HTTP clients.
+
+Recommended tools by environment:
+
+| Environment | Tool |
+| --- | --- |
+| Browser-based JavaScript | `fetch` (built-in) |
+| Node.js / server-side JavaScript | `node-fetch` or `axios` |
+| Python | `requests` |
+| Testing and exploration | Postman |
+
+For working request examples, see [Code Examples](../en/examples/code-examples.md).
 
 <br>
 
@@ -101,17 +122,7 @@ This is a portfolio project and is not intended for production use.
 The content is based on publicly available Eventbrite API documentation
 and focuses on documentation structure and best practices.
 
-<br>
-
-## About Eventbrite
-
-[Eventbrite](https://www.eventbrite.com/platform/api/) is an event
-management and ticketing platform that provides a RESTful API for
-accessing event data.
-
-**Legal:** This documentation is based on Eventbrite's publicly available
-API documentation and does not replace or modify the official Eventbrite
-Terms of Service. See [Eventbrite Legal Terms](https://www.eventbrite.com/help/en-us/topics/terms-and-policies/)
-for full details.
+For official Eventbrite API documentation, see
+[eventbrite.com/platform/api](https://www.eventbrite.com/platform/api/).
 
 <br>
