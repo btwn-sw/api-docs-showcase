@@ -1,56 +1,44 @@
 # Information Architecture Design: A Developer Portal Case Study
 
-<br>
-<br>
+## Overview
 
-## What you'll get from this
+By the end of this page, you'll understand the reasoning behind one developer portal's structure: why it was built around code-first execution instead of long descriptions, which design decisions came from analyzing five real developer portals, how the sitemap stays clean as the API surface grows, and how the documentation stays accurate as the underlying API changes.
 
-By the end of this page, you'll see the full reasoning behind one developer portal's structure — why it was built around code-first execution instead of long descriptions, which decisions came from analyzing five real developer portals, and how the sitemap stays clean as the API surface grows.
+This case study assumes basic familiarity with developer portals and REST APIs.
 
-<br>
-<br>
+## The Design Challenge
 
-## Context
+A logistics platform holds a category of data most competitors don't have: live shipment and delivery signals generated inside its own network. This includes a package's current location, delivery-time trends, and which routes are underperforming.
 
-A logistics platform holds a category of data most competitors don't: live shipment and delivery signals generated inside its own network — where a package is right now, how delivery times are trending, which routes are underperforming. When the platform opens an API exposing this data to external developers for the first time, that data becomes the portal's main selling point — but only if developers can actually find and use it easily.
+When the platform opens its tracking API to external developers for the first time, this data becomes the portal's main selling point — but only if developers can find and use it easily.
 
 This case study covers the information architecture (IA) design for that platform's first external-facing developer portal, built for retailers, fulfillment partners, and integration vendors connecting to the tracking API for the first time.
 
 The design challenge: build an IA that scales cleanly as more APIs get added, while making sure the platform's data advantage is visible in the structure from day one — not bolted on afterward.
 
-<br>
-<br>
-
 ## Design Rationale
 
-<br>
+### External Developer Needs
 
-### Who's actually reading this
+The platform's existing internal documentation was built for engineers who already work inside the company and understand its systems: long descriptions of objects and data models come first, with code examples appearing narrow and secondary. That approach works for someone who already knows the domain.
 
-The platform's existing internal documentation was built for engineers who already work inside the company and already understand its systems — long descriptions of objects and data models come first, with code examples appearing narrow and secondary. That works fine for someone who already knows the domain.
+External developers work differently. They arrive with one specific goal — "connect this API to my system" — and need to confirm they're on the right track by running actual code as fast as possible. Every screen of object definitions they must scroll past before reaching a working example adds time before their first success.
 
-External developers work differently. They arrive with one specific goal — "connect this API to my system" — and need to confirm they're on the right track by running actual code as fast as possible. Every screen of object definitions they have to scroll past before reaching a working example adds time before their first success.
+### API Playground Decision
 
-<br>
-
-### Why this layout, specifically
-
-After reviewing five real developer portals — Payabli, Stripe, Twilio, Plaid, and Eventbrite — one pattern stood out as the best fit for this audience: an API playground layout, where documentation, parameters, and live execution all sit in a single view.
+After reviewing five real developer portals — Payabli, Stripe, Twilio, Plaid, and Eventbrite — one pattern stood out as the best fit for this audience: an API Playground layout, where documentation, parameters, and live execution all sit in a single view.
 
 | Portal reviewed | What was adopted from it | Why |
 |---|---|---|
-| Payabli | API playground layout | One screen: docs + parameters + live execution together |
+| Payabli | API Playground layout | One screen: docs + parameters + live execution together |
 | Stripe | Collapsible object pattern | Nested data objects collapse by default, so the page doesn't get overwhelming as the API grows |
 | Eventbrite | Section-based structure | Clear separation between "learn," "solve a problem," "look something up," and "understand why" |
 
-The decision: a **code-first, single-screen layout** — because it removes the step between "I read what this parameter does" and "I tried it and saw what happens."
+The decision: a **code-first, single-screen layout** — because it removes the step between reading what a parameter does and trying it to see the result.
 
-<br>
-<br>
+## Developer Portal Sitemap
 
-## The Site Structure
-
-The sitemap follows two rules: it should match how an external developer actually moves from "just discovered this" to "running in production," and it should stay easy to extend as new APIs get added later.
+The sitemap follows two rules: it must match how an external developer moves from "just discovered this" to "running in production," and it must stay easy to extend as new APIs get added later.
 
 ```
 Developer Portal
@@ -71,18 +59,15 @@ Developer Portal
 
 **The structural decisions that matter most:**
 
-- **Error codes and field definitions live in one shared Common Reference section — not repeated on every API page.** If the same definition is copied onto ten pages, changing it means updating ten pages. One shared source avoids that problem entirely, at any scale.
+- **Error codes and field definitions live in one shared Common Reference section — not repeated on every API page.** Copying the same definition onto ten pages means updating ten pages every time it changes. One shared source avoids that problem at any scale.
 
-- **Concept Guides come before Integration Guides.** A developer who doesn't already understand how shipment events, delivery windows, or tracking accuracy work can't realistically finish an integration guide without that foundation. Skipping straight to integration guides helps developers who already know the domain move faster, but leaves everyone else stuck and needing support.
+- **Concept Guides come before Integration Guides.** A developer who doesn't understand how shipment events, delivery windows, or tracking accuracy work can't finish an integration guide without that foundation. Skipping straight to integration guides helps developers who already know the domain move faster, but leaves everyone else stuck without support.
 
-- **Changelog is a top-level section, not buried in Advanced.** API changes matter to developers who already integrated — they need a reliable place to check, and ideally something they can subscribe to. RSS support and dedicated breaking-change notices need to exist from launch, not get added after the first incident.
+- **Changelog is a top-level section, not buried in Advanced.** API changes matter to developers who already integrated: they need a reliable place to check, and ideally a way to subscribe. RSS support and dedicated breaking-change notices must exist from launch, not get added after the first incident.
 
-- **The Advanced section is built to expand.** Historical data access, bulk operations, and sandbox tools are grouped together in one place so that as more advanced features get added, the core path — Get Started → Integration Guides → API Reference — stays uncluttered.
+- **The Advanced section is built to expand.** Historical data access, bulk operations, and sandbox tools are grouped together so that as more advanced features get added, the core path — Get Started → Integration Guides → API Reference — stays uncluttered.
 
-<br>
-<br>
-
-## What Got Built First, and Why
+## Launch Feature Priorities
 
 | Priority | Feature | Reasoning |
 |---|---|---|
@@ -91,16 +76,13 @@ Developer Portal
 | 3 | **Collapsible object pattern** | Nested objects stay collapsed by default, so the page doesn't get harder to read as more fields get added. Adopted from Stripe's approach to handling complex data without burying the actual code. |
 | 4 | **Bulk operations support** | Fulfillment partners tracking hundreds of shipments at once need this as a first-class feature, not something they have to work around by calling a single-shipment endpoint repeatedly. |
 
-**What got pushed to later, and why:** search and API versioning were both considered but not built for the initial launch. Search becomes genuinely necessary once the portal has more than roughly 15 pages — before that, a developer can just scan the sidebar. Versioning only matters once a breaking change actually happens. Both can be added later without having to restructure anything already built.
+**What got pushed to later, and why:** the team considered search and API versioning but didn't build either for the initial launch. Search becomes necessary once the portal has more than roughly 15 pages — before that, a developer can scan the sidebar. Versioning matters only once a breaking change happens. Both can be added later without restructuring anything already built.
 
-<br>
-<br>
+## Documentation Sync Process
 
-## Keeping Documentation in Sync With the Actual API
+The API specification file is the single source of truth. When it changes, the documentation updates automatically, eliminating an entire category of "the docs say one thing, the API does another" bugs.
 
-The API specification file is the single source of truth. When it changes, the documentation updates automatically — which eliminates an entire category of "the docs say one thing, the API does another" bugs.
-
-But keeping documentation *accurate* isn't the same as keeping developers *successful*. The real goal is making sure that from the moment the spec changes to the moment an affected developer has adapted their integration, everyone stays on the same page:
+Keeping documentation *accurate* isn't the same as keeping developers *successful*. The real goal: from the moment the spec changes to the moment an affected developer adapts their integration, everyone stays on the same page.
 
 ```
 Engineer (knows what changed and why)  →  Technical Writer (judges the impact, translates it)  →  External developer (needs to know what to do about it)
@@ -118,27 +100,20 @@ Spec changes
 → If something's clearly not working → revise the documentation → update the quality checklist
 ```
 
-**Why the Technical Writer reviews the change request itself, not just the final merged version.** The change request is where the *intent* behind a change is still visible — why it's happening, not just what changed. Once it's merged, a diff shows what's different, but not why, and not what it means for developers who already built against the old version. Reviewing at this earlier stage catches that context before it disappears into commit history.
+**Why the Technical Writer reviews the change request itself, not just the final merged version.** The change request is where the *intent* behind a change is still visible: why it's happening, not just what changed. Once merged, a diff shows what's different, but not why. Nor does it show what the change means for developers who already built against the old version. Reviewing at this earlier stage catches that context before it disappears into commit history.
 
-**Documentation isn't finished the moment it's published.** How external developers actually respond after a release is the real signal for what the documentation missed. Monitoring isn't optional — it's what closes the loop between what developers actually experience and what gets fixed next.
+**Documentation isn't finished the moment it's published.** How external developers respond after a release is the real signal for what the documentation missed. Monitoring isn't optional: it closes the loop between what developers experience and what gets fixed next.
 
-<br>
-<br>
+## Reference Portals Studied
 
-## Portals Reviewed for This Design
+The design phase reviewed five portals in total. The table above highlights the three whose patterns were directly adopted; this table lists all five, including Twilio and Plaid, which shaped the thinking without being copied directly.
 
 | Portal | What was studied |
 |---|---|
-| Payabli | API playground layout · single-screen execution |
-| Stripe | Collapsible nested object pattern |
+| Payabli | API Playground layout · single-screen execution |
+| Stripe | Collapsible object pattern |
 | Twilio | Concept-guide-first structure for developers new to the domain |
 | Plaid | How a sandbox environment is presented alongside live documentation |
 | Eventbrite | Section-based structure by developer goal |
 
-<br>
-<br>
-
 *This is a portfolio case study. The API specification used as context is fictional. All design decisions are the author's own.*
-
-<br>
-<br>
