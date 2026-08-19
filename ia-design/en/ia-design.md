@@ -1,10 +1,16 @@
 # Information Architecture Design: A Developer Portal Case Study
 
+<br>
+<br>
+
 ## Overview
 
 By the end of this page, you'll understand the reasoning behind one developer portal's structure: why it was built around code-first execution instead of long descriptions, which design decisions came from analyzing five real developer portals, how the sitemap stays clean as the API surface grows, and how the documentation stays accurate as the underlying API changes.
 
 This case study assumes basic familiarity with developer portals and REST APIs.
+
+<br>
+<br>
 
 ## The Design Challenge
 
@@ -18,11 +24,16 @@ The design challenge: build an IA that scales cleanly as more APIs get added, wh
 
 ## Design Rationale
 
+<br>
+<br>
+
 ### External Developer Needs
 
 The platform's existing internal documentation was built for engineers who already work inside the company and understand its systems: long descriptions of objects and data models come first, with code examples appearing narrow and secondary. That approach works for someone who already knows the domain.
 
 External developers work differently. They arrive with one specific goal — "connect this API to my system" — and need to confirm they're on the right track by running actual code as fast as possible. Every screen of object definitions they must scroll past before reaching a working example adds time before their first success.
+
+<br>
 
 ### API Playground Decision
 
@@ -35,6 +46,9 @@ After reviewing five real developer portals — Payabli, Stripe, Twilio, Plaid, 
 | Eventbrite | Section-based structure | Clear separation between "learn," "solve a problem," "look something up," and "understand why" |
 
 The decision: a **code-first, single-screen layout** — because it removes the step between reading what a parameter does and trying it to see the result.
+
+<br>
+<br>
 
 ## Developer Portal Sitemap
 
@@ -67,6 +81,9 @@ Developer Portal
 
 - **The Advanced section is built to expand.** Historical data access, bulk operations, and sandbox tools are grouped together so that as more advanced features get added, the core path — Get Started → Integration Guides → API Reference — stays uncluttered.
 
+<br>
+<br>
+
 ## Launch Feature Priorities
 
 | Priority | Feature | Reasoning |
@@ -76,7 +93,10 @@ Developer Portal
 | 3 | **Collapsible object pattern** | Nested objects stay collapsed by default, so the page doesn't get harder to read as more fields get added. Adopted from Stripe's approach to handling complex data without burying the actual code. |
 | 4 | **Bulk operations support** | Fulfillment partners tracking hundreds of shipments at once need this as a first-class feature, not something they have to work around by calling a single-shipment endpoint repeatedly. |
 
-**What got pushed to later, and why:** the team considered search and API versioning but didn't build either for the initial launch. Search becomes necessary once the portal has more than roughly 15 pages — before that, a developer can scan the sidebar. Versioning matters only once a breaking change happens. Both can be added later without restructuring anything already built.
+> **What got pushed to later, and why:** the team considered search and API versioning but didn't build either for the initial launch. Search becomes necessary once the portal has more than roughly 15 pages — before that, a developer can scan the sidebar. Versioning matters only once a breaking change happens. Both can be added later without restructuring anything already built.
+
+<br>
+<br>
 
 ## Documentation Sync Process
 
@@ -100,9 +120,12 @@ Spec changes
 → If something's clearly not working → revise the documentation → update the quality checklist
 ```
 
-**Why the Technical Writer reviews the change request itself, not just the final merged version.** The change request is where the *intent* behind a change is still visible: why it's happening, not just what changed. Once merged, a diff shows what's different, but not why. Nor does it show what the change means for developers who already built against the old version. Reviewing at this earlier stage catches that context before it disappears into commit history.
+> **Why the Technical Writer reviews the change request itself, not just the final merged version.** The change request is where the *intent* behind a change is still visible: why it's happening, not just what changed. Once merged, a diff shows what's different, but not why. Nor does it show what the change means for developers who already built against the old version. Reviewing at this earlier stage catches that context before it disappears into commit history.
 
-**Documentation isn't finished the moment it's published.** How external developers respond after a release is the real signal for what the documentation missed. Monitoring isn't optional: it closes the loop between what developers experience and what gets fixed next.
+> **Documentation isn't finished the moment it's published.** How external developers respond after a release is the real signal for what the documentation missed. Monitoring isn't optional: it closes the loop between what developers experience and what gets fixed next.
+
+<br>
+<br>
 
 ## Reference Portals Studied
 
@@ -116,4 +139,10 @@ The design phase reviewed five portals in total. The table above highlights the 
 | Plaid | How a sandbox environment is presented alongside live documentation |
 | Eventbrite | Section-based structure by developer goal |
 
-*This is a portfolio case study. The API specification used as context is fictional. All design decisions are the author's own.*
+<br>
+<br>
+
+> *This is a portfolio case study. The API specification used as context is fictional. All design decisions are the author's own.*
+
+<br>
+<br>
