@@ -2,20 +2,14 @@
 
 Eventbrite Event Order API를 연동하기 전에 이 문서에서 공식 문서와 실제 API 동작의 차이를 확인하세요. 공식 문서에 명시됐지만 실제로 거부되는 파라미터 값과 엔드포인트별 응답 필드 불일치를 미리 파악하면 런타임 오류를 예방할 수 있습니다. 단일 주문 조회, 이벤트·사용자·조직별 주문 목록 조회, 필터 파라미터 5가지, 오류 응답을 포함한 총 15건의 테스트 케이스와 2건의 발견사항을 다룹니다.
 
-> **이 문서는 Eventbrite API 공식 문서가 소개하는 Event Order 사용 사례를 직접 테스트하고 결과를 기록합니다.
-
-<br>
-
-**사전 요구사항:**
-
-- 유효한 프라이빗 토큰 — [인증 가이드](../guides/authentication.md)를 참고하세요.
-- 유효한 `order_id`, `event_id`, `organization_id` —  Eventbrite 계정에서 각 리소스의 ID를 확인하세요.
+> **이 문서는 Eventbrite API 공식 문서가 소개하는 Event Order 사용 사례를 직접 테스트하고 결과를 기록합니다.**
 
 <br>
 <br>
 
 ## 목차
 
+- [사전 요구사항](#사전-요구사항)
 - [테스트 환경](#테스트-환경)
 - [결과 요약](#결과-요약)
 - [발견 사항](#발견-사항)
@@ -30,6 +24,14 @@ Eventbrite Event Order API를 연동하기 전에 이 문서에서 공식 문서
     - [TC-006 — refund_request_statuses 필터 검증](#tc-006--refund_request_statuses-필터-검증)
     - [TC-007 — 조직별 주문 및 time_filter 검증](#tc-007--조직별-주문-및-time_filter-검증)
     - [TC-008 — 존재하지 않는 주문 조회](#tc-008--존재하지-않는-주문-조회)
+
+<br>
+<br>
+
+## 사전 요구사항
+
+- 유효한 프라이빗 토큰 — [인증 가이드](../guides/authentication.md)를 참고하세요.
+- 유효한 `order_id`, `event_id`, `organization_id` —  Eventbrite 계정에서 각 리소스의 ID를 확인하세요.
 
 <br>
 <br>
@@ -110,7 +112,9 @@ Eventbrite Event Order API를 연동하기 전에 이 문서에서 공식 문서
 display_fee · display_price · has_gts_tax · fee_components · shipping_components · tax_components
 ```
 
-조직별 주문 조회는 앞서 언급된 필드를 반환하지 않으며, `base_price`, `eventbrite_fee`, `gross`, `payment_fee`, `tax` 5개 필드만 포함합니다. 별도의 이유는 공식 문서에 명시되어 있지 않습니다. 
+조직별 주문 조회는 위 필드를 반환하지 않으며, `base_price`, `eventbrite_fee`, `gross`, `payment_fee`, `tax` 5개 필드만 포함합니다. 
+
+> 별도의 이유는 공식 문서에 명시되어 있지 않습니다. 
 
 | 엔드포인트 | `display_fee` | `display_price` | `has_gts_tax` | `fee_components` | `shipping_components` | `tax_components` |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -238,6 +242,8 @@ curl --request GET \
 ```
 
 > **`both` 값은 공식 문서에 유효한 값으로 명시되어 있으나 API가 거부합니다.** 자세한 내용은 [발견 사항 — F-001](#f-001--statusboth-문서-불일치)을 참고하세요.
+
+**판정:** ✅ PASS (조건부) — active, inactive, all_not_deleted, invalid_value는 예상대로 동작합니다. both는 공식 문서와 불일치합니다(F-001 참고).
 
 <br>
 

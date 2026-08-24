@@ -1,10 +1,11 @@
 # 트러블슈팅 가이드
 
 실패하는 Eventbrite API 요청의 원인을 찾고 해결하세요.
-이 가이드를 통해 401·403·404 오류, 응답 데이터 누락, HTML 콘텐츠 문제, 요청 제한 초과까지 가장 자주 발생하는 문제를 이해할 수 있습니다. 각 섹션에서 증상, 원인, 해결 단계, 확인 방법을 안내합니다.
+이 가이드로 401·403·404 오류, 응답 데이터 누락, HTML 콘텐츠 문제, 요청 제한 초과까지 가장 자주 발생하는 문제를 이해할 수 있습니다. 각 섹션에서 증상, 원인, 해결 단계, 확인 방법을 안내합니다.
 
 전체 오류 코드 목록은 [오류 레퍼런스](../api/error-reference.md)를 참고하세요.
 
+<br>
 <br>
 
 ## 목차
@@ -19,11 +20,14 @@
 - [일반 디버깅 팁](#일반-디버깅-팁)
 
 <br>
+<br>
 
 ## 자주 발생하는 코드 문제
 
 원인이 불분명할 때 여기서 시작하세요.
 API에 도달하기 전에 발생하는 실패의 대부분이 아래의 문제에서 비롯됩니다.
+
+<br>
 
 ### 문제 1 — 소스 코드에 토큰 포함
 
@@ -58,6 +62,7 @@ const token = process.env.EVENTBRITE_TOKEN;
 **확인:** 수정한 URL로 요청을 다시 보내세요.
 
 <br>
+<br>
 
 ### 문제 3 — Content-Type 헤더 누락
 
@@ -77,19 +82,26 @@ curl --request POST \
 헤더 누락이 원인입니다.
 
 <br>
+<br>
 
 ## 401 인증 오류
+
+<br>
 
 ### 증상
 
 - API가 `401 Unauthorized`를 반환합니다.
 - Eventbrite 콘솔에서는 작동하지만 코드에서는 실패합니다.
 
+<br>
+
 ### 가능한 원인
 
 - `Authorization` 헤더가 누락되었거나 형식이 잘못되었습니다.
 - 토큰을 복사한 후 재발급되었거나 취소되었습니다.
 - 토큰에 오타가 있거나 앞뒤에 공백이 포함되어 있습니다.
+
+<br>
 
 ### 해결 방법
 
@@ -108,6 +120,8 @@ Authorization: Bearer YOUR_PRIVATE_TOKEN
 export EVENTBRITE_TOKEN=your_token_here
 ```
 
+<br>
+
 ### 확인
 
 아래 요청을 보내세요. 계정 정보가 포함된 `200 OK` 응답이 반환되면
@@ -119,14 +133,19 @@ curl --request GET \
   "https://www.eventbriteapi.com/v3/users/me/"
 ```
 
+<br>
+
 ### 관련 문서
 
 - [인증 가이드](../guides/authentication.md)
 - [오류 레퍼런스 — 401](../api/error-reference.md#401-unauthorized)
 
 <br>
+<br>
 
 ## 403 권한 오류
+
+<br>
 
 ### 증상
 
@@ -134,12 +153,16 @@ curl --request GET \
 - 인증은 됐지만 접근이 거부됩니다.
 - 이벤트가 존재하지만 조회하거나 수정할 수 없습니다.
 
+<br>
+
 ### 가능한 원인
 
 - 이벤트가 다른 Eventbrite 계정이나 조직에 속해 있습니다.
 - 토큰에 이 작업을 수행할 권한이 없습니다.
 - 이벤트의 현재 상태에서 이 작업이 허용되지 않습니다 — 예를 들어
 기존 주문이 있는 이벤트를 삭제하려는 경우.
+
+<br>
 
 ### 해결 방법
 
@@ -158,6 +181,8 @@ curl --request GET \
 일부 작업은 이벤트 상태에 따라 제한됩니다 — 예를 들어 주문이 있는
 이벤트는 삭제할 수 없습니다.
 
+<br>
+
 ### 확인
 
 원래 요청을 다시 보내세요. `200 OK` 응답이 반환되면 권한 문제가 해결된
@@ -169,19 +194,26 @@ curl --request GET \
 - [오류 레퍼런스 — 403](../api/error-reference.md#403-forbidden)
 
 <br>
+<br>
 
 ## 404 리소스를 찾을 수 없음
+
+<br>
 
 ### 증상
 
 - API가 `404 NOT_FOUND`를 반환합니다.
 - 이벤트 ID가 유효해 보이지만 요청이 실패합니다.
 
+<br>
+
 ### 가능한 원인
 
 - `event_id`가 잘못되었거나, 형식이 틀렸거나, 잘못된 URL에서 복사했습니다.
 - 이벤트가 삭제되거나 비공개로 전환되었습니다.
 - 이벤트가 다른 계정에 속해 있습니다.
+
+<br>
 
 ### 해결 방법
 
@@ -191,7 +223,7 @@ ID는 URL 끝의 11자리 숫자입니다.
 ```
 https://www.eventbrite.com/e/my-event-name-12345678901
                                            ^^^^^^^^^^^
-                                    이것이 event_id입니다
+                                  이 값이 event_id입니다
 ```
 
 2. 올바른 Base URL을 쓰고 있는지 확인하세요.
@@ -201,6 +233,8 @@ https://www.eventbriteapi.com/v3
 ```
 
 3. Eventbrite 계정에서 이벤트를 직접 열어서 접근 가능한지 확인하세요.
+
+<br>
 
 ### 확인
 
@@ -213,14 +247,19 @@ curl --request GET \
   "https://www.eventbriteapi.com/v3/events/{event_id}/"
 ```
 
+<br>
+
 ### 관련 문서
 
 - [API 레퍼런스](../api/api-reference.md)
 - [오류 레퍼런스 — 404](../api/error-reference.md#404-not-found)
 
 <br>
+<br>
 
 ## 응답 데이터 누락 또는 예상과 다름
+
+<br>
 
 ### 증상
 
@@ -228,11 +267,15 @@ curl --request GET \
 - 예상한 필드가 응답에 없습니다.
 - 초안(draft) 이벤트가 불완전한 데이터를 반환합니다.
 
+<br>
+
 ### 가능한 원인
 
 - 이벤트가 `draft` 상태입니다. 일부 필드는 게시 후에만 채워집니다.
 - 이벤트 주최자가 입력하지 않은 선택적 필드입니다.
 - 토큰 권한이 반환되는 필드를 제한합니다.
+
+<br>
 
 ### 해결 방법
 
@@ -245,18 +288,25 @@ const description = event?.description?.text ?? "";
 const capacity    = event?.capacity          ?? null;
 ```
 
+<br>
+
 ### 확인
 
 이벤트를 게시하거나 게시된 테스트 이벤트로 바꾼 후 요청을 다시 보내세요.
 예상한 필드가 모두 있어야 합니다.
+
+<br>
 
 ### 관련 문서
 
 - [응답 처리 가이드](../guides/response-handling.md)
 
 <br>
+<br>
 
 ## HTML 콘텐츠 문제
+
+<br>
 
 ### 증상
 
@@ -264,10 +314,14 @@ const capacity    = event?.capacity          ?? null;
 - HTML 출력이 페이지 레이아웃을 깨뜨립니다.
 - 보안 검토에서 HTML 렌더링 위험이 발견됩니다.
 
+<br>
+
 ### 가능한 원인
 
 - `html` 필드가 일반 텍스트가 필요한 곳에 전달됩니다.
 - HTML 콘텐츠를 정제 없이 렌더링합니다.
+
+<br>
 
 ### 해결 방법
 
@@ -279,7 +333,7 @@ sendNotification({ title: event.name.text });
 ```
 
 2. 웹 인터페이스에서 렌더링할 때만
-`name.html` 또는 `description.html`을 쓰세요.
+`name.html` 또는 `description.html`을 사용하세요.
 
 ```jsx
 container.innerHTML = event.description.html;
@@ -292,10 +346,14 @@ import DOMPurify from "dompurify";
 container.innerHTML = DOMPurify.sanitize(event.description.html);
 ```
 
+<br>
+
 ### 확인
 
 UI에서 렌더링 결과를 확인하세요. HTML 태그가 텍스트로 보이지 않고,
 페이지 레이아웃이 되어야 정상입니다.
+
+<br>
 
 ### 관련 문서
 
@@ -303,19 +361,26 @@ UI에서 렌더링 결과를 확인하세요. HTML 태그가 텍스트로 보이
 - [코드 예제](../examples/code-examples.md)
 
 <br>
+<br>
 
 ## 요청 제한
+
+<br>
 
 ### 증상
 
 - API가 `429 Too Many Requests`를 반환합니다.
 - 단일 요청은 성공하지만 대량 요청은 처리 중 실패합니다.
 
+<br>
+
 ### 가능한 원인
 
 - 시간당 2,000건 제한을 초과했습니다.
 - 일일 48,000건 제한을 초과했습니다.
 - 이벤트 생성 또는 게시 엔드포인트의 시간당 200건 제한을 초과했습니다.
+
+<br>
 
 ### 해결 방법
 
@@ -330,16 +395,21 @@ UI에서 렌더링 결과를 확인하세요. HTML 태그가 텍스트로 보이
 3. 대량 작업을 처리할 때는 요청 사이에 시간 간격을 두세요.
 요청 간격을 두는 구현 예제는 [코드 예제 — 요청 제한](../examples/code-examples.md#요청-제한)을 참고하세요.
 
+<br>
+
 ### 확인
 
 이후 응답에서 `X-Apiary-RateLimit-Remaining` 값을 확인하세요.
 0 이상을 유지해야 합니다.
+
+<br>
 
 ### 관련 문서
 
 - [오류 레퍼런스 — 429](../api/error-reference.md#429-too-many-requests)
 - [코드 예제](../examples/code-examples.md)
 
+<br>
 <br>
 
 ## 일반 디버깅 팁
@@ -357,6 +427,7 @@ UI에서 렌더링 결과를 확인하세요. HTML 태그가 텍스트로 보이
 작동하는 cURL 예시를 복사해서 실패하는 요청과 줄 단위로 비교하세요.
 
 <br>
+<br>
 
 ## 다음 단계
 
@@ -366,4 +437,5 @@ UI에서 렌더링 결과를 확인하세요. HTML 태그가 텍스트로 보이
 - [응답 처리 가이드](../guides/response-handling.md)
 - [코드 예제](../examples/code-examples.md)
 
+<br>
 <br>

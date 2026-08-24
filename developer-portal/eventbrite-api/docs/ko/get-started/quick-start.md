@@ -1,24 +1,30 @@
 # 빠른 시작 가이드
 
-3분 안에 Eventbrite API 첫 요청을 성공시키세요.
-이 가이드를 통해 프라이빗 토큰으로 인증하고,
+3분 안에 Eventbrite API 첫 요청에 성공하세요.
+이 가이드를 따라 하면 프라이빗 토큰으로 인증하고,
 이벤트 조회 엔드포인트를 호출하고, 실제 JSON 응답을 확인할 수 있습니다.
 Eventbrite API 사전 경험은 필요하지 않습니다.
 
-**사전 요구사항:**
+<br>
+<br>
+
+## 목차
+
+- [사전 요구사항](#사전-요구사항)
+- [1단계: 프라이빗 토큰 받기](#1단계-프라이빗-토큰-받기)
+- [2단계: 첫 요청 보내기](#2단계-첫-요청-보내기)
+- [3단계: 응답 확인하기](#3단계-응답-확인하기)
+
+<br>
+<br>
+
+## 사전 요구사항
 
 - 활성화된 Eventbrite 계정
 - cURL 또는 웹 브라우저
 - HTTP 요청에 대한 기본 이해
 
 <br>
-
-## 목차
-
-- [1단계: 프라이빗 토큰 받기](#1단계-프라이빗-토큰-받기)
-- [2단계: 첫 요청 보내기](#2단계-첫-요청-보내기)
-- [3단계: 응답 확인하기](#3단계-응답-확인하기)
-
 <br>
 
 ## 1단계: 프라이빗 토큰 받기
@@ -30,15 +36,17 @@ Eventbrite API 사전 경험은 필요하지 않습니다.
 2. **계정 설정(Account Settings) → Developer Links → API Keys**로 이동하세요.
 3. **API 키 만들기(Create API Key)**를 클릭하고 필수 항목을 입력한 후
 **키 만들기(Create Key)**를 클릭하세요.
-4. **프라이빗 토큰(Private Token)**을 복사하세요.
+4. **프라이빗 토큰(Private Token)**을 복사하세요. 이 토큰을 2단계에서 사용합니다.
 
 전체 토큰 설정 방법은 [인증 가이드](../guides/authentication.md)를 참고하세요.
 
+<br>
 <br>
 
 ## 2단계: 첫 요청 보내기
 
 이 요청은 Eventbrite 이벤트의 상세 정보를 가져옵니다.
+YOUR_PRIVATE_TOKEN을 1단계에서 복사한 프라이빗 토큰으로 바꾸고,
 `{event_id}`를 내 Eventbrite 계정의 유효한 이벤트 ID로 바꾸세요.
 
 ```bash
@@ -53,14 +61,15 @@ ID는 이벤트 URL 끝의 11자리 숫자입니다.
 ```
 https://www.eventbrite.com/e/my-event-name-12345678901
                                            ^^^^^^^^^^^
-                                    이것이 event_id입니다
+                                  이 값이 event_id입니다
 ```
 
+<br>
 <br>
 
 ## 3단계: 응답 확인하기
 
-요청이 성공하면 `200 OK`와 함께 이벤트 상세 정보가 담긴 JSON 객체를
+요청이 성공하면 Eventbrite는 `200 OK`와 함께 이벤트 상세 정보가 담긴 JSON 객체를
 반환합니다.
 
 ```json
@@ -84,6 +93,7 @@ https://www.eventbrite.com/e/my-event-name-12345678901
 전체 오류 코드와 해결 방법은 [오류 레퍼런스](../api/error-reference.md)를 참고하세요.
 
 <br>
+<br>
 
 ## 다음 단계
 
@@ -97,4 +107,5 @@ https://www.eventbrite.com/e/my-event-name-12345678901
 | 코드에서 응답을 안전하게 처리하고 싶어요. | [응답 처리 가이드](../guides/response-handling.md) |
 | 문제를 해결하고 싶어요. | [트러블슈팅 가이드](../guides/troubleshooting.md) |
 
+<br>
 <br>

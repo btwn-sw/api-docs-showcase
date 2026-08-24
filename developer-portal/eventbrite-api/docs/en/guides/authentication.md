@@ -1,23 +1,25 @@
 # Authentication Guide
 
-Authenticate your Eventbrite API requests using a Private Token.
-This guide walks you through choosing the right credential type,
-generating a token, adding it to your requests, and storing it securely.
-All Eventbrite API endpoints require authentication.
+Authenticate every Eventbrite API request with a Private Token so your
+calls succeed instead of being rejected for missing credentials. This
+guide walks you through choosing the right credential type, generating a
+token, adding it to your requests, and storing it securely.
 
+<br>
 <br>
 
 ## Table of Contents
 
-- [Choose Your Authentication Method](#choose-your-authentication-method)
+- [Choose a Credential Type](#choose-a-credential-type)
 - [Generate a Private Token](#generate-a-private-token)
 - [Add Your Token to a Request](#add-your-token-to-a-request)
 - [Secure Your Token](#secure-your-token)
-- [Server-Side OAuth Flow](#server-side-oauth-flow)
+- [Set Up Server-Side OAuth](#set-up-server-side-oauth)
 
 <br>
+<br>
 
-## Choose Your Authentication Method
+## Choose a Credential Type
 
 Eventbrite uses OAuth 2.0, an authorization framework that lets your
 application access the API on behalf of a user. Every API request must
@@ -33,8 +35,9 @@ Eventbrite issues two credential types. Choose based on your use case:
 
 This guide uses **Private Token** for all examples.
 For production applications that require user-level authorization,
-see [Server-Side OAuth Flow](#server-side-oauth-flow).
+see [Set Up Server-Side OAuth](#set-up-server-side-oauth).
 
+<br>
 <br>
 
 ## Generate a Private Token
@@ -65,6 +68,7 @@ curl --request GET \
 ```
 
 <br>
+<br>
 
 ## Add Your Token to a Request
 
@@ -79,14 +83,16 @@ curl --request GET \
 
 Replace `YOUR_PRIVATE_TOKEN` with the token you copied above.
 
-**Query parameter method (not recommended):** You can pass the token
-as a URL parameter, but avoid this in production. Tokens in URLs are
-recorded in server logs and browser history, which creates a security risk.
+> **Query parameter method (not recommended):** You can pass the token
+as a URL parameter, but avoid this in production. Anyone with access to
+your server logs or browser history can then read the token — a security
+risk.
 
 ```
 https://www.eventbriteapi.com/v3/users/me/?token=YOUR_PRIVATE_TOKEN
 ```
 
+<br>
 <br>
 
 ## Secure Your Token
@@ -101,8 +107,9 @@ API requests on your behalf.
 [API Keys page](https://www.eventbrite.com/account-settings/apps).
 
 <br>
+<br>
 
-## Server-Side OAuth Flow
+## Set Up Server-Side OAuth
 
 Use the server-side OAuth flow when your application needs to act on behalf
 of individual users — for example, a web app where each user logs in with
@@ -110,6 +117,8 @@ their own Eventbrite account.
 
 **Prerequisites:** An API Key and Client Secret from your
 [API Keys page](https://www.eventbrite.com/account-settings/apps).
+
+<br>
 
 ### Step 1. Redirect the user
 
@@ -122,6 +131,8 @@ https://www.eventbrite.com/oauth/authorize
   &redirect_uri=YOUR_REDIRECT_URI
 ```
 
+<br>
+
 ### Step 2. Receive the authorization code
 
 Eventbrite redirects the user to your redirect URI with an authorization
@@ -130,6 +141,8 @@ code appended as a query parameter:
 ```
 http://localhost:8080/oauth/redirect?code=YOUR_ACCESS_CODE
 ```
+
+<br>
 
 ### Step 3. Exchange the code for an access token
 
@@ -146,12 +159,18 @@ curl --request POST \
   --data "redirect_uri=YOUR_REDIRECT_URI"
 ```
 
+<br>
+
 ### Step 4. Use the access token
 
 A successful response returns a JSON object containing `access_token`.
 Use this token in the `Authorization` header for all subsequent requests,
-exactly as you would use a Private Token.
+exactly as you would use a Private Token. Verify it the same way you
+verified your Private Token in
+[Generate a Private Token](#generate-a-private-token) — a successful
+response confirms the access token works.
 
+<br>
 <br>
 
 ## Next Steps
@@ -160,4 +179,5 @@ exactly as you would use a Private Token.
 - [Code Examples](../examples/code-examples.md)
 - [Quick Start Guide](../get-started/quick-start.md)
 
+<br>
 <br>

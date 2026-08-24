@@ -1,10 +1,13 @@
 # Eventbrite API Reference
 
-Look up endpoints, parameters, and response fields for the Eventbrite API.
-This reference documents Event-related endpoints.
+Use this reference to call the Eventbrite Event endpoints correctly on the
+first try — list, create, retrieve, update, publish, and delete events.
+Each entry gives you the required parameters, a request example, and the
+response fields you'll receive.
 For authentication setup, see the [Authentication Guide](../guides/authentication.md).
 
-<br> 
+<br>
+<br>
 
 ## Table of Contents
 
@@ -21,6 +24,7 @@ For authentication setup, see the [Authentication Guide](../guides/authenticatio
     - [Delete an Event]( #delete-an-event)
 
 <br>
+<br> 
 
 ## Base URL and Versioning
 
@@ -35,6 +39,7 @@ https://www.eventbriteapi.com/v3
 - Request format: `application/json`
 - Response format: `application/json`
 
+<br>
 <br>
 
 ## Authentication
@@ -51,11 +56,14 @@ For full setup instructions, see the
 [Authentication Guide](../guides/authentication.md).
 
 <br>
+<br> 
 
 ## Rate Limiting
 
 Eventbrite enforces rate limits across all API integrations to maintain
 platform stability.
+
+<br> 
 
 ### Default Limits
 
@@ -65,6 +73,8 @@ platform stability.
 | All requests | 48,000 calls/day |
 | Create Event | 200 calls/hour |
 | Publish Event | 200 calls/hour |
+
+<br> 
 
 ### Rate Limit Headers
 
@@ -77,6 +87,7 @@ in the response:
 | `X-Apiary-RateLimit-Remaining` | Number of requests remaining before the limit resets |
 
 <br>
+<br> 
 
 ## Error Handling
 
@@ -105,8 +116,11 @@ For error handling strategies, see the
 [Response Handling Guide](../guides/response_handling.md).
 
 <br>
+<br> 
 
 ## Event Endpoints
+
+<br> 
 
 ### List Events by Organization
 
@@ -189,12 +203,12 @@ curl --request GET \
 For step-by-step pagination instructions, see the
 [Pagination Guide](../guides/pagination.md).
 
-
+<br> 
 
 ### Create an Event
 
-Creates a new event under an organization. The event is created in `draft`
-status and is not publicly visible until published.
+Creates a new event under an organization, in `draft` status. The event
+stays hidden from the public until you publish it.
 
 **Endpoint**
 
@@ -214,11 +228,11 @@ POST /organizations/{organization_id}/events/
 | --- | --- | --- | --- |
 | `event.name.html` | String | Yes | Event name in HTML format |
 | `event.description.html` | String | No | Event description in HTML format |
-| `event.start.utc` | String | Yes | Start time in UTC — format: `YYYY-MM-DDTHH:MM:SSZ` |
-| `event.start.timezone` | String | Yes | IANA timezone for the start time — example: `America/Los_Angeles` |
+| `event.start.utc` | String | Yes | Start time in UTC (Coordinated Universal Time) — format: `YYYY-MM-DDTHH:MM:SSZ` |
+| `event.start.timezone` | String | Yes | IANA (Internet Assigned Numbers Authority) timezone for the start time — example: `America/Los_Angeles` |
 | `event.end.utc` | String | Yes | End time in UTC — format: `YYYY-MM-DDTHH:MM:SSZ`. Must be after `start.utc`. |
 | `event.end.timezone` | String | Yes | IANA timezone for the end time |
-| `event.currency` | String | Yes | ISO 4217 currency code — example: `USD` |
+| `event.currency` | String | Yes | ISO (International Organization for Standardization) 4217 currency code — example: `USD` |
 | `event.online_event` | Boolean | No | Set to `true` for online-only events. Default: `false`. Cannot be combined with a venue. |
 | `event.capacity` | Integer | No | Maximum number of attendees. When omitted, capacity is calculated from the sum of all ticket class quantities. |
 | `event.listed` | Boolean | No | Set to `true` to make the event publicly searchable on Eventbrite. Default: `false`. |
@@ -281,7 +295,7 @@ curl --request POST \
 | `url` | String | Public URL of the event on Eventbrite |
 | `created` | String | Timestamp when the event was created, in UTC |
 
-
+<br>
 
 ### Retrieve an Event
 
@@ -355,11 +369,11 @@ curl --request GET \
 | `capacity` | Integer | Maximum number of attendees. `null` when not set. |
 | `currency` | String | ISO 4217 currency code for the event |
 
-
+<br>
 
 ### Update an Event
 
-Updates fields on an existing event. Include only the fields you want to change.
+Updates fields on an existing event. Include only the fields you want to update.
 Fields not included in the request body remain unchanged.
 
 **Endpoint**
@@ -376,20 +390,18 @@ POST /events/{event_id}/
 
 **Request Body Parameters**
 
-Include only the fields you want to update.
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `event.name.html` | String | Updated event name in HTML format |
-| `event.description.html` | String | Updated event description in HTML format |
-| `event.start.utc` | String | Updated start time in UTC — format: `YYYY-MM-DDTHH:MM:SSZ` |
-| `event.start.timezone` | String | Updated IANA timezone for the start time |
-| `event.end.utc` | String | Updated end time in UTC — format: `YYYY-MM-DDTHH:MM:SSZ`. Must be after `start.utc`. |
-| `event.end.timezone` | String | Updated IANA timezone for the end time |
-| `event.capacity` | Integer | Updated maximum number of attendees |
-| `event.listed` | Boolean | Set to `true` to make the event publicly searchable, `false` to make it private |
-| `event.invite_only` | Boolean | Set to `true` to restrict access to invited attendees only |
-| `event.online_event` | Boolean | Set to `true` for online-only events. Cannot be combined with a venue. |
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `event.name.html` | String | No | Updated event name in HTML format |
+| `event.description.html` | String | No | Updated event description in HTML format |
+| `event.start.utc` | String | No | Updated start time in UTC — format: `YYYY-MM-DDTHH:MM:SSZ` |
+| `event.start.timezone` | String | No | Updated IANA timezone for the start time |
+| `event.end.utc` | String | No | Updated end time in UTC — format: `YYYY-MM-DDTHH:MM:SSZ`. Must be after `start.utc`. |
+| `event.end.timezone` | String | No | Updated IANA timezone for the end time |
+| `event.capacity` | Integer | No | Updated maximum number of attendees |
+| `event.listed` | Boolean | No | Set to `true` to make the event publicly searchable, `false` to make it private |
+| `event.invite_only` | Boolean | No | Set to `true` to restrict access to invited attendees only |
+| `event.online_event` | Boolean | No | Set to `true` for online-only events. Cannot be combined with a venue. |
 
 **Request Example**
 
@@ -411,13 +423,13 @@ curl --request POST \
 Returns the full updated event object. Response fields are identical to
 [Retrieve an Event](#retrieve-an-event).
 
-
+<br>
 
 ### Publish an Event
 
 Publishes a draft event, making it publicly visible on Eventbrite.
 Before publishing, the event must have a name, a description, at least one
-ticket class, and valid payment options configured.
+ticket class, and valid payment options.
 
 **Endpoint**
 
@@ -456,14 +468,14 @@ curl --request POST \
 | --- | --- | --- |
 | `published` | Boolean | Returns `true` when the event is successfully published. When publish fails due to missing requirements, the API returns a `400` error with details of which fields are incomplete. |
 
-
+<br>
 
 ### Delete an Event
 
 Permanently deletes an event. This action cannot be undone.
 
-To delete an event, it must have no pending or completed orders.
-Deleting an event that has orders returns a `403` error.
+The event must have no pending or completed orders before you can delete
+it. Deleting an event that has orders returns a `403` error.
 
 **Endpoint**
 
@@ -498,6 +510,7 @@ curl --request DELETE \
 | `deleted` | Boolean | Returns `true` when the event is successfully deleted |
 
 <br>
+<br>
 
 ## Next Steps
 
@@ -507,4 +520,5 @@ curl --request DELETE \
 - [Pagination Guide](../guides/pagination.md)
 - [Code Examples](../examples/code-examples.md)
 
+<br>
 <br>

@@ -5,6 +5,7 @@ Eventbrite API의 엔드포인트, 파라미터, 응답 필드를 조회하세�
 인증 설정은 [인증 가이드](../guides/authentication.md)를 참고하세요.
 
 <br>
+<br>
 
 ## 목차
 
@@ -21,6 +22,7 @@ Eventbrite API의 엔드포인트, 파라미터, 응답 필드를 조회하세�
     - [이벤트 삭제](#이벤트-삭제)
 
 <br>
+<br>
 
 ## Base URL 및 버전
 
@@ -36,6 +38,7 @@ https://www.eventbriteapi.com/v3
 - 응답 형식: `application/json`
 
 <br>
+<br>
 
 ## 인증
 
@@ -50,10 +53,13 @@ Authorization: Bearer YOUR_PRIVATE_TOKEN
 전체 설정 방법은 [인증 가이드](../guides/authentication.md)를 참고하세요.
 
 <br>
+<br>
 
 ## 요청 제한
 
 Eventbrite는 플랫폼 안정성을 위해 모든 API 통합에 요청 제한을 둡니다.
+
+<br>
 
 ### 기본 제한
 
@@ -64,6 +70,8 @@ Eventbrite는 플랫폼 안정성을 위해 모든 API 통합에 요청 제한�
 | 이벤트 생성 | 시간당 200건 |
 | 이벤트 게시 | 시간당 200건 |
 
+<br>
+
 ### 요청 제한 헤더
 
 요청이 제한되면 Eventbrite는 응답 결과에 아래 헤더를 포함합니다.
@@ -73,6 +81,7 @@ Eventbrite는 플랫폼 안정성을 위해 모든 API 통합에 요청 제한�
 | `X-Apiary-RateLimit-Limit` | 현재 윈도우에서 허용된 최대 요청 수 |
 | `X-Apiary-RateLimit-Remaining` | 제한이 초기화되기 전까지 남은 요청 수 |
 
+<br>
 <br>
 
 ## 오류 처리
@@ -100,8 +109,11 @@ Eventbrite는 플랫폼 안정성을 위해 모든 API 통합에 요청 제한�
 오류 처리 방법은 [응답 처리 가이드](../guides/response-handling.md)를 참고하세요.
 
 <br>
+<br>
 
 ## 이벤트 엔드포인트
+
+<br>
 
 ### 조직별 이벤트 목록 조회
 
@@ -410,7 +422,7 @@ curl --request POST \
 ### 이벤트 게시
 
 초안(draft) 이벤트를 게시해서 Eventbrite에 공개합니다.
-이벤트가 게시되려면 이벤트의 이름, 설명, 티켓 클래스, 결제 옵션이 모두 설정되어 있어야 합니다.
+이벤트를 게시하려면 이벤트의 이름, 설명, 티켓 클래스, 결제 옵션을 모두 설정해야 합니다.
 
 **엔드포인트**
 
@@ -444,6 +456,8 @@ curl --request POST \
   "published": true
 }
 ```
+
+**응답 필드**
 
 | 필드 | 타입 | 설명 |
 | --- | --- | --- |
@@ -486,10 +500,13 @@ curl --request DELETE \
 }
 ```
 
+**응답 필드**
+
 | 필드 | 타입 | 설명 |
 | --- | --- | --- |
 | `deleted` | Boolean | 이벤트가 성공적으로 삭제되면 `true`를 반환합니다 |
 
+<br>
 <br>
 
 ## 다음 단계
@@ -500,4 +517,5 @@ curl --request DELETE \
 - [페이지네이션 가이드](../guides/pagination.md)
 - [코드 예제](../examples/code-examples.md)
 
+<br>
 <br>

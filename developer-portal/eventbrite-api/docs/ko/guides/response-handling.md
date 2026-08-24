@@ -7,6 +7,7 @@ Eventbrite API 응답은 일관된 패턴을 따릅니다.
 전체 오류 코드 목록은 [오류 레퍼런스](../api/error-reference.md)를 참고하세요.
 
 <br>
+<br>
 
 ## 목차
 
@@ -18,6 +19,7 @@ Eventbrite API 응답은 일관된 패턴을 따릅니다.
 - [권장 사항](#권장-사항)
 
 <br>
+<br>
 
 ## 응답 구조 설계 이유
 
@@ -25,7 +27,7 @@ Eventbrite API 응답은 일관된 패턴을 따릅니다.
 처리할 수 있습니다.
 
 **`name`과 `description`이 `text`와 `html`을 모두 반환하는 이유는 무엇인가요?**
-Eventbrite 이벤트는 HTML을 생성하는 리치 텍스트 에디터로 만듭니다.
+주최자는 HTML을 생성하는 리치 텍스트 에디터로 이벤트를 만듭니다.
 하지만 알림, 로그, 검색 인덱스, 모바일 앱처럼 API를 소비하는 모든
 클라이언트가 HTML을 안전하게 렌더링할 수 있는 것은 아닙니다. 두 가지
 형식을 함께 반환하면 각 클라이언트가 HTML을 직접 파싱하거나 제거하지
@@ -34,7 +36,7 @@ Eventbrite 이벤트는 HTML을 생성하는 리치 텍스트 에디터로 만�
 **빈 문자열 대신 `null`을 반환하는 이유는 무엇인가요?**
 Eventbrite는 설정되지 않은 필드와 의도적으로 비운 필드를 구분합니다.
 `null`인 description은 주최자가 아직 설명을 작성하지 않았다는 뜻입니다.
-이를 통해 애플리케이션은 빈 공간 대신 "설명이 없습니다"를 표시할 수 있고,
+이 덕분에 애플리케이션은 빈 공간 대신 "설명이 없습니다"를 표시할 수 있고,
 빈 HTML 태그를 렌더링하는 상황도 피할 수 있습니다.
 
 **시간 필드에 `utc`와 `local`이 함께 있는 이유는 무엇인가요?**
@@ -43,6 +45,7 @@ Eventbrite는 설정되지 않은 필드와 의도적으로 비운 필드를 구
 쓰이는 시간대 중립 형식입니다. `utc` 필드는 항상 일관되게 제공되고,
 `local` 필드는 주최자가 설정한 시간대에 따라 달라집니다.
 
+<br>
 <br>
 
 ## 이벤트 객체
@@ -100,10 +103,13 @@ Eventbrite는 설정되지 않은 필드와 의도적으로 비운 필드를 구
 참고하세요.
 
 <br>
+<br>
 
 ## HTML 형식 콘텐츠 처리
 
 Eventbrite는 엔드포인트에 따라 두 가지 패턴으로 HTML 콘텐츠를 반환합니다.
+
+<br>
 
 ### 패턴 1 — text/html 이중 필드
 
@@ -128,6 +134,8 @@ container.innerHTML = event.description.html;
 sendNotification({ title: event.name.text });
 ```
 
+<br>
+
 ### 패턴 2 — 전체 HTML 응답
 
 일부 엔드포인트는 응답 본문 전체를 원시 HTML 문자열로 반환합니다.
@@ -147,13 +155,15 @@ GET /events/{event_id}/description/
 ```
 
 이 콘텐츠를 렌더링할 때는 HTML 파서를 사용하세요. 출처를 완전히
-신뢰할 수 없는 경우, 원시 문자열을 `innerHTML`으로 전환하기 전에 반드시 정제하세요.
+신뢰할 수 없는 경우, 원시 문자열을 `innerHTML`으로 전환하기 전에 DOMPurify 같은
+HTML 정제 라이브러리로 반드시 정제하세요.
 
 ```jsx
 import DOMPurify from "dompurify";
 container.innerHTML = DOMPurify.sanitize(event.description);
 ```
 
+<br>
 <br>
 
 ## 선택적·널 필드 처리
@@ -185,6 +195,7 @@ capacity    = event.get("capacity")
 ```
 
 <br>
+<br>
 
 ## 오류 응답
 
@@ -205,6 +216,7 @@ capacity    = event.get("capacity")
 전체 오류 코드와 해결 방법은 [오류 레퍼런스](../api/error-reference.md)를
 참고하세요.
 
+<br>
 <br>
 
 ## 권장 사항
@@ -251,6 +263,7 @@ function handleApiError(error) {
 ```
 
 <br>
+<br>
 
 ## 다음 단계
 
@@ -259,4 +272,5 @@ function handleApiError(error) {
 - [인증 가이드](../guides/authentication.md)
 - [코드 예제](../examples/code-examples.md)
 
+<br>
 <br>

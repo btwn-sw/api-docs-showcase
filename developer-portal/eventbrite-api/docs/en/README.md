@@ -5,6 +5,7 @@ authentication, event management, response handling, and troubleshooting.
 Built as a technical writing portfolio project.
 
 <br>
+<br>
 
 ## Documentation Structure
 
@@ -23,12 +24,15 @@ docs/en/
 │   ├── api-reference.md
 │   ├── error-reference.md
 │   └── quick-reference.md
+├── testing/
+│   └── api-test-results.md
 ├── examples/
 │   └── code-examples.md
 └── reference/
     └── glossary.md
 ```
 
+<br>
 <br>
 
 ## What's Included
@@ -44,12 +48,16 @@ docs/en/
 | [API Reference](../en/api/api-reference.md) | Reference | Endpoint signatures, parameters, and response fields for all Event endpoints |
 | [Error Reference](../en/api/error-reference.md) | Reference | All error codes, their causes, and resolution steps |
 | [Quick Reference](../en/api/quick-reference.md) | Reference | Endpoints, headers, status codes, and rate limits at a glance |
+| [API Test Results](../en/testing/api-test-results.md) | Reference | Verified differences between documented and actual API behavior |
 | [Code Examples](../en/examples/code-examples.md) | Reference | Request examples in cURL, JavaScript, Node.js, and Python |
 | [Glossary](../en/reference/glossary.md) | Reference | Definitions for key terms used across the documentation |
 
 <br>
+<br>
 
 ## Choose Your Path
+
+<br>
 
 ### I want to make my first API request fast
 
@@ -57,6 +65,8 @@ docs/en/
 
 Get from zero to a working API response in under 3 minutes.
 No prior Eventbrite API experience required.
+
+<br>
 
 ### I want to learn the API step by step
 
@@ -66,12 +76,24 @@ A guided walkthrough using the Eventbrite API Console and Postman.
 Covers authentication, live requests, response inspection, and
 exporting to cURL.
 
+<br>
+
 ### I need to look something up
 
 👉 [**Quick Reference**](../en/api/quick-reference.md)
 
 Endpoints, request headers, response fields, status codes, and rate
 limits — all on one page.
+
+<br>
+
+### I want to verify actual API behavior
+
+👉 [**API Test Results**](../en/testing/api-test-results.md)
+
+15 test cases covering parameter values the official documentation lists as valid but the API rejects, and response fields that differ by endpoint — verified so you can rule them out before they cause a runtime error.
+
+<br>
 
 ### I need to fix something that's broken
 
@@ -80,6 +102,8 @@ limits — all on one page.
 Organized by error symptom. Each section covers cause, fix steps,
 and a verification request.
 
+<br>
+
 ### I don't understand a term
 
 👉 [**Glossary**](../en/reference/glossary.md)
@@ -87,6 +111,7 @@ and a verification request.
 Definitions for Private Token, continuation token, draft vs live,
 UTC vs local, and all other key terms used across the documentation.
 
+<br>
 <br>
 
 ## Direct HTTP Integration
@@ -107,6 +132,7 @@ Recommended tools by environment:
 For working request examples, see [Code Examples](../en/examples/code-examples.md).
 
 <br>
+<br>
 
 ## Intended Audience
 
@@ -114,6 +140,7 @@ For working request examples, see [Code Examples](../en/examples/code-examples.m
 - Technical writers building API documentation portfolios
 - Reviewers evaluating documentation structure and quality
 
+<br>
 <br>
 
 ## Project Status
@@ -125,4 +152,5 @@ and focuses on documentation structure and best practices.
 For official Eventbrite API documentation, see
 Eventbrite [API Reference](https://www.eventbrite.com/platform/api/).
 
+<br>
 <br>

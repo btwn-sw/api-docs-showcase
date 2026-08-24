@@ -11,6 +11,7 @@
 - 요청을 Postman으로 가져와서 다시 실행하기
 
 <br>
+<br>
 
 ## 목차
 
@@ -24,14 +25,16 @@
 - [최종 결과 확인](#최종-결과-확인)
 
 <br>
+<br>
 
 ## 사전 요구사항
 
 - 활성화된 Eventbrite 계정
 - 유효한 **프라이빗 토큰(Private Token)** — 아직 없다면
-[인증 가이드](../guides/authentication.md)를 먼저 확인하고, **첫 API 호출 튜토리얼**을 다시 진행하세요.
+[인증 가이드](../guides/authentication.md)를 먼저 확인하고, **첫 API 호출 튜토리얼**을 진행하세요.
 - Postman 설치 또는 [postman.com](https://www.postman.com/) 브라우저 접속
 
+<br>
 <br>
 
 ## 1단계: API 레퍼런스 열기
@@ -42,9 +45,10 @@
 1. Eventbrite [API 레퍼런스](https://www.eventbrite.com/platform/api/)를 여세요.
 2. 사이드바에서 **Reference → Event → Retrieve an Event**로 이동하세요.
 
-**결과:** 요청 형식, 필수 파라미터, 오른쪽 라이브 콘솔이 있는 엔드포인트
+**결과:** 요청 형식, 필수 파라미터, 오른쪽 인터랙티브 콘솔이 있는 엔드포인트
 페이지가 표시됩니다.
 
+<br>
 <br>
 
 ## 2단계: 인터랙티브 콘솔 활성화하기
@@ -57,27 +61,32 @@ Eventbrite API 레퍼런스에는 Apiary 기반의 인터랙티브 콘솔이 있
 **결과:** 콘솔이 활성화되고 파라미터와 헤더 입력 필드가 나타납니다.
 
 <br>
+<br>
 
 ## 3단계: 요청 구성하기
 
 콘솔에 아래 값을 입력하세요.
 
-**URI 파라미터**
+<br>
+
+### URI 파라미터
 
 | 파라미터 | 값 |
 | --- | --- |
 | `event_id` | 내 Eventbrite 계정의 유효한 이벤트 ID |
 
-`event_id`를 찾으려면 Eventbrite 계정에서 이벤트를 여세요.
+`event_id`를 찾으려면 Eventbrite 계정에서 이벤트로 이동하세요.
 ID는 이벤트 URL 끝의 11자리 숫자입니다.
 
 ```
 https://www.eventbrite.com/e/my-event-name-12345678901
                                            ^^^^^^^^^^^
-                                    이것이 event_id입니다
+                                  이 값이 event_id입니다
 ```
 
-**헤더**
+<br>
+
+### 헤더
 
 ```
 Authorization: Bearer YOUR_PRIVATE_TOKEN
@@ -94,6 +103,7 @@ Content-Type: application/json
 `https://www.eventbriteapi.com/v3/events/{event_id}/`로
 GET 요청을 보냅니다.
 
+<br>
 <br>
 
 ## 4단계: 응답 확인하기
@@ -118,9 +128,9 @@ GET 요청을 보냅니다.
 `html`은 웹 인터페이스에서 렌더링할 때 사용합니다. 이 패턴에 대한 자세한 내용은
 [응답 처리 가이드](../guides/response-handling.md)를 참고하세요.
 
-**결과:** Eventbrite API 엔드포인트를 성공적으로 호출하고
-구조화된 응답을 받았습니다.
+**결과:** Response Body에 이벤트의 name, description, start, end, status 필드가 담긴 JSON 객체가 표시됩니다.
 
+<br>
 <br>
 
 ## 5단계: cURL로 내보내기
@@ -138,6 +148,9 @@ curl --request GET \
   "https://www.eventbriteapi.com/v3/events/{event_id}/"
 ```
 
+**결과:** 복사한 cURL 명령어를 터미널에 붙여넣으면 콘솔에서 보낸 것과 동일한 요청을 다시 실행할 수 있습니다.
+
+<br>
 <br>
 
 ## 6단계: Postman으로 가져오기
@@ -151,14 +164,14 @@ cURL 명령어를 Postman으로 가져오면 헤더, 파라미터, 응답을 자
 4. 컬렉션 이름을 알아보기 쉽게 바꾸세요. (예: `Eventbrite API`)
 5. **Import Into Collection**을 클릭하세요.
 
-Postman이 메서드, URL, Authorization 헤더가 채워진 새 요청 탭을
-자동으로 만듭니다.
+> Postman이 메서드, URL, Authorization 헤더가 채워진 새 요청 탭을 자동으로 만듭니다.
 
 6. **Send**를 클릭하세요.
 
 **결과:** 응답 패널에 `200 OK` 응답이 나타납니다.
-형식 드롭다운에서 **JSON**을 선택하면 응답 본문을 보기 좋게 볼 수 있습니다.
+형식 드롭다운에서 **JSON**을 선택하면 응답 본문을 JSON 형식으로 볼 수 있습니다.
 
+<br>
 <br>
 
 ## 최종 결과 확인
@@ -171,10 +184,11 @@ Postman이 메서드, URL, Authorization 헤더가 채워진 새 요청 탭을
 - [ ] Postman에서 같은 요청을 다시 실행해서 `200 OK`를 받았다.
 
 이 튜토리얼에서 실제 API 요청을 인증하고, 이벤트 조회 엔드포인트를
-호출하고, JSON 응답을 읽고, Postman에서 요청을 재사용할 수 있도록
+호출했습니다. 이어서 JSON 응답을 읽고, Postman에서 요청을 재사용할 수 있도록
 설정했습니다. 이제 Eventbrite API의 나머지 기능을 탐색할 수 있는
 환경이 갖춰졌습니다.
 
+<br>
 <br>
 
 ## 다음 단계
@@ -183,4 +197,5 @@ Postman이 메서드, URL, Authorization 헤더가 채워진 새 요청 탭을
 - [응답 처리 가이드](../guides/response-handling.md)
 - [코드 예제](../examples/code-examples.md)
 
+<br>
 <br>

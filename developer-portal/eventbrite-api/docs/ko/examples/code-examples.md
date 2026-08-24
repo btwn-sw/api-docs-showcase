@@ -5,6 +5,7 @@
 전체 파라미터와 응답 필드 정의는 [API 레퍼런스](../api/api-reference.md)를 참고하세요.
 
 <br>
+<br>
 
 ## 목차
 
@@ -18,8 +19,9 @@
 - [요청 제한](#요청-제한)
 
 <br>
+<br>
 
-### 인증
+## 인증
 
 모든 예제는 환경 변수에서 프라이빗 토큰을 읽습니다.
 예제를 실행하기 전에 아래 명령어로 토큰을 한 번만 설정하세요.
@@ -31,8 +33,13 @@ export EVENTBRITE_TOKEN=your_token_here
 토큰 설정 방법은 [인증 가이드](../guides/authentication.md)를 참고하세요.
 
 <br>
+<br>
 
 ## cURL
+
+아래 예제는 curl로 요청을 직접 보내고, 위에서 설정한 EVENTBRITE_TOKEN 환경 변수의 토큰을 사용합니다.
+
+<br>
 
 ### 조직별 이벤트 목록 조회
 
@@ -100,10 +107,13 @@ curl --request DELETE \
 ```
 
 <br>
+<br>
 
 ## JavaScript
 
-아래 예제는 모든 최신 브라우저에서 지원하는 Fetch API를 사용합니다. 토큰은 환경 변수 또는 안전한 설정에서 사용하고, 소스 코드에 직접 포함하지 마세요.
+아래 예제는 모든 최신 브라우저에서 지원하는 Fetch API를 사용합니다. 토큰은 환경 변수나 안전한 설정에서 사용하고, 소스 코드에 직접 포함하지 마세요.
+
+<br>
 
 ### 조직별 이벤트 목록 조회
 
@@ -126,6 +136,8 @@ async function listEvents(organizationId) {
 }
 ```
 
+<br>
+
 ### 이벤트 조회
 
 ```jsx
@@ -146,6 +158,8 @@ async function getEvent(eventId) {
   return response.json();
 }
 ```
+
+<br>
 
 ### 이벤트 생성
 
@@ -171,6 +185,8 @@ async function createEvent(organizationId, eventData) {
 }
 ```
 
+<br>
+
 ### 이벤트 수정
 
 ```jsx
@@ -195,6 +211,8 @@ async function updateEvent(eventId, updates) {
 }
 ```
 
+<br>
+
 ### 이벤트 삭제
 
 ```jsx
@@ -218,15 +236,17 @@ async function deleteEvent(eventId) {
 ```
 
 <br>
+<br>
 
 ## Node.js
 
-아래 예제는 서버 사이드 요청에 `node-fetch`를 사용하고
-환경 변수에서 토큰을 읽습니다.
+아래 예제는 서버 사이드 요청에 `node-fetch`를 사용하고 환경 변수에서 토큰을 읽습니다.
 
 ```bash
 npm install node-fetch
 ```
+
+<br>
 
 ### 조직별 이벤트 목록 조회
 
@@ -250,6 +270,8 @@ async function listEvents(organizationId) {
   return response.json();
 }
 ```
+
+<br>
 
 ### 이벤트 조회
 
@@ -280,6 +302,8 @@ async function getEvent(eventId) {
 }
 ```
 
+<br>
+
 ### 이벤트 생성
 
 ```jsx
@@ -305,6 +329,8 @@ async function createEvent(organizationId, eventData) {
   return response.json();
 }
 ```
+
+<br>
 
 ### 이벤트 수정
 
@@ -332,6 +358,8 @@ async function updateEvent(eventId, updates) {
 }
 ```
 
+<br>
+
 ### 이벤트 삭제
 
 ```jsx
@@ -357,6 +385,7 @@ async function deleteEvent(eventId) {
 ```
 
 <br>
+<br>
 
 ## Python
 
@@ -366,6 +395,8 @@ async function deleteEvent(eventId) {
 ```bash
 pip install requests
 ```
+
+<br>
 
 ### 조직별 이벤트 목록 조회
 
@@ -381,6 +412,8 @@ def list_events(organization_id):
     response.raise_for_status()
     return response.json()
 ```
+
+<br>
 
 ### 이벤트 조회
 
@@ -402,6 +435,8 @@ def get_event(event_id):
     }
 ```
 
+<br>
+
 ### 이벤트 생성
 
 ```python
@@ -420,6 +455,8 @@ def create_event(organization_id, event_data):
     response.raise_for_status()
     return response.json()
 ```
+
+<br>
 
 ### 이벤트 수정
 
@@ -440,6 +477,8 @@ def update_event(event_id, updates):
     return response.json()
 ```
 
+<br>
+
 ### 이벤트 삭제
 
 ```python
@@ -456,8 +495,11 @@ def delete_event(event_id):
 ```
 
 <br>
+<br>
 
 ## 응답 처리
+
+<br>
 
 ### 필요한 필드만 추출하기
 
@@ -471,6 +513,8 @@ const description = event.description?.text ?? "";
 const startTime   = event.start?.utc        ?? null;
 ```
 
+<br>
+
 ### HTML과 일반 텍스트 분리하기
 
 웹 인터페이스에서 렌더링할 때는 `html` 필드를 사용하세요.
@@ -483,6 +527,8 @@ container.innerHTML = event.description.html;
 // 알림 시스템에 전달
 sendNotification({ title: event.name.text });
 ```
+
+<br>
 
 ### API 오류 처리하기
 
@@ -516,10 +562,11 @@ async function safeGetEvent(eventId) {
 ```
 
 <br>
+<br>
 
 ## 페이지네이션
 
-컨티뉴에이션 토큰을 사용해서 여러 페이지에 걸친 이벤트를 모두 가져오세요.
+이전 응답에 포함된 continuation 토큰으로 다음 페이지를 요청해서, 여러 페이지에 걸친 이벤트를 모두 가져오세요.
 
 ```jsx
 import fetch from "node-fetch";
@@ -565,6 +612,7 @@ async function getAllEvents(organizationId) {
 [페이지네이션 가이드](../guides/pagination.md)를 참고하세요.
 
 <br>
+<br>
 
 ## 요청 제한
 
@@ -605,6 +653,7 @@ async function fetchWithDelay(eventIds, delayMs = 500) {
 참고하세요.
 
 <br>
+<br>
 
 ## 다음 단계
 
@@ -613,4 +662,5 @@ async function fetchWithDelay(eventIds, delayMs = 500) {
 - [응답 처리 가이드](../guides/response-handling.md)
 - [인증 가이드](../guides/authentication.md)
 
+<br>
 <br>

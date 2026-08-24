@@ -8,21 +8,25 @@ Eventbrite API 핵심 정보를 빠르게 확인하세요. API를 이미 알고 
 [API 레퍼런스](../api/api-reference.md)를 참고하세요.
 
 <br>
+<br>
 
 ## 목차
 
-- [Base URL](#base-url)
+- [기본 URL](#기본-url)
 - [인증](#인증)
 - [이벤트 엔드포인트](#이벤트-엔드포인트)
 - [요청 헤더](#요청-헤더)
 - [응답 필드](#응답-필드)
-- [HTTP 상태 코드](#http-상태-코드)
 - [요청 제한](#요청-제한)
+- [HTTP 상태 코드](#http-상태-코드)
 - [빠른 요청 예시](#빠른-요청-예시)
 
 <br>
+<br>
 
-## Base URL
+## 기본 URL
+
+모든 API 요청은 다음 URL을 기준으로 합니다.
 
 ```
 https://www.eventbriteapi.com/v3
@@ -33,19 +37,23 @@ https://www.eventbriteapi.com/v3
 - 요청 및 응답 형식: `application/json`
 
 <br>
+<br>
 
 ## 인증
+
+요청의 Authorization 헤더에 프라이빗 토큰을 다음 형식으로 포함하세요.
 
 ```
 Authorization: Bearer YOUR_PRIVATE_TOKEN
 ```
 
-- 토큰을 환경 변수에 저장하세요 — 소스 코드에 포함하지 마세요.
+- 토큰을 환경 변수에 저장하세요. 단, 소스 코드에 포함하지 마세요.
 - [계정 설정 → API Keys](https://www.eventbrite.com/account-settings/apps)에서
 토큰을 생성하거나 재발급할 수 있습니다.
 
 👉 [인증 가이드](../guides/authentication.md)
 
+<br>
 <br>
 
 ## 이벤트 엔드포인트
@@ -62,6 +70,7 @@ Authorization: Bearer YOUR_PRIVATE_TOKEN
 👉 [API 레퍼런스](../api/api-reference.md)
 
 <br>
+<br>
 
 ## 요청 헤더
 
@@ -72,6 +81,7 @@ Authorization: Bearer YOUR_PRIVATE_TOKEN
 
 👉 [인증 가이드](../guides/authentication.md)
 
+<br>
 <br>
 
 ## 응답 필드
@@ -88,29 +98,13 @@ Authorization: Bearer YOUR_PRIVATE_TOKEN
 | `start.local` | String | 이벤트 현지 시간대 기준 시작 시간 |
 | `end.utc` | String | UTC 종료 시간 — 형식: `YYYY-MM-DDTHH:MM:SSZ` |
 | `end.local` | String | 이벤트 현지 시간대 기준 종료 시간 |
-| `capacity` | Integer | 최대 참석자 수. 설정하지 않으면 `null` |
+| `capacity` | Integer | 최대 참석자 수. 주최자가 설정하지 않은 경우 `null` |
 | `currency` | String | ISO 4217 통화 코드 |
 | `url` | String | Eventbrite 이벤트 공개 페이지 URL |
 
 👉 [응답 처리 가이드](../guides/response-handling.md)
 
 <br>
-
-## HTTP 상태 코드
-
-| 코드 | 오류 코드 | 의미 | 조치 |
-| --- | --- | --- | --- |
-| `200` | — | 요청 성공 | — |
-| `400` | `FIELD_INVALID` | 유효하지 않거나 누락된 필드 | 요청 본문의 필수 필드와 값 형식 확인 |
-| `400` | `VENUE_AND_ONLINE` | 장소와 `online_event`가 함께 설정됨 | 장소를 제거하거나 `online_event`를 `false`로 설정 |
-| `400` | `BAD_CONTINUATION_TOKEN` | 페이지네이션 토큰이 잘못됐거나 만료됨 | `continuation` 파라미터 없이 첫 페이지부터 다시 시작 |
-| `401` | `NO_AUTH` | 토큰이 없거나 유효하지 않음 | `Authorization : Bearer YOUR_PRIVATE_TOKEN` 형식 확인 |
-| `403` | `NOT_AUTHORIZED` | 권한 부족 | 리소스가 내 계정에 속하는지, 이벤트 상태가 해당 작업을 허용하는지 확인 |
-| `404` | `NOT_FOUND` | 리소스를 찾을 수 없음 | 이벤트 URL에서 `event_id`의 숫자 ID만 복사했는지 확인 |
-| `429` | — | 요청 제한 초과 | `X-Apiary-RateLimit-Remaining` 헤더 확인 후 1시간 대기 |
-
-👉 [오류 레퍼런스](../api/error-reference.md)
-
 <br>
 
 ## 요청 제한
@@ -130,6 +124,25 @@ Authorization: Bearer YOUR_PRIVATE_TOKEN
 
 👉 [오류 레퍼런스 — 429](../api/error-reference.md#429-too-many-requests)
 
+<br>
+<br>
+
+## HTTP 상태 코드
+
+| 코드 | 오류 코드 | 의미 | 조치 |
+| --- | --- | --- | --- |
+| `200` | — | 요청 성공 | — |
+| `400` | `FIELD_INVALID` | 유효하지 않거나 누락된 필드 | 요청 본문의 필수 필드와 값 형식 확인 |
+| `400` | `VENUE_AND_ONLINE` | 장소와 `online_event`가 함께 설정됨 | 장소를 제거하거나 `online_event`를 `false`로 설정 |
+| `400` | `BAD_CONTINUATION_TOKEN` | 페이지네이션 토큰이 잘못됐거나 만료됨 | `continuation` 파라미터 없이 첫 페이지부터 다시 시작 |
+| `401` | `NO_AUTH` | 토큰이 없거나 유효하지 않음 | `Authorization : Bearer YOUR_PRIVATE_TOKEN` 형식 확인 |
+| `403` | `NOT_AUTHORIZED` | 권한 부족 | 리소스가 내 계정에 속하는지, 이벤트 상태가 해당 작업을 허용하는지 확인 |
+| `404` | `NOT_FOUND` | 리소스를 찾을 수 없음 | 이벤트 URL에서 `event_id`의 숫자 ID만 복사했는지 확인 |
+| `429` | — | 요청 제한 초과 | `X-Apiary-RateLimit-Remaining` 헤더 확인 후 1시간 대기 |
+
+👉 [오류 레퍼런스](../api/error-reference.md)
+
+<br>
 <br>
 
 ## 빠른 요청 예시
@@ -152,4 +165,5 @@ curl --request GET \
 
 👉 [코드 예제](../examples/code-examples.md)
 
+<br>
 <br>

@@ -3,6 +3,7 @@
 이 문서 세트를 통해 Eventbrite API 연동에 필요한 모든 것을 한 곳에서 찾을 수 있습니다. 인증 설정부터 이벤트 관리, 응답 처리, 오류 해결까지 전체 연동 흐름을 다룹니다.
 
 <br>
+<br>
 
 ## 문서 구조
 
@@ -21,6 +22,8 @@ docs/ko/
 │   ├── api-reference.md
 │   ├── error-reference.md
 │   └── quick-reference.md
+├── testing/
+│   └── api-test-results.md
 ├── examples/
 │   └── code-examples.md
 └── reference/
@@ -42,18 +45,24 @@ docs/ko/
 | [API 레퍼런스](../ko/api/api-reference.md) | Reference | 전체 이벤트 엔드포인트의 시그니처, 파라미터, 응답 필드 |
 | [오류 레퍼런스](../ko/api/error-reference.md) | Reference | 전체 오류 코드, 원인, 해결 방법 |
 | [빠른 참조 가이드](../ko/api/quick-reference.md) | Reference | 엔드포인트, 헤더, 상태 코드, 요청 제한 한눈에 보기 |
+| [API 테스트 결과](../ko/testing/api-test-results.md) | Reference | API 공식 문서와 실제 동작의 차이를 검증한 테스트 결과 |
 | [코드 예제](../ko/examples/code-examples.md) | Reference | cURL, JavaScript, Node.js, Python 요청 예제 |
 | [용어집](../ko/reference/glossary.md) | Reference | 문서 전반에서 사용하는 주요 용어 정의 |
 
 <br>
+<br>
 
 ## 시작점 선택하기
+
+<br>
 
 ### 빠르게 첫 API 요청을 보내고 싶어요
 
 👉 [**빠른 시작 가이드**](../ko/get-started/quick-start.md)
 
 3분 안에 프라이빗 토큰으로 인증하고 이벤트 조회 엔드포인트에서 실제 JSON 응답을 받을 수 있습니다.
+
+<br>
 
 ### API를 단계별로 학습하고 싶어요
 
@@ -62,12 +71,24 @@ docs/ko/
 Eventbrite API 콘솔과 Postman을 사용한 단계별 가이드입니다.
 인증, 실제 요청, 응답 확인, cURL 내보내기를 다룹니다.
 
+<br>
+
 ### 빠르게 찾아보고 싶어요
 
 👉 [**빠른 참조 가이드**](../ko/api/quick-reference.md)
 
 엔드포인트, 요청 헤더, 응답 필드, 상태 코드, 요청 제한을
 한 페이지에서 확인하세요.
+
+<br>
+
+### 실제 API 동작을 검증하고 싶어요
+
+👉 [**API 테스트 결과**](../ko/testing/api-test-results.md)
+
+공식 문서에 명시됐지만 실제로 거부되는 파라미터 값, 엔드포인트 별 응답 필드 차이 등 15건의 테스트 케이스로 검증한 결과를 확인하세요.
+
+<br>
 
 ### 문제를 해결하고 싶어요
 
@@ -77,6 +98,8 @@ Eventbrite API 콘솔과 Postman을 사용한 단계별 가이드입니다.
 증상별로 구성되어 있습니다. 각 섹션에서 원인, 해결 단계, 확인 방법을
 안내합니다.
 
+<br>
+
 ### 용어의 뜻을 모르겠어요
 
 👉 [**용어집**](../ko/reference/glossary.md)
@@ -84,6 +107,7 @@ Eventbrite API 콘솔과 Postman을 사용한 단계별 가이드입니다.
 프라이빗 토큰, 컨티뉴에이션 토큰, draft vs live, UTC vs local 등
 문서 전반에서 사용하는 주요 용어를 정의합니다.
 
+<br>
 <br>
 
 ## HTTP 클라이언트 직접 사용하기
@@ -104,6 +128,7 @@ API는 표준 RESTful HTTP 인터페이스로, 인증·요청·응답을 표준 
 실제 요청 예제는 [코드 예제](../ko/examples/code-examples.md)를 참고하세요.
 
 <br>
+<br>
 
 ## 대상 독자
 
@@ -111,6 +136,7 @@ API는 표준 RESTful HTTP 인터페이스로, 인증·요청·응답을 표준 
 - API 문서 포트폴리오를 구축하는 테크니컬 라이터
 - 문서 구조와 품질을 평가하는 검토자
 
+<br>
 <br>
 
 ## 프로젝트 상태
@@ -123,4 +149,5 @@ Eventbrite의 공개 API 문서를 바탕으로 작성됐으며,
 Eventbrite [API 레퍼런스](https://www.eventbrite.com/platform/api/)를
 참고하세요.
 
+<br>
 <br>
