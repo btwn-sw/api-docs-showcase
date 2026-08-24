@@ -49,6 +49,8 @@ curl --request GET \
   "https://www.eventbriteapi.com/v3/organizations/{organization_id}/events/"
 ```
 
+<br>
+
 ### 이벤트 조회
 
 ```bash
@@ -56,6 +58,8 @@ curl --request GET \
   --header "Authorization: Bearer $EVENTBRITE_TOKEN" \
   "https://www.eventbriteapi.com/v3/events/{event_id}/"
 ```
+
+<br>
 
 ### 이벤트 생성
 
@@ -74,6 +78,8 @@ curl --request POST \
   "https://www.eventbriteapi.com/v3/organizations/{organization_id}/events/"
 ```
 
+<br>
+
 ### 이벤트 수정
 
 ```bash
@@ -89,6 +95,8 @@ curl --request POST \
   "https://www.eventbriteapi.com/v3/events/{event_id}/"
 ```
 
+<br>
+
 ### 이벤트 게시
 
 ```bash
@@ -97,6 +105,8 @@ curl --request POST \
   --header "Content-Type: application/json" \
   "https://www.eventbriteapi.com/v3/events/{event_id}/publish/"
 ```
+
+<br>
 
 ### 이벤트 삭제
 

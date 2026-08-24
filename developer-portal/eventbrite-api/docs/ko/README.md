@@ -54,8 +54,6 @@ docs/ko/
 
 ## 시작점 선택하기
 
-<br>
-
 ### 빠르게 첫 API 요청을 보내고 싶어요
 
 👉 [**빠른 시작 가이드**](../ko/get-started/quick-start.md)

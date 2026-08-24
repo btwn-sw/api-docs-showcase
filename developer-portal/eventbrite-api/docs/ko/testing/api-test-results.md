@@ -79,8 +79,6 @@ Eventbrite Event Order API를 연동하기 전에 이 문서에서 공식 문서
 
 ## 발견 사항
 
-<br>
-
 ### F-001 — `stats=both` 문서 불일치
 
 **심각도:** 높음
@@ -129,8 +127,6 @@ display_fee · display_price · has_gts_tax · fee_components · shipping_compon
 <br>
 
 ## 테스트 케이스 및 결과
-
-<br>
 
 ### TC-001 — 단일 주문 조회
 

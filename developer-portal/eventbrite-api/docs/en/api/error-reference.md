@@ -1,13 +1,14 @@
 # Error Reference
 
 Look up error codes returned by the Eventbrite API, their causes,
-and the steps to resolve them.
+and the steps to resolve them, so you can diagnose a failed request quickly.
 
 For error handling code examples, see the
 [Response Handling Guide](../guides/response_handling.md).
 For step-by-step debugging, see the
 [Troubleshooting Guide](../guides/troubleshooting.md).
 
+<br>
 <br>
 
 ## Table of Contents
@@ -20,6 +21,7 @@ For step-by-step debugging, see the
     - [404 Not Found](#404-not-found)
     - [429 Too Many Requests](#429-too-many-requests)
 
+<br>
 <br>
 
 ## Error Response Format
@@ -38,15 +40,16 @@ All Eventbrite API errors return a consistent JSON structure:
 | --- | --- | --- |
 | `error` | String | Machine-readable error code. Use this field to identify the error type in your application logic. |
 | `error_description` | String | Human-readable explanation of what went wrong. Useful for logging and debugging, but not intended for display to end users. |
-| `status_code` | Integer | HTTP status code. Matches the response status code. |
+| `status_code` | Integer | HTTP status code of the response — for example, 400 or 404. |
 
+<br>
 <br>
 
 ## Error Codes
 
 ### 400 Bad Request
 
-The request was rejected because it contains invalid or conflicting
+Eventbrite rejects the request when it contains invalid or conflicting
 parameters.
 
 | Error code | Cause | How to fix |
@@ -55,28 +58,28 @@ parameters.
 | `VENUE_AND_ONLINE` | Both a venue and `online_event: true` are set on the same request. An event can be either in-person or online, not both. | Remove the venue or set `online_event` to `false`. |
 | `BAD_CONTINUATION_TOKEN` | The `continuation` token passed as a query parameter is malformed or has expired. | Restart pagination from the first page by making the request without a `continuation` parameter. See the [Pagination Guide](../guides/pagination.md). |
 
-
+<br>
 
 ### 401 Unauthorized
 
-The request was rejected because authentication failed.
+Eventbrite rejects the request when authentication fails.
 
 | Error code | Cause | How to fix |
 | --- | --- | --- |
 | `NO_AUTH` | The `Authorization` header is missing, the token format is incorrect, or the token has been revoked. | Confirm the header is formatted as `Authorization: Bearer YOUR_PRIVATE_TOKEN`. Generate a new token from your [API Keys page](https://www.eventbrite.com/account-settings/apps) if needed. |
 
-
+<br>
 
 ### 403 Forbidden
 
-The request was authenticated but the token does not have permission to
-perform the action.
+Eventbrite validates the token but denies the request because the token
+lacks permission for it.
 
 | Error code | Cause | How to fix |
 | --- | --- | --- |
 | `NOT_AUTHORIZED` | The event belongs to a different organization or account, the token lacks the required scope, or the action is not permitted for the event's current status — for example, deleting an event that has existing orders. | Confirm the `event_id` or `organization_id` belongs to the account that issued the token. Check the event's `status` field — some actions are restricted based on status. |
 
-
+<br>
 
 ### 404 Not Found
 
@@ -86,11 +89,13 @@ The requested resource does not exist.
 | --- | --- | --- |
 | `NOT_FOUND` | The `event_id` or `organization_id` is incorrect, the event has been deleted, or the token does not have permission to view it. | Verify the ID by opening the event in your Eventbrite account. The `event_id` is the number at the end of the event URL: `https://www.eventbrite.com/e/my-event-123456789`. |
 
-
+<br>
 
 ### 429 Too Many Requests
 
-The request was rejected because a rate limit has been exceeded.
+Eventbrite rejects the request when a rate limit is exceeded. Unlike the
+other error codes on this page, a 429 response has no JSON error code —
+check the limits and response headers below to diagnose it.
 
 | Limit type | Limit |
 | --- | --- |
@@ -98,9 +103,6 @@ The request was rejected because a rate limit has been exceeded.
 | All requests | 48,000 calls/day |
 | Create Event | 200 calls/hour |
 | Publish Event | 200 calls/hour |
-
-This error does not include a JSON error code. Check the following
-response headers to diagnose the issue:
 
 | Header | Description |
 | --- | --- |
@@ -112,6 +114,7 @@ resets before sending additional requests. For bulk operations, add a
 delay between requests to stay within the limit.
 
 <br>
+<br>
 
 ## Next Steps
 
@@ -119,4 +122,5 @@ delay between requests to stay within the limit.
 - [Response Handling Guide](../guides/response_handling.md)
 - [Troubleshooting Guide](../guides/troubleshooting.md)
 
+<br>
 <br>

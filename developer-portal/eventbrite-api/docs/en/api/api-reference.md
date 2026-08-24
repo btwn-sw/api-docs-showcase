@@ -120,8 +120,6 @@ For error handling strategies, see the
 
 ## Event Endpoints
 
-<br> 
-
 ### List Events by Organization
 
 Returns a paginated list of events under an organization.

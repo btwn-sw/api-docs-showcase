@@ -62,7 +62,6 @@ const token = process.env.EVENTBRITE_TOKEN;
 **확인:** 수정한 URL로 요청을 다시 보내세요.
 
 <br>
-<br>
 
 ### 문제 3 — Content-Type 헤더 누락
 
@@ -85,8 +84,6 @@ curl --request POST \
 <br>
 
 ## 401 인증 오류
-
-<br>
 
 ### 증상
 
@@ -145,8 +142,6 @@ curl --request GET \
 
 ## 403 권한 오류
 
-<br>
-
 ### 증상
 
 - API가 `403 NOT_AUTHORIZED`를 반환합니다.
@@ -197,8 +192,6 @@ curl --request GET \
 <br>
 
 ## 404 리소스를 찾을 수 없음
-
-<br>
 
 ### 증상
 
@@ -259,8 +252,6 @@ curl --request GET \
 
 ## 응답 데이터 누락 또는 예상과 다름
 
-<br>
-
 ### 증상
 
 - `description.html` 같은 필드가 비어 있거나 `null`입니다.
@@ -305,8 +296,6 @@ const capacity    = event?.capacity          ?? null;
 <br>
 
 ## HTML 콘텐츠 문제
-
-<br>
 
 ### 증상
 
@@ -364,8 +353,6 @@ UI에서 렌더링 결과를 확인하세요. HTML 태그가 텍스트로 보이
 <br>
 
 ## 요청 제한
-
-<br>
 
 ### 증상
 
