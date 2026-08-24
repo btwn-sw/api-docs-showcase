@@ -34,9 +34,9 @@ Eventbrite API 사전 경험은 필요하지 않습니다.
 
 1. [Eventbrite](https://www.eventbrite.com/signin/)에 로그인하세요.
 2. **계정 설정(Account Settings) → Developer Links → API Keys**로 이동하세요.
-3. **API 키 만들기****(Create API Key)**를 클릭하고 필수 항목을 입력한 후
-**키 만들기(Create Key)**를 클릭하세요.
-4. **프라이빗 토큰(Private Token)**을 복사하세요. 이 토큰을 2단계에서 사용합니다.
+3. **API 키 만들기**(Create API Key)를 클릭하고 필수 항목을 입력한 후
+**키 만들기**(Create Key)를 클릭하세요.
+4. **프라이빗 토큰**(Private Token)을 복사하세요. 이 토큰을 2단계에서 사용합니다.
 
 전체 토큰 설정 방법은 [인증 가이드](../guides/authentication.md)를 참고하세요.
 
