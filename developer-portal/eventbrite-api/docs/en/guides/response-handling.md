@@ -1,7 +1,7 @@
 # Response Handling Guide
 
 Eventbrite API responses follow consistent patterns that affect how you
-read event data, handle missing fields, and process HTML content safely.
+read event data, handle missing fields, and process HTML content safely, and handle errors.
 This guide explains why those patterns exist and how to work with them
 correctly in your application.
 
@@ -10,6 +10,7 @@ For endpoint schemas and parameter definitions, see the
 For a full list of error codes, see the
 [Error Reference](../api/error-reference.md).
 
+<br>
 <br>
 
 ## Table of Contents
@@ -22,6 +23,7 @@ For a full list of error codes, see the
 - [Best Practices](#best-practices)
 
 <br>
+<br>
 
 ## Why Responses Are Structured This Way
 
@@ -30,26 +32,30 @@ handle edge cases correctly rather than working around them by trial
 and error.
 
 **Why do `name` and `description` return both `text` and `html`?**
-Eventbrite events are created through a rich-text editor that produces
+
+> Eventbrite events are created through a rich-text editor that produces
 HTML. However, not every consumer of the API — notifications, logs,
 search indexes, mobile apps — can render HTML safely. Returning both
 variants lets each consumer pick the right format without having to
 strip or parse HTML themselves.
 
 **Why are some fields `null` instead of empty strings?**
-Eventbrite distinguishes between a field that has not been set and a
+
+> Eventbrite distinguishes between a field that has not been set and a
 field that has been deliberately cleared. A `null` description means
 the organizer has not written one yet — it is not an empty string. This
 lets your application display "No description yet" rather than blank
 space, and avoids rendering an empty HTML tag.
 
 **Why do time fields include both `utc` and `local`?**
-Event times need to be communicated in two contexts: the organizer's
+
+> Event times need to be communicated in two contexts: the organizer's
 local timezone (for display on the event page) and a timezone-neutral
 format (for scheduling, calendar exports, and cross-timezone comparison).
 The `utc` field is always present and consistent; the `local` field
 depends on the timezone set by the organizer.
 
+<br>
 <br>
 
 ## The Event Object
@@ -64,7 +70,7 @@ into four categories:
 | Scheduling | `start`, `end` — each contains `utc`, `local`, and `timezone` |
 | Metadata | `status`, `currency`, `capacity` |
 
-**Example response:**
+### Example response
 
 ```json
 {
@@ -97,6 +103,7 @@ into four categories:
 For the full field reference, see
 [API Reference — Retrieve an Event](../api/api-reference.md#retrieve-an-event).
 
+<br>
 <br>
 
 ## Handling HTML-Formatted Content
@@ -155,6 +162,7 @@ container.innerHTML = DOMPurify.sanitize(event.description);
 ```
 
 <br>
+<br>
 
 ## Handling Optional and Nullable Fields
 
@@ -186,6 +194,7 @@ capacity    = event.get("capacity")
 ```
 
 <br>
+<br>
 
 ## Error Responses
 
@@ -211,7 +220,8 @@ For the full list of error codes and resolution steps, see the
 ## Best Practices
 
 **Extract only the fields you need.**
-Avoid storing the full response object. Access only the fields your
+
+> Avoid storing the full response object. Access only the fields your
 application uses. This reduces the impact of future API changes and
 keeps your data model clean.
 
@@ -222,7 +232,8 @@ const startUtc = response.start?.utc;
 ```
 
 **Separate HTML from plain text.**
-Never use `html` fields where plain text is expected, and never pass
+
+> Never use `html` fields where plain text is expected, and never pass
 `text` fields to an HTML renderer. Mixing these causes either broken
 layouts or raw HTML appearing as visible text.
 
@@ -235,7 +246,8 @@ sendNotification({ title: event.name.text });
 ```
 
 **Map error codes to user-facing messages.**
-The API's `error_description` is written for developers, not users.
+
+> The API's `error_description` is written for developers, not users.
 Map each error code to a message your users can understand and act on.
 
 ```jsx
@@ -252,6 +264,7 @@ function handleApiError(error) {
 ```
 
 <br>
+<br>
 
 ## Next Steps
 
@@ -260,4 +273,5 @@ function handleApiError(error) {
 - [Authentication Guide](../guides/authentication.md)
 - [Code Examples](../examples/code-examples.md)
 
+<br>
 <br>
