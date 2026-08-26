@@ -128,6 +128,8 @@ DELETE requests.
 
 ## Rate Limits
 
+### Limit Types
+
 | Limit type | Limit |
 | --- | --- |
 | All requests | 2,000 / hour |
