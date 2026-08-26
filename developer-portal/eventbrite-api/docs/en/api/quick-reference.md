@@ -134,7 +134,7 @@ DELETE requests.
 | All requests | 48,000 / day |
 | Create or Publish Event | 200 / hour |
 
-**Rate limit headers:**
+### Rate limit headers
 
 | Header | Description |
 | --- | --- |
@@ -148,7 +148,7 @@ DELETE requests.
 
 ## Quick Request Examples
 
-**Retrieve an event:**
+### Retrieve an event
 
 ```bash
 curl --request GET \
@@ -156,7 +156,7 @@ curl --request GET \
   "https://www.eventbriteapi.com/v3/events/{event_id}/"
 ```
 
-**List events by organization:**
+### List events by organization
 
 ```bash
 curl --request GET \
