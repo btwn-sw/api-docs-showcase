@@ -128,7 +128,7 @@ DELETE requests.
 
 ## Rate Limits
 
-### Limit Types
+### Limit types
 
 | Limit type | Limit |
 | --- | --- |
