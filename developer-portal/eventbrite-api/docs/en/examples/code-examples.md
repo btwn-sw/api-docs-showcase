@@ -485,8 +485,6 @@ const description = event.description?.text ?? "";
 const startTime   = event.start?.utc        ?? null;
 ```
 
-<br>
-
 ### Separate HTML from plain text
 
 Use `html` fields for rendering in a web interface.
@@ -499,8 +497,6 @@ container.innerHTML = event.description.html;
 // Pass to notification system
 sendNotification({ title: event.name.text });
 ```
-
-<br>
 
 ### Handle API errors
 
