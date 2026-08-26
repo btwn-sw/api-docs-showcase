@@ -58,8 +58,6 @@ parameters.
 | `VENUE_AND_ONLINE` | Both a venue and `online_event: true` are set on the same request. An event can be either in-person or online, not both. | Remove the venue or set `online_event` to `false`. |
 | `BAD_CONTINUATION_TOKEN` | The `continuation` token passed as a query parameter is malformed or has expired. | Restart pagination from the first page by making the request without a `continuation` parameter. See the [Pagination Guide](../guides/pagination.md). |
 
-<br>
-
 ### 401 Unauthorized
 
 Eventbrite rejects the request when authentication fails.
@@ -67,8 +65,6 @@ Eventbrite rejects the request when authentication fails.
 | Error code | Cause | How to fix |
 | --- | --- | --- |
 | `NO_AUTH` | The `Authorization` header is missing, the token format is incorrect, or the token has been revoked. | Confirm the header is formatted as `Authorization: Bearer YOUR_PRIVATE_TOKEN`. Generate a new token from your [API Keys page](https://www.eventbrite.com/account-settings/apps) if needed. |
-
-<br>
 
 ### 403 Forbidden
 
@@ -79,8 +75,6 @@ lacks permission for it.
 | --- | --- | --- |
 | `NOT_AUTHORIZED` | The event belongs to a different organization or account, the token lacks the required scope, or the action is not permitted for the event's current status — for example, deleting an event that has existing orders. | Confirm the `event_id` or `organization_id` belongs to the account that issued the token. Check the event's `status` field — some actions are restricted based on status. |
 
-<br>
-
 ### 404 Not Found
 
 The requested resource does not exist.
@@ -88,8 +82,6 @@ The requested resource does not exist.
 | Error code | Cause | How to fix |
 | --- | --- | --- |
 | `NOT_FOUND` | The `event_id` or `organization_id` is incorrect, the event has been deleted, or the token does not have permission to view it. | Verify the ID by opening the event in your Eventbrite account. The `event_id` is the number at the end of the event URL: `https://www.eventbrite.com/e/my-event-123456789`. |
-
-<br>
 
 ### 429 Too Many Requests
 
