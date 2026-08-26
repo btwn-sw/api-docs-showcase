@@ -53,13 +53,15 @@ see [Set Up Server-Side OAuth](#set-up-server-side-oauth).
 6. Copy your **Private Token** and store it somewhere safe —
 you will not be able to view it again after leaving this page.
 
-**If you already have an API key:** Go to your
-[API Keys page](https://www.eventbrite.com/account-settings/apps),
+**If you already have an API key:** 
+
+> Go to your [API Keys page](https://www.eventbrite.com/account-settings/apps),
 click **Show API key, client secret and tokens** next to your app,
 and copy your Private Token from there.
 
-**Verify your token works:** Send the following request.
-A `200 OK` response confirms your token is valid.
+**Verify your token works:** 
+
+> Send the following request. A `200 OK` response confirms your token is valid.
 
 ```bash
 curl --request GET \
@@ -83,10 +85,9 @@ curl --request GET \
 
 Replace `YOUR_PRIVATE_TOKEN` with the token you copied above.
 
-> **Query parameter method (not recommended):** You can pass the token
-as a URL parameter, but avoid this in production. Anyone with access to
-your server logs or browser history can then read the token — a security
-risk.
+**Query parameter method (not recommended):** 
+
+> You can pass the token as a URL parameter, but avoid this in production. Anyone with access to your server logs or browser history can then read the token — a security risk.
 
 ```
 https://www.eventbriteapi.com/v3/users/me/?token=YOUR_PRIVATE_TOKEN
@@ -118,8 +119,6 @@ their own Eventbrite account.
 **Prerequisites:** An API Key and Client Secret from your
 [API Keys page](https://www.eventbrite.com/account-settings/apps).
 
-<br>
-
 ### Step 1. Redirect the user
 
 Send the user to the Eventbrite authorization URL:
@@ -131,8 +130,6 @@ https://www.eventbrite.com/oauth/authorize
   &redirect_uri=YOUR_REDIRECT_URI
 ```
 
-<br>
-
 ### Step 2. Receive the authorization code
 
 Eventbrite redirects the user to your redirect URI with an authorization
@@ -141,8 +138,6 @@ code appended as a query parameter:
 ```
 http://localhost:8080/oauth/redirect?code=YOUR_ACCESS_CODE
 ```
-
-<br>
 
 ### Step 3. Exchange the code for an access token
 
@@ -158,8 +153,6 @@ curl --request POST \
   --data "code=YOUR_ACCESS_CODE" \
   --data "redirect_uri=YOUR_REDIRECT_URI"
 ```
-
-<br>
 
 ### Step 4. Use the access token
 

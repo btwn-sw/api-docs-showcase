@@ -63,8 +63,6 @@ For full setup instructions, see the
 Eventbrite enforces rate limits across all API integrations to maintain
 platform stability.
 
-<br> 
-
 ### Default Limits
 
 | Limit type | Limit |
@@ -73,8 +71,6 @@ platform stability.
 | All requests | 48,000 calls/day |
 | Create Event | 200 calls/hour |
 | Publish Event | 200 calls/hour |
-
-<br> 
 
 ### Rate Limit Headers
 
@@ -87,7 +83,7 @@ in the response:
 | `X-Apiary-RateLimit-Remaining` | Number of requests remaining before the limit resets |
 
 <br>
-<br> 
+<br>
 
 ## Error Handling
 
@@ -124,26 +120,26 @@ For error handling strategies, see the
 
 Returns a paginated list of events under an organization.
 
-**Endpoint**
+#### Endpoint
 
 ```
 GET /organizations/{organization_id}/events/
 ```
 
-**Path Parameters**
+#### Path Parameters
 
 | Name | Type | Required | Description | Example |
 | --- | --- | --- | --- | --- |
 | `organization_id` | String | Yes | The ID of the organization to list events for | `12345` |
 
-**Query Parameters**
+#### Query Parameters
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 | `status` | String | No | Filter by event status. Accepted values: `draft`, `live`, `started`, `ended`, `completed`, `canceled`. Returns all statuses when omitted. |
 | `continuation` | String | No | Pagination token returned by a previous response. Used to retrieve the next page of results. |
 
-**Request Example**
+#### Request Example
 
 ```bash
 curl --request GET \
@@ -151,7 +147,7 @@ curl --request GET \
   "https://www.eventbriteapi.com/v3/organizations/{organization_id}/events/"
 ```
 
-**Response: `200 OK`**
+#### Response: `200 OK`
 
 ```json
 {
@@ -186,7 +182,7 @@ curl --request GET \
 }
 ```
 
-**Response Fields**
+#### Response Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -208,19 +204,19 @@ For step-by-step pagination instructions, see the
 Creates a new event under an organization, in `draft` status. The event
 stays hidden from the public until you publish it.
 
-**Endpoint**
+#### Endpoint
 
 ```
 POST /organizations/{organization_id}/events/
 ```
 
-**Path Parameters**
+#### Path Parameters
 
 | Name | Type | Required | Description | Example |
 | --- | --- | --- | --- | --- |
 | `organization_id` | String | Yes | The ID of the organization that will own the event | `12345` |
 
-**Request Body Parameters**
+#### Request Body Parameters
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
@@ -236,7 +232,7 @@ POST /organizations/{organization_id}/events/
 | `event.listed` | Boolean | No | Set to `true` to make the event publicly searchable on Eventbrite. Default: `false`. |
 | `event.invite_only` | Boolean | No | Set to `true` to restrict access to invited attendees only. Default: `false`. |
 
-**Request Example**
+#### Request Example
 
 ```bash
 curl --request POST \
@@ -253,7 +249,7 @@ curl --request POST \
   "https://www.eventbriteapi.com/v3/organizations/{organization_id}/events/"
 ```
 
-**Response: `200 OK`**
+#### Response: `200 OK`
 
 ```json
 {
@@ -278,7 +274,7 @@ curl --request POST \
 }
 ```
 
-**Response Fields**
+#### Response Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -299,19 +295,19 @@ curl --request POST \
 
 Returns details for a single event.
 
-**Endpoint**
+#### Endpoint
 
 ```
 GET /events/{event_id}/
 ```
 
-**Path Parameters**
+#### Path Parameters
 
 | Name | Type | Required | Description | Example |
 | --- | --- | --- | --- | --- |
 | `event_id` | String | Yes | The unique ID of the event to retrieve | `12345` |
 
-**Request Example**
+#### Request Example
 
 ```bash
 curl --request GET \
@@ -319,7 +315,7 @@ curl --request GET \
   "https://www.eventbriteapi.com/v3/events/{event_id}/"
 ```
 
-**Response: `200 OK`**
+#### Response: `200 OK`
 
 ```json
 {
@@ -349,7 +345,7 @@ curl --request GET \
 }
 ```
 
-**Response Fields**
+#### Response Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -374,19 +370,19 @@ curl --request GET \
 Updates fields on an existing event. Include only the fields you want to update.
 Fields not included in the request body remain unchanged.
 
-**Endpoint**
+#### Endpoint
 
 ```
 POST /events/{event_id}/
 ```
 
-**Path Parameters**
+#### Path Parameters
 
 | Name | Type | Required | Description | Example |
 | --- | --- | --- | --- | --- |
 | `event_id` | String | Yes | The unique ID of the event to update | `12345` |
 
-**Request Body Parameters**
+#### Request Body Parameters
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
@@ -401,7 +397,7 @@ POST /events/{event_id}/
 | `event.invite_only` | Boolean | No | Set to `true` to restrict access to invited attendees only |
 | `event.online_event` | Boolean | No | Set to `true` for online-only events. Cannot be combined with a venue. |
 
-**Request Example**
+#### Request Example
 
 ```bash
 curl --request POST \
@@ -416,7 +412,7 @@ curl --request POST \
   "https://www.eventbriteapi.com/v3/events/{event_id}/"
 ```
 
-**Response: `200 OK`**
+#### Response: `200 OK`
 
 Returns the full updated event object. Response fields are identical to
 [Retrieve an Event](#retrieve-an-event).
@@ -429,23 +425,23 @@ Publishes a draft event, making it publicly visible on Eventbrite.
 Before publishing, the event must have a name, a description, at least one
 ticket class, and valid payment options.
 
-**Endpoint**
+#### Endpoint
 
 ```
 POST /events/{event_id}/publish/
 ```
 
-**Path Parameters**
+#### Path Parameters
 
 | Name | Type | Required | Description | Example |
 | --- | --- | --- | --- | --- |
 | `event_id` | String | Yes | The unique ID of the event to publish | `12345` |
 
-**Request Body**
+#### Request Body
 
 No request body required.
 
-**Request Example**
+#### Request Example
 
 ```bash
 curl --request POST \
@@ -454,7 +450,7 @@ curl --request POST \
   "https://www.eventbriteapi.com/v3/events/{event_id}/publish/"
 ```
 
-**Response: `200 OK`**
+#### Response: `200 OK`
 
 ```json
 {
@@ -475,13 +471,13 @@ Permanently deletes an event. This action cannot be undone.
 The event must have no pending or completed orders before you can delete
 it. Deleting an event that has orders returns a `403` error.
 
-**Endpoint**
+#### Endpoint
 
 ```
 DELETE /events/{event_id}/
 ```
 
-**Path Parameters**
+#### Path Parameters
 
 | Name | Type | Required | Description | Example |
 | --- | --- | --- | --- | --- |
@@ -495,7 +491,7 @@ curl --request DELETE \
   "https://www.eventbriteapi.com/v3/events/{event_id}/"
 ```
 
-**Response: `200 OK`**
+#### Response: `200 OK`
 
 ```json
 {

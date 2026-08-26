@@ -8,6 +8,7 @@ For a complete list of error codes, see the
 [Error Reference](../api/error-reference.md).
 
 <br>
+<br>
 
 ## Table of Contents
 
@@ -20,6 +21,7 @@ For a complete list of error codes, see the
 - [Rate Limiting](#rate-limiting)
 - [General Debugging Tips](#general-debugging-tips)
 
+<br>
 <br>
 
 ## Common Code Mistakes
@@ -45,8 +47,6 @@ const token = process.env.EVENTBRITE_TOKEN;
 **Verify:** Search your codebase for the token string. It should not
 appear in any source file.
 
-<br>
-
 ### Mistake 2 — Wrong base URL
 
 **Symptom:** All requests return connection errors or `404`.
@@ -59,8 +59,6 @@ appear in any source file.
 ```
 
 **Verify:** Retry with the corrected URL.
-
-<br>
 
 ### Mistake 3 — Missing Content-Type header
 
@@ -79,6 +77,7 @@ curl --request POST \
 **Verify:** Retry the request. A `200 OK` response confirms the header
 was the issue.
 
+<br>
 <br>
 
 ## 401 Authentication Errors
@@ -130,6 +129,7 @@ curl --request GET \
 - [Error Reference — 401](../api/error-reference.md#401-unauthorized)
 
 <br>
+<br>
 
 ## 403 Permission Errors
 
@@ -142,7 +142,7 @@ curl --request GET \
 ### Possible Causes
 
 - The event belongs to a different Eventbrite account or organization.
-- The token does not have permission to perform this operation.
+- The token does not have permission for this action.
 - The event's current status does not allow this action — for example,
 deleting an event that has existing orders.
 
@@ -173,6 +173,7 @@ issue is resolved.
 - [API Reference](../api/api-reference.md)
 - [Error Reference — 403](../api/error-reference.md#403-forbidden)
 
+<br>
 <br>
 
 ## 404 Resource Not Found
@@ -225,6 +226,7 @@ curl --request GET \
 - [Error Reference — 404](../api/error-reference.md#404-not-found)
 
 <br>
+<br>
 
 ## Missing or Unexpected Response Data
 
@@ -261,6 +263,7 @@ published test event. All expected fields should now be present.
 
 - [Response Handling Guide](../guides/response_handling.md)
 
+<br>
 <br>
 
 ## HTML Content Issues
@@ -310,6 +313,7 @@ raw text, and the page layout should remain intact.
 - [Code Examples](../examples/code-examples.md)
 
 <br>
+<br>
 
 ## Rate Limiting
 
@@ -349,25 +353,34 @@ The value should stay above zero.
 - [Code Examples](../examples/code-examples.md)
 
 <br>
+<br>
 
 ## General Debugging Tips
 
 Follow these steps in order when a request fails and the cause is
 unclear.
 
-1. **Test in the Eventbrite console first.** If the request works in
-the console but not in code, the issue is in your headers or token
+1. **Test in the [Eventbrite console](https://www.eventbrite.com/platform/api/) first.**
+
+> If the request works in the console but not in code, the issue is in your headers or token
 handling.
-2. **Import the request into Postman.** Use the console's
-**Show Code Example → cURL** output. Postman shows you exactly which
+
+2. **Import the request into Postman.** 
+
+> Use the console's **Show Code Example → cURL** output. Postman shows you exactly which
 headers are being sent.
-3. **Log the full response during development** — including status
-code, headers, and body. Error details are in the `error_description`
+
+3. **Log the full response during development** 
+
+> Including status code, headers, and body. Error details are in the `error_description`
 field of the response body.
-4. **Compare against a working request.** Copy a working cURL example
-from the [API Reference](../api/api-reference.md) and diff it against
+
+4. **Compare against a working request.** 
+
+> Copy a working curl example from the [API Reference](../api/api-reference.md) and diff it against
 your failing request line by line.
 
+<br>
 <br>
 
 ## Next Steps
@@ -378,4 +391,5 @@ your failing request line by line.
 - [Response Handling Guide](../guides/response_handling.md)
 - [Code Examples](../examples/code-examples.md)
 
+<br>
 <br>
