@@ -98,7 +98,7 @@ For the full list of error codes and resolution steps, see the
 | `403` | `NOT_AUTHORIZED` | The token does not have permission to perform this action |
 | `404` | `NOT_FOUND` | The requested event does not exist |
 
-**Error response format:**
+### Error response format
 
 ```json
 {
