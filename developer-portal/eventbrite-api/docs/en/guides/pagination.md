@@ -5,6 +5,7 @@ continuation tokens. This guide covers how paginated responses are
 structured, how to move through pages, and how to handle the last page.
 
 <br>
+<br>
 
 ## Table of Contents
 
@@ -14,6 +15,7 @@ structured, how to move through pages, and how to handle the last page.
 - [Code Example](#code-example)
 - [Handling the Last Page](#handling-the-last-page)
 
+<br>
 <br>
 
 ## How Pagination Works
@@ -26,6 +28,7 @@ To move through pages, copy the `continuation` token from the current
 response and pass it as a query parameter in the next request.
 Repeat until `has_more_items` is `false`.
 
+<br>
 <br>
 
 ## Paginated Response Structure
@@ -50,7 +53,7 @@ object and a list of results.
 }
 ```
 
-**Pagination fields:**
+### Pagination fields
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -62,15 +65,16 @@ object and a list of results.
 | `continuation` | String | Token to pass as a query parameter in the next request. Only present when `has_more_items` is `true`. |
 
 <br>
+<br>
 
 ## Step-by-Step: Retrieve All Events
 
 Follow these steps to retrieve all events under an organization.
 
-**Step 1. Make the first request**
+### Step 1. Make the first request
 
 Call the List Events by Organization endpoint without a `continuation`
-parameter:
+token:
 
 ```bash
 curl --request GET \
@@ -78,19 +82,19 @@ curl --request GET \
   "https://www.eventbriteapi.com/v3/organizations/{organization_id}/events/"
 ```
 
-**Step 2. Check `has_more_items`**
+### Step 2. Check `has_more_items`
 
 In the response, look at `pagination.has_more_items`:
 
 - If `false` — you have all results. Stop here.
 - If `true` — more pages are available. Continue to Step 3.
 
-**Step 3. Copy the continuation token**
+### Step 3. Copy the continuation token
 
-Copy the `continuation` value from `pagination.continuation` in the
+Copy the `continuation` token from `pagination.continuation` in the
 current response.
 
-**Step 4. Request the next page**
+### Step 4. Request the next page
 
 Add the `continuation` token as a query parameter and call the same
 endpoint again:
@@ -101,11 +105,12 @@ curl --request GET \
   "https://www.eventbriteapi.com/v3/organizations/{organization_id}/events/?continuation=AEtFRyiWxkr0ZXyCJcnZ5U1-uSWXJ6vO0sxN06GbrDngaX5U5i8XYmEuZfmZZYB9Uq6bSizOLYoV"
 ```
 
-**Step 5. Repeat until done**
+### Step 5. Repeat until done
 
 Repeat Steps 2–4 until `has_more_items` is `false`. The response on the
-final page does not include a `continuation` token.
+final page does not include a `continuation` token. To confirm you collected everything, check that the total number of events you gathered matches `pagination.object_count` from the first response.
 
+<br>
 <br>
 
 ## Code Example
@@ -154,11 +159,12 @@ async function getAllEvents(organizationId) {
 ```
 
 <br>
+<br>
 
 ## Handling the Last Page
 
 When `has_more_items` is `false`, the response does not include a
-`continuation` field in the `pagination` object. Accessing
+`continuation` token in the `pagination` object. Accessing
 `pagination.continuation` on the last page returns `undefined` in
 JavaScript or raises a `KeyError` in Python.
 
@@ -175,12 +181,13 @@ continuation = data.pagination.has_more_items
 continuation = data.pagination.continuation;
 ```
 
-If a `BAD_CONTINUATION_TOKEN` error is returned, the token has expired
+If Eventbrite returns a `BAD_CONTINUATION_TOKEN` error, the token has expired
 or is malformed. Restart pagination from the first page by making the
-request without a `continuation` parameter.
+request without a `continuation` token.
 For more on this error, see the
 [Error Reference](../api/error-reference.md#400-bad-request).
 
+<br>
 <br>
 
 ## Next Steps
@@ -189,4 +196,5 @@ For more on this error, see the
 - [Error Reference](../api/error-reference.md)
 - [Code Examples](../examples/code-examples.md)
 
+<br>
 <br>

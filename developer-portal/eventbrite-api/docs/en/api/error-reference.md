@@ -54,7 +54,7 @@ parameters.
 
 | Error code | Cause | How to fix |
 | --- | --- | --- |
-| `FIELD_INVALID` | A required field is missing, or a field contains an invalid value — for example, an end time set before the start time, or an unrecognized currency code. | Check the request body against the [API Reference](../api/api-reference.md). Verify all required fields are present and all values match the expected format. |
+| `FIELD_INVALID` | A required field is missing, or a field contains an invalid value. For example, an end time set before the start time, or an unrecognized currency code. | Check the request body against the [API Reference](../api/api-reference.md). Verify all required fields are present and all values match the expected format. |
 | `VENUE_AND_ONLINE` | Both a venue and `online_event: true` are set on the same request. An event can be either in-person or online, not both. | Remove the venue or set `online_event` to `false`. |
 | `BAD_CONTINUATION_TOKEN` | The `continuation` token passed as a query parameter is malformed or has expired. | Restart pagination from the first page by making the request without a `continuation` parameter. See the [Pagination Guide](../guides/pagination.md). |
 

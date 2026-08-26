@@ -2,22 +2,28 @@
 
 Make your first Eventbrite API request in under 3 minutes. This guide
 covers the minimum steps to authenticate, call an endpoint, and verify
-a live response. No prior experience with the Eventbrite API is required.
+a live response. You don't need any prior experience with the Eventbrite API.
 
-**Prerequisites:**
-
-- An active Eventbrite account
-- cURL or a web browser
-- A basic understanding of HTTP requests
-
+<br>
 <br>
 
 ## Table of Contents
 
+- [Prerequisites](#prerequisites)
 - [Step 1: Get Your Private Token](#step-1-get-your-private-token)
 - [Step 2: Make Your First Request](#step-2-make-your-first-request)
 - [Step 3: Verify the Response](#step-3-verify-the-response)
 
+<br>
+<br>
+
+## Prerequisites
+
+- An active Eventbrite account
+- curl or a web browser
+- A basic understanding of HTTP requests
+
+<br>
 <br>
 
 ## Step 1: Get Your Private Token
@@ -34,6 +40,7 @@ All Eventbrite API requests require a Private Token in the
 For full token setup details, see the
 [Authentication Guide](../guides/authentication.md).
 
+<br>
 <br>
 
 ## Step 2: Make Your First Request
@@ -57,6 +64,7 @@ https://www.eventbrite.com/e/my-event-name-12345678901
 ```
 
 <br>
+<br>
 
 ## Step 3: Verify the Response
 
@@ -78,6 +86,7 @@ parameter. For a full list of error codes and fixes, see the
 [Error Reference](../api/error-reference.md).
 
 <br>
+<br>
 
 ## Next Steps
 
@@ -91,4 +100,5 @@ Choose what to do next based on your goal.
 | Handle responses safely in code | [Response Handling Guide](../guides/response_handling.md) |
 | Fix a problem | [Troubleshooting Guide](../guides/troubleshooting.md) |
 
+<br>
 <br>

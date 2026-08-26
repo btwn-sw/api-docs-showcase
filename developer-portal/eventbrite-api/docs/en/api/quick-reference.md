@@ -1,12 +1,13 @@
 # Quick Reference
 
-Fast lookup for Eventbrite API essentials. Use this page when you
-already know the API and need a quick reminder of endpoints, headers,
-status codes, or rate limits.
+Fast lookup for Eventbrite API essentials — base URL, authentication,
+endpoints, headers, response fields, status codes, and rate limits. Use
+this page when you already know the API and need a quick reminder.
 
 For full parameter definitions, request body schemas, and response
 field descriptions, see the [API Reference](../api/api-reference.md).
 
+<br>
 <br>
 
 ## Table of Contents
@@ -18,8 +19,9 @@ field descriptions, see the [API Reference](../api/api-reference.md).
 - [Response Fields](#response-fields)
 - [HTTP Status Codes](#http-status-codes)
 - [Rate Limits](#rate-limits)
-- [Quick Request Example](#quick-request-example)
+- [Quick Request Examples](#quick-request-examples)
 
+<br>
 <br>
 
 ## Base URL
@@ -32,9 +34,14 @@ https://www.eventbriteapi.com/v3
 - All endpoints are prefixed with `/v3/`
 - Request and response format: `application/json`
 
+👉 [API Reference](../api/api-reference.md#base-url-and-versioning)
+
+<br>
 <br>
 
 ## Authentication
+
+Include your token in the `Authorization` header of every request:
 
 ```
 Authorization: Bearer YOUR_PRIVATE_TOKEN
@@ -46,6 +53,7 @@ Authorization: Bearer YOUR_PRIVATE_TOKEN
 
 👉 [Authentication Guide](../guides/authentication.md)
 
+<br>
 <br>
 
 ## Event Endpoints
@@ -62,6 +70,7 @@ Authorization: Bearer YOUR_PRIVATE_TOKEN
 👉 [API Reference](../api/api-reference.md)
 
 <br>
+<br>
 
 ## Request Headers
 
@@ -70,9 +79,10 @@ Authorization: Bearer YOUR_PRIVATE_TOKEN
 | `Authorization` | `Bearer YOUR_PRIVATE_TOKEN` |
 | `Content-Type` | `application/json` |
 
-`Content-Type` is required for all POST requests. Optional for GET and
-DELETE.
+Include `Content-Type` for POST requests. It's optional for GET and
+DELETE requests.
 
+<br>
 <br>
 
 ## Response Fields
@@ -90,11 +100,12 @@ DELETE.
 | `end.utc` | String | End time in UTC — format: `YYYY-MM-DDTHH:MM:SSZ` |
 | `end.local` | String | End time in the event's local timezone |
 | `capacity` | Integer | Maximum number of attendees. `null` when not set. |
-| `currency` | String | ISO 4217 currency code |
+| `currency` | String | ISO 4217 currency code (for example, `USD`, `EUR`) |
 | `url` | String | Public URL of the event on Eventbrite |
 
 👉 [Response Handling Guide](../guides/response_handling.md)
 
+<br>
 <br>
 
 ## HTTP Status Codes
@@ -103,15 +114,16 @@ DELETE.
 | --- | --- | --- | --- |
 | `200` | — | Request successful | — |
 | `400` | `FIELD_INVALID` | Invalid or missing field | Check request body against API Reference |
-| `400` | `VENUE_AND_ONLINE` | Venue and online_event both set | Remove venue or set online_event to false |
+| `400` | `VENUE_AND_ONLINE` | Venue and `online_event` both set | Remove venue or set `online_event` to false |
 | `400` | `BAD_CONTINUATION_TOKEN` | Pagination token malformed or expired | Restart pagination from page 1 |
 | `401` | `NO_AUTH` | Missing or invalid token | Check Authorization header format and token value |
 | `403` | `NOT_AUTHORIZED` | Insufficient permissions | Verify the resource belongs to your account |
-| `404` | `NOT_FOUND` | Resource not found | Verify the event_id is correct |
-| `429` | — | Rate limit exceeded | Check X-Apiary-RateLimit-Remaining header |
+| `404` | `NOT_FOUND` | Resource not found | Verify the `event_id` is correct |
+| `429` | — | Rate limit exceeded | Check `X-Apiary-RateLimit-Remaining` header |
 
 👉 [Error Reference](../api/error-reference.md)
 
+<br>
 <br>
 
 ## Rate Limits
@@ -132,8 +144,9 @@ DELETE.
 👉 [Error Reference — 429](../api/error-reference.md#429-too-many-requests)
 
 <br>
+<br>
 
-## Quick Request Example
+## Quick Request Examples
 
 **Retrieve an event:**
 
@@ -153,4 +166,5 @@ curl --request GET \
 
 👉 [Code Examples](../examples/code-examples.md)
 
+<br>
 <br>

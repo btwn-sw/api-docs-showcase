@@ -1,16 +1,19 @@
 # Code Examples
 
-Copy and adapt these examples to make common Eventbrite API requests.
-Each section shows the same operations in a different language or tool.
+Copy and adapt these ready-to-run examples to call the Eventbrite API
+without building requests from scratch. Each section shows how to list,
+retrieve, create, update, and delete events in curl, JavaScript, Node.js,
+and Python; the curl section also includes a publish example.
 For full parameter and response field definitions, see the
 [API Reference](../api/api-reference.md).
 
+<br>
 <br>
 
 ## Table of Contents
 
 - [Authentication](#authentication)
-- [cURL](#curl)
+- [curl](#curl)
 - [JavaScript](#javascript)
 - [Node.js](#nodejs)
 - [Python](#python)
@@ -18,6 +21,7 @@ For full parameter and response field definitions, see the
 - [Pagination](#pagination)
 - [Rate Limiting](#rate-limiting)
 
+<br>
 <br>
 
 ## Authentication
@@ -33,8 +37,11 @@ For token setup instructions, see the
 [Authentication Guide](../guides/authentication.md).
 
 <br>
+<br>
 
-## cURL
+## curl
+
+These examples read the token from the environment variable you set above.
 
 ### List Events by Organization
 
@@ -102,11 +109,12 @@ curl --request DELETE \
 ```
 
 <br>
+<br>
 
 ## JavaScript
 
 These examples use the Fetch API, supported in all modern browsers.
-Replace `YOUR_PRIVATE_TOKEN` with your token.
+Replace `YOUR_PRIVATE_TOKEN` with your token. To publish an event, adapt the [curl example](#publish-an-event).
 
 ### List Events by Organization
 
@@ -221,11 +229,12 @@ async function deleteEvent(eventId) {
 ```
 
 <br>
+<br>
 
 ## Node.js
 
 These examples use `node-fetch` for server-side requests and read the
-token from an environment variable.
+token from an environment variable. To publish an event, adapt the [curl example](#publish-an-event).
 
 ```bash
 npm install node-fetch
@@ -360,11 +369,12 @@ async function deleteEvent(eventId) {
 ```
 
 <br>
+<br>
 
 ## Python
 
 These examples use the `requests` library and read the token from an
-environment variable.
+environment variable. To publish an event, adapt the [curl example](#publish-an-event).
 
 ```bash
 pip install requests
@@ -459,6 +469,7 @@ def delete_event(event_id):
 ```
 
 <br>
+<br>
 
 ## Response Handling
 
@@ -474,6 +485,8 @@ const description = event.description?.text ?? "";
 const startTime   = event.start?.utc        ?? null;
 ```
 
+<br>
+
 ### Separate HTML from plain text
 
 Use `html` fields for rendering in a web interface.
@@ -486,6 +499,8 @@ container.innerHTML = event.description.html;
 // Pass to notification system
 sendNotification({ title: event.name.text });
 ```
+
+<br>
 
 ### Handle API errors
 
@@ -516,6 +531,7 @@ async function safeGetEvent(eventId) {
 }
 ```
 
+<br>
 <br>
 
 ## Pagination
@@ -566,11 +582,12 @@ For a full explanation of how pagination works, see the
 [Pagination Guide](../guides/pagination.md).
 
 <br>
+<br>
 
 ## Rate Limiting
 
 Add a delay between requests during bulk operations to stay within
-the rate limit.
+Eventbrite's rate limit (2,000 calls/hour by default).
 
 ```javascript
 import fetch from "node-fetch";
@@ -604,6 +621,7 @@ For rate limit details, see the
 [Error Reference — 429](../api/error-reference.md#429-too-many-requests).
 
 <br>
+<br>
 
 ## Next Steps
 
@@ -612,4 +630,5 @@ For rate limit details, see the
 - [Response Handling Guide](../guides/response_handling.md)
 - [Authentication Guide](../guides/authentication.md)
 
+<br>
 <br>
