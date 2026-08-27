@@ -30,7 +30,7 @@ For the full documentation index, see
 This documentation set covers the following Eventbrite Event endpoints:
 List, Create, Retrieve, Update, Publish, and Delete.
 
-Related resources — Capacity, Description, Schedule, Search, Series,
+> Related resources — Capacity, Description, Schedule, Search, Series,
 and Teams — are outside the scope of this project.
 
 The testing/ subfolder additionally documents empirical test results for the Event Order API, verifying documented behavior against actual API responses.
