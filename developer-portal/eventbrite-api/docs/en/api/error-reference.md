@@ -4,7 +4,7 @@ Look up error codes returned by the Eventbrite API, their causes,
 and the steps to resolve them, so you can diagnose a failed request quickly.
 
 For error handling code examples, see the
-[Response Handling Guide](../guides/response_handling.md).
+[Response Handling Guide](../guides/response-handling.md).
 For step-by-step debugging, see the
 [Troubleshooting Guide](../guides/troubleshooting.md).
 
@@ -111,7 +111,7 @@ delay between requests to stay within the limit.
 ## Next Steps
 
 - [API Reference](../api/api-reference.md)
-- [Response Handling Guide](../guides/response_handling.md)
+- [Response Handling Guide](../guides/response-handling.md)
 - [Troubleshooting Guide](../guides/troubleshooting.md)
 
 <br>
