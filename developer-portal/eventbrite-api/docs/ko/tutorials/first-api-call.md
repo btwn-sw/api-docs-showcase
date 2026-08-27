@@ -67,8 +67,6 @@ Eventbrite API 레퍼런스에는 Apiary 기반의 인터랙티브 콘솔이 있
 
 콘솔에 아래 값을 입력하세요.
 
-<br>
-
 ### URI 파라미터
 
 | 파라미터 | 값 |
@@ -83,8 +81,6 @@ https://www.eventbrite.com/e/my-event-name-12345678901
                                            ^^^^^^^^^^^
                                   이 값이 event_id입니다
 ```
-
-<br>
 
 ### 헤더
 
