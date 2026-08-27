@@ -1,7 +1,5 @@
 # Information Architecture Design: A Developer Portal Case Study
 
-<br>
-
 ## Overview
 
 By the end of this page, you'll understand the reasoning behind one developer portal's structure: why it was built around code-first execution instead of long descriptions, which design decisions came from analyzing five real developer portals, how the sitemap stays clean as the API surface grows, and how the documentation stays accurate as the underlying API changes.
