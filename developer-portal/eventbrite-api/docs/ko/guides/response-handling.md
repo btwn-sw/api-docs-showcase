@@ -27,20 +27,23 @@ Eventbrite API 응답은 일관된 패턴을 따릅니다.
 처리할 수 있습니다.
 
 **`name`과 `description`이 `text`와 `html`을 모두 반환하는 이유는 무엇인가요?**
-주최자는 HTML을 생성하는 리치 텍스트 에디터로 이벤트를 만듭니다.
+
+> 주최자는 HTML을 생성하는 리치 텍스트 에디터로 이벤트를 만듭니다.
 하지만 알림, 로그, 검색 인덱스, 모바일 앱처럼 API를 소비하는 모든
 클라이언트가 HTML을 안전하게 렌더링할 수 있는 것은 아닙니다. 두 가지
 형식을 함께 반환하면 각 클라이언트가 HTML을 직접 파싱하거나 제거하지
 않고도 필요한 형식을 바로 사용할 수 있습니다.
 
 **빈 문자열 대신 `null`을 반환하는 이유는 무엇인가요?**
-Eventbrite는 설정되지 않은 필드와 의도적으로 비운 필드를 구분합니다.
+
+> Eventbrite는 설정되지 않은 필드와 의도적으로 비운 필드를 구분합니다.
 `null`인 description은 주최자가 아직 설명을 작성하지 않았다는 뜻입니다.
 이 덕분에 애플리케이션은 빈 공간 대신 "설명이 없습니다"를 표시할 수 있고,
 빈 HTML 태그를 렌더링하는 상황도 피할 수 있습니다.
 
 **시간 필드에 `utc`와 `local`이 함께 있는 이유는 무엇인가요?**
-이벤트 시간은 두 가지 맥락에서 필요합니다. 이벤트 페이지에 표시할
+
+> 이벤트 시간은 두 가지 맥락에서 필요합니다. 이벤트 페이지에 표시할
 주최자의 현지 시간과, 일정 관리·캘린더 내보내기·시간대 간 비교에
 쓰이는 시간대 중립 형식입니다. `utc` 필드는 항상 일관되게 제공되고,
 `local` 필드는 주최자가 설정한 시간대에 따라 달라집니다.
@@ -109,8 +112,6 @@ Eventbrite는 설정되지 않은 필드와 의도적으로 비운 필드를 구
 
 Eventbrite는 엔드포인트에 따라 두 가지 패턴으로 HTML 콘텐츠를 반환합니다.
 
-<br>
-
 ### 패턴 1 — text/html 이중 필드
 
 가장 일반적인 패턴입니다. 텍스트 콘텐츠 객체는 같은 값에 대해
@@ -133,8 +134,6 @@ container.innerHTML = event.description.html;
 // 알림 시스템에 전달
 sendNotification({ title: event.name.text });
 ```
-
-<br>
 
 ### 패턴 2 — 전체 HTML 응답
 
@@ -178,7 +177,7 @@ container.innerHTML = DOMPurify.sanitize(event.description);
 
 중첩된 속성에 접근하기 전에 필드가 있는지 반드시 확인하세요.
 
-**JavaScript:**
+### JavaScript
 
 ```jsx
 const name        = event?.name?.text        ?? "제목 없는 이벤트";
@@ -186,7 +185,7 @@ const description = event?.description?.text ?? "";
 const capacity    = event?.capacity          ?? null;
 ```
 
-**Python:**
+### Python
 
 ```python
 name        = event.get("name", {}).get("text", "제목 없는 이벤트")
@@ -221,7 +220,8 @@ capacity    = event.get("capacity")
 
 ## 권장 사항
 
-**필요한 필드만 추출하세요.**
+### 필요한 필드만 추출하세요.
+
 전체 응답 객체를 저장하지 마세요. 애플리케이션에서 쓰는 필드만
 접근하세요. 이렇게 하면 향후 API 변경의 영향을 줄이고 데이터 모델을
 깔끔하게 유지할 수 있습니다.
@@ -232,7 +232,8 @@ const name     = response.name?.text;
 const startUtc = response.start?.utc;
 ```
 
-**HTML과 일반 텍스트를 분리하세요.**
+### HTML과 일반 텍스트를 분리하세요.
+
 일반 텍스트가 필요한 곳에 `html` 필드를 쓰거나, HTML 렌더러에 `text`
 필드를 넘기지 마세요. 이 둘을 섞으면 레이아웃이 깨지거나 HTML 태그가
 텍스트로 그대로 보입니다.
@@ -245,7 +246,8 @@ container.innerHTML = event.name.html;
 sendNotification({ title: event.name.text });
 ```
 
-**오류 코드를 사용자 메시지로 변환하세요.**
+### 오류 코드를 사용자 메시지로 변환하세요.
+
 API의 `error_description`은 개발자를 위한 메시지입니다.
 사용자가 이해하고 행동할 수 있는 메시지로 바꾸세요.
 
