@@ -1,7 +1,5 @@
 # Automation Pipeline: Keeping Documentation Current Without Relying on Memory Alone
 
-<br>
-
 ## What you'll get from this
 
 A fast-moving organization changes faster than any single person can manually track. This page describes a seven-stage pipeline that moves every knowledge update — a decision, a policy change, a spec update — through the same consistent path, using AI to handle the parts that don't need human judgment, so a human's attention goes only to the parts that do.
@@ -74,7 +72,9 @@ affected documents: [in priority order]
 urgency: high | medium | low
 ```
 
-**The person's role here:** the Technical Writer reviews the AI's proposed plan and confirms or adjusts the scope, the document list, and the priority. This is the pipeline's first required human decision — the only point where the process cannot continue until a person acts.
+### The person's role here:
+
+The Technical Writer reviews the AI's proposed plan and confirms or adjusts the scope, the document list, and the priority. This is the pipeline's first required human decision — the only point where the process cannot continue until a person acts.
 
 <br>
 
@@ -92,7 +92,8 @@ the current version of related documents
 
 Because the second group is pulled fresh every time, the draft always reflects today's terminology and structure — not whatever was true when the AI's instructions were first written.
 
-**A few example rules the draft must follow:**
+### A few example rules the draft must follow:
+
 - Flag any unfamiliar term with a `[NEEDS REVIEW]` tag instead of guessing at it
 - Never invent content that isn't in the source material
 - Replace any outdated term with the current glossary term, and note the substitution
@@ -103,7 +104,8 @@ Because the second group is pulled fresh every time, the draft always reflects t
 
 This stage belongs entirely to the Technical Writer.
 
-**What gets checked:**
+### What gets checked:
+
 - Is it factually accurate against the source material?
 - Does it use the approved glossary terms?
 - Does it follow the style guide?
@@ -118,13 +120,15 @@ The AI assistant can suggest fixes in real time as the Technical Writer edits �
 
 The AI assistant runs the draft against a standing evaluation checklist. The Technical Writer reviews the result and gives final approval.
 
-**What the checklist covers:**
+### What the checklist covers:
+
 - Required labels are present: status, version, owner, related decision
 - How well it follows the glossary
 - Any style guide violations
 - Whether it's structurally consistent with related documents
 
-**Outcome:**
+### Outcome:
+
 - Passes → Stage 6
 - Doesn't pass → flagged items go back to Stage 3
 
@@ -153,17 +157,18 @@ The moment a person sees the notification and the moment the AI assistant can re
 
 ## Stage 7 — Monitoring (AI + Technical Writer)
 
-**In the first two weeks after publishing:**
+### In the first two weeks after publishing:
+
 - Are people still asking the same question in team chat that this update was supposed to answer?
 - Is anyone actually reading the document? For how long?
 - Is the AI assistant citing the updated version?
 
-**Ongoing:**
+### Ongoing:
 - Documents that have gone past their review date
 - Outdated terms still appearing anywhere in the source of truth
 - Cases where the AI assistant cited the wrong document
 
-**When something's off, here's where it goes:**
+### When something's off, here's where it goes:
 
 ```
 Same questions keep coming up after the update → the content or its visibility is the problem → back to Stage 2
@@ -189,12 +194,19 @@ Three kinds of work are strong automation candidates. They're ordered by how urg
 
 Every stage of this pipeline is designed with two readers in mind — a person, and the AI assistant.
 
-**Simultaneous access (Stage 6):** publishing notifies a person and updates the AI's index in the same moment. There's no window where one knows something the other doesn't.
+**Simultaneous access (Stage 6):**
 
-**Dual-reader quality check (Stage 5):** a document only passes if it reads well for a person *and* is structured in a way the AI assistant can reliably index. Something that reads well but can't be indexed reliably doesn't go out.
+> Publishing notifies a person and updates the AI's index in the same moment. There's no window where one knows something the other doesn't.
 
-**Built-in staleness prevention:** the `status: outdated` + `searchable_by_ai: false` label combination removes a retired document from the AI assistant's index automatically. There's no separate step anyone has to remember to do.
+**Dual-reader quality check (Stage 5):** 
 
+> A document only passes if it reads well for a person *and* is structured in a way the AI assistant can reliably index. Something that reads well but can't be indexed reliably doesn't go out.
+
+**Built-in staleness prevention:** 
+
+> The `status: outdated` + `searchable_by_ai: false` label combination removes a retired document from the AI assistant's index automatically. There's no separate step anyone has to remember to do.
+
+<br>
 <br>
 
 → [Adoption & Measurement](../en/adoption-measurement.md)
