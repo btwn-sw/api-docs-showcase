@@ -39,8 +39,6 @@ export EVENTBRITE_TOKEN=your_token_here
 
 아래 예제는 curl로 요청을 직접 보내고, 위에서 설정한 EVENTBRITE_TOKEN 환경 변수의 토큰을 사용합니다.
 
-<br>
-
 ### 조직별 이벤트 목록 조회
 
 ```bash
@@ -49,8 +47,6 @@ curl --request GET \
   "https://www.eventbriteapi.com/v3/organizations/{organization_id}/events/"
 ```
 
-<br>
-
 ### 이벤트 조회
 
 ```bash
@@ -58,8 +54,6 @@ curl --request GET \
   --header "Authorization: Bearer $EVENTBRITE_TOKEN" \
   "https://www.eventbriteapi.com/v3/events/{event_id}/"
 ```
-
-<br>
 
 ### 이벤트 생성
 
@@ -78,8 +72,6 @@ curl --request POST \
   "https://www.eventbriteapi.com/v3/organizations/{organization_id}/events/"
 ```
 
-<br>
-
 ### 이벤트 수정
 
 ```bash
@@ -95,8 +87,6 @@ curl --request POST \
   "https://www.eventbriteapi.com/v3/events/{event_id}/"
 ```
 
-<br>
-
 ### 이벤트 게시
 
 ```bash
@@ -105,8 +95,6 @@ curl --request POST \
   --header "Content-Type: application/json" \
   "https://www.eventbriteapi.com/v3/events/{event_id}/publish/"
 ```
-
-<br>
 
 ### 이벤트 삭제
 
@@ -122,8 +110,6 @@ curl --request DELETE \
 ## JavaScript
 
 아래 예제는 모든 최신 브라우저에서 지원하는 Fetch API를 사용합니다. 토큰은 환경 변수나 안전한 설정에서 사용하고, 소스 코드에 직접 포함하지 마세요.
-
-<br>
 
 ### 조직별 이벤트 목록 조회
 
@@ -146,8 +132,6 @@ async function listEvents(organizationId) {
 }
 ```
 
-<br>
-
 ### 이벤트 조회
 
 ```jsx
@@ -168,8 +152,6 @@ async function getEvent(eventId) {
   return response.json();
 }
 ```
-
-<br>
 
 ### 이벤트 생성
 
@@ -195,8 +177,6 @@ async function createEvent(organizationId, eventData) {
 }
 ```
 
-<br>
-
 ### 이벤트 수정
 
 ```jsx
@@ -220,8 +200,6 @@ async function updateEvent(eventId, updates) {
   return response.json();
 }
 ```
-
-<br>
 
 ### 이벤트 삭제
 
@@ -256,8 +234,6 @@ async function deleteEvent(eventId) {
 npm install node-fetch
 ```
 
-<br>
-
 ### 조직별 이벤트 목록 조회
 
 ```jsx
@@ -280,8 +256,6 @@ async function listEvents(organizationId) {
   return response.json();
 }
 ```
-
-<br>
 
 ### 이벤트 조회
 
@@ -312,8 +286,6 @@ async function getEvent(eventId) {
 }
 ```
 
-<br>
-
 ### 이벤트 생성
 
 ```jsx
@@ -340,8 +312,6 @@ async function createEvent(organizationId, eventData) {
 }
 ```
 
-<br>
-
 ### 이벤트 수정
 
 ```jsx
@@ -367,8 +337,6 @@ async function updateEvent(eventId, updates) {
   return response.json();
 }
 ```
-
-<br>
 
 ### 이벤트 삭제
 
@@ -406,8 +374,6 @@ async function deleteEvent(eventId) {
 pip install requests
 ```
 
-<br>
-
 ### 조직별 이벤트 목록 조회
 
 ```python
@@ -422,8 +388,6 @@ def list_events(organization_id):
     response.raise_for_status()
     return response.json()
 ```
-
-<br>
 
 ### 이벤트 조회
 
@@ -445,8 +409,6 @@ def get_event(event_id):
     }
 ```
 
-<br>
-
 ### 이벤트 생성
 
 ```python
@@ -466,8 +428,6 @@ def create_event(organization_id, event_data):
     return response.json()
 ```
 
-<br>
-
 ### 이벤트 수정
 
 ```python
@@ -486,8 +446,6 @@ def update_event(event_id, updates):
     response.raise_for_status()
     return response.json()
 ```
-
-<br>
 
 ### 이벤트 삭제
 
@@ -509,8 +467,6 @@ def delete_event(event_id):
 
 ## 응답 처리
 
-<br>
-
 ### 필요한 필드만 추출하기
 
 애플리케이션에서 필요한 필드만 접근하세요.
@@ -522,8 +478,6 @@ const title       = event.name?.text        ?? "제목 없음";
 const description = event.description?.text ?? "";
 const startTime   = event.start?.utc        ?? null;
 ```
-
-<br>
 
 ### HTML과 일반 텍스트 분리하기
 
@@ -537,8 +491,6 @@ container.innerHTML = event.description.html;
 // 알림 시스템에 전달
 sendNotification({ title: event.name.text });
 ```
-
-<br>
 
 ### API 오류 처리하기
 
