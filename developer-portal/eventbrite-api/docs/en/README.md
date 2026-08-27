@@ -132,7 +132,7 @@ The content is based on publicly available Eventbrite API documentation
 and focuses on documentation structure and best practices.
 
 For official Eventbrite API documentation, see
-Eventbrite [API Reference](https://www.eventbrite.com/platform/api/).
+Eventbrite API Reference.
 
 <br>
 <br>
