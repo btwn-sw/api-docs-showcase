@@ -1,14 +1,10 @@
 # Eventbrite API Documentation
 
-A structured documentation set for the Eventbrite API, built as a
-technical writing portfolio project. Covers authentication, event
-management, response handling, pagination, and troubleshooting across
-12 documents.
+Find what you need to work with the Eventbrite API. This documentation set covers authentication, event management, response handling, pagination, and troubleshooting across 12 documents.
 
 This documentation is written in English. A Korean translation is
 available in [`docs/ko/`](./docs/ko/README.md).
 
-<br>
 <br>
 
 ## Quick Links
@@ -22,34 +18,33 @@ available in [`docs/ko/`](./docs/ko/README.md).
 | Fix a failing request | [Troubleshooting Guide](./docs/en/guides/troubleshooting.md) |
 | See everything at a glance | [Quick Reference](./docs/en/api/quick-reference.md) |
 | Verify tested API behavior | [API Test Results](./docs/en/testing/api-test-results.md) |
+| Set up authentication | [Authentication Guide](./docs/en/guides/authentication.md) |
 
 For the full documentation index, see
 [`docs/en/README.md`](./docs/en/README.md).
 
 <br>
-<br>
 
 ## Coverage
 
-This documentation covers the following Eventbrite Event endpoints:
+This documentation set covers the following Eventbrite Event endpoints:
 List, Create, Retrieve, Update, Publish, and Delete.
 
-Related resources — capacity, description, schedule, search, series,
-and teams — are outside the scope of this project.
+Related resources — Capacity, Description, Schedule, Search, Series,
+and Teams — are outside the scope of this project.
 
 The testing/ subfolder additionally documents empirical test results for the Event Order API, verifying documented behavior against actual API responses.
 
 <br>
-<br>
 
 ## About This Project
 
-This is a portfolio project demonstrating technical writing skills
+This portfolio project demonstrates technical writing skills
 across multiple document types: tutorials, how-to guides, reference
 documentation, and explanations. Content is based on publicly available
-Eventbrite API documentation and is not intended for production use.
+Eventbrite API documentation. This project is not intended for production use.
 
-For official Eventbrite API documentation, see Eventbrite [API Reference](https://www.eventbrite.com/platform/api/).
+For official Eventbrite API documentation, see Eventbrite API Reference.
 
 <br>
 <br>
