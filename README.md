@@ -20,6 +20,7 @@ technical-writing-portfolio/
 │       │   ├── get-started/    (quick-start)
 │       │   ├── guides/         (authentication, pagination, response_handling, troubleshooting)
 │       │   ├── reference/      (glossary)
+│       │   ├── testing/        (api-test-results)
 │       │   └── tutorials/      (first-api-call)
 │       └── docs/ko/
 ├── hidoc/
