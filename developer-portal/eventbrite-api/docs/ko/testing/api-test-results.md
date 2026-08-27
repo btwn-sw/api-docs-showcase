@@ -217,7 +217,7 @@ curl --request GET \
 
 **목적:** `status` 필터 값 4가지와 유효하지 않은 값 1가지의 동작을 검증합니다.
 
-유효값: `active`, `inactive`, `both`, `all_not_deleted`
+**유효값:** `active`, `inactive`, `both`, `all_not_deleted`
 
 | 파라미터 값 | 예상 결과 | 실제 결과 | 판정 |
 | --- | --- | --- | --- |
