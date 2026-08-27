@@ -237,7 +237,7 @@ Eventbrite can calculate the correct local time for attendees.
 
 - [API Reference](../api/api-reference.md)
 - [Authentication Guide](../guides/authentication.md)
-- [Response Handling Guide](../guides/response_handling.md)
+- [Response Handling Guide](../guides/response-handling.md)
 - [Pagination Guide](../guides/pagination.md)
 
 <br>

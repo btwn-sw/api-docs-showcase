@@ -1,21 +1,15 @@
 # Eventbrite Event Order API Test Results
 
-Before integrating the Eventbrite Event Order API, use this document to check where the official documentation and the actual API behavior diverge. It records parameter values that the official documentation lists as valid but the API rejects, and response field differences across endpoints — so you can rule these out before they cause a runtime error. It covers 15 test cases across single order retrieval, order lists by event, user, and organization, five filter parameters, and error responses, along with 2 findings.
+Before integrating the Eventbrite Event Order API, use this document to check where the official documentation and the actual API behavior diverge. It records two kinds of divergence: parameter values that the official documentation lists as valid but the API rejects, and response field differences across endpoints. Use these records to rule out likely causes before they trigger a runtime error. It covers 15 test scenarios across single order retrieval, order lists by event, user, and organization, five filter parameters, and error responses. It also documents 2 findings.
 
 > **This document tests the Event Order use cases the official Eventbrite API documentation describes, and records the results.**
 
 <br>
-
-**Prerequisites:**
-
-- A valid Private Token — see the [Authentication Guide](../guides/authentication.md).
-- Valid `order_id`, `event_id`, and `organization_id` values — look these up in your Eventbrite account.
-
-<br>
 <br>
 
-## Contents
+## Table of Contents
 
+- [Prerequisites](#prerequisites)
 - [Test Environment](#test-environment)
 - [Results Summary](#results-summary)
 - [Findings](#findings)
@@ -34,6 +28,15 @@ Before integrating the Eventbrite Event Order API, use this document to check wh
 <br>
 <br>
 
+## Prerequisites
+
+- A valid Private Token — see the [Authentication Guide](../guides/authentication.md).
+- Valid `order_id`, `event_id`, and `organization_id` values — look these up in your Eventbrite account.
+
+
+<br>
+<br>
+
 ## Test Environment
 
 | Item | Value |
@@ -41,7 +44,7 @@ Before integrating the Eventbrite Event Order API, use this document to check wh
 | API version | v3 |
 | Base URL | `https://www.eventbriteapi.com/v3` |
 | Authentication | Bearer Token (Private Token) |
-| Test tool | cURL |
+| Test tool | curl |
 
 <br>
 <br>
@@ -70,14 +73,12 @@ Before integrating the Eventbrite Event Order API, use this document to check wh
 - PASS: 13
 - PASS (conditional): 1 — TC-006 (positive case not verified)
 - Documentation mismatch: 1 — TC-003 `status=both`
-- Not tested: 1 — `time_filter=all`
+- Not tested (not counted in the totabl above): 1 — `time_filter=all`
 
 <br>
 <br>
 
 ## Findings
-
-<br>
 
 ### F-001 — `status=both` Documentation Mismatch
 
@@ -125,8 +126,6 @@ If you need full cost detail from an organization-level order list, call `GET /o
 <br>
 
 ## Test Cases and Results
-
-<br>
 
 ### TC-001 — Retrieve a Single Order
 
@@ -307,15 +306,17 @@ curl --request GET \
 
 Valid values: `completed`, `pending`, `outside_policy`, `disputed`, `denied`
 
-| Parameter value | Actual result | Verdict |
-| --- | --- | --- |
-| `completed` | `object_count: 0`, 0 orders returned | ✅ PASS |
-| `pending` | `object_count: 0`, 0 orders returned | ✅ PASS |
-| `outside_policy` | `object_count: 0`, 0 orders returned | ✅ PASS |
-| `disputed` | `object_count: 0`, 0 orders returned | ✅ PASS |
-| `denied` | `object_count: 0`, 0 orders returned | ✅ PASS |
+| Parameter value | Expected result | Actual result | Verdict |
+| --- | --- | --- | --- |
+| `completed` | Returns orders with a `completed` refund request | `object_count: 0`, 0 orders returned | ✅ PASS |
+| `pending` | Returns orders with a `pending` refund request | `object_count: 0`, 0 orders returned | ✅ PASS |
+| `outside_policy` | Returns orders with an `outside_policy` refund request | `object_count: 0`, 0 orders returned | ✅ PASS |
+| `disputed` | Returns orders with a `disputed` refund request | `object_count: 0`, 0 orders returned | ✅ PASS |
+| `denied` | Returns orders with a `denied` refund request | `object_count: 0`, 0 orders returned | ✅ PASS |
 
-> **Test data limitation:** The tested orders had no refund requests. All five values returned an empty array without error, but this test cannot confirm whether each value correctly returns orders in that specific state. Further verification with orders that have refund requests is needed.
+**Test data limitation:** 
+
+> The tested orders had no refund requests. All five values returned an empty array without error, but this test cannot confirm whether each value correctly returns orders in that specific state. You should verify further with orders that have refund requests.
 
 **Verdict:** ✅ PASS (conditional) — The filter parameter itself works without error, but has not been verified against a positive case.
 
@@ -338,7 +339,9 @@ Valid values: `all`, `past`, `current_future`
 
 **Verdict:** ✅ PASS — Correctly filters by event time for the values that were tested.
 
-> **Note:** The `costs` object in the organization-level order list response returns fewer fields than the other endpoints. See [Findings — F-002](#f-002--costs-field-inconsistency-across-endpoints) for details.
+**Note:** 
+
+> The `costs` object in the organization-level order list response returns fewer fields than the other endpoints. See [Findings — F-002](#f-002--costs-field-inconsistency-across-endpoints) for details.
 
 <br>
 
@@ -346,7 +349,7 @@ Valid values: `all`, `past`, `current_future`
 
 **Endpoint:** `GET /orders/{order_id}/`
 
-**Purpose:** Verify that the API returns a `404` error for an invalid `order_id`.
+**Purpose:** Verify that the API returns a `404` error for nonexistent `order_id`.
 
 **Request:**
 
