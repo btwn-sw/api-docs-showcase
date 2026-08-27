@@ -1,13 +1,12 @@
 # Eventbrite API Documentation
 
-A complete documentation set for the Eventbrite API, covering
-authentication, event management, response handling, and troubleshooting.
-Built as a technical writing portfolio project.
+Find what you need to work with the Eventbrite API; from your first request to handling errors in production. This complete documentation set covers authentication, event management, response handling, and troubleshooting.
 
-<br>
 <br>
 
 ## Documentation Structure
+
+This documentation set is organized as follows:
 
 ```
 docs/en/
@@ -33,7 +32,6 @@ docs/en/
 ```
 
 <br>
-<br>
 
 ## What's Included
 
@@ -43,7 +41,7 @@ docs/en/
 | [First API Call Tutorial](../en/tutorials/first-api-call.md) | Tutorial | Guided walkthrough using the Eventbrite API Console and Postman |
 | [Authentication Guide](../en/guides/authentication.md) | How-to | Choose a credential type, generate a Private Token, and authenticate requests |
 | [Pagination Guide](../en/guides/pagination.md) | How-to | Retrieve multiple pages of events using continuation tokens |
-| [Response Handling Guide](../en/guides/response_handling.md) | Explanation | Why responses are structured the way they are, and how to consume them safely |
+| [Response Handling Guide](../en/guides/response-handling.md) | Explanation | Why responses are structured the way they are, and how to consume them safely |
 | [Troubleshooting Guide](../en/guides/troubleshooting.md) | How-to | Diagnose and fix common API errors by symptom |
 | [API Reference](../en/api/api-reference.md) | Reference | Endpoint signatures, parameters, and response fields for all Event endpoints |
 | [Error Reference](../en/api/error-reference.md) | Reference | All error codes, their causes, and resolution steps |
