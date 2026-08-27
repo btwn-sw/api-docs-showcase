@@ -623,7 +623,7 @@ For rate limit details, see the
 
 - [API Reference](../api/api-reference.md)
 - [Pagination Guide](../guides/pagination.md)
-- [Response Handling Guide](../guides/response_handling.md)
+- [Response Handling Guide](../guides/response-handling.md)
 - [Authentication Guide](../guides/authentication.md)
 
 <br>
