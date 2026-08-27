@@ -109,7 +109,7 @@ For the full list of error codes and resolution steps, see the
 ```
 
 For error handling strategies, see the
-[Response Handling Guide](../guides/response_handling.md).
+[Response Handling Guide](../guides/response-handling.md).
 
 <br>
 <br> 
@@ -509,7 +509,7 @@ curl --request DELETE \
 ## Next Steps
 
 - [Authentication Guide](../guides/authentication.md)
-- [Response Handling Guide](../guides/response_handling.md)
+- [Response Handling Guide](../guides/response-handling.md)
 - [Error Reference](../api/error-reference.md)
 - [Pagination Guide](../guides/pagination.md)
 - [Code Examples](../examples/code-examples.md)
