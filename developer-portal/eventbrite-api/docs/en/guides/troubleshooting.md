@@ -261,7 +261,7 @@ published test event. All expected fields should now be present.
 
 ### Related Documentation
 
-- [Response Handling Guide](../guides/response_handling.md)
+- [Response Handling Guide](../guides/response-handling.md)
 
 <br>
 <br>
@@ -309,7 +309,7 @@ raw text, and the page layout should remain intact.
 
 ### Related Documentation
 
-- [Response Handling Guide](../guides/response_handling.md)
+- [Response Handling Guide](../guides/response-handling.md)
 - [Code Examples](../examples/code-examples.md)
 
 <br>
@@ -388,7 +388,7 @@ your failing request line by line.
 - [Authentication Guide](../guides/authentication.md)
 - [API Reference](../api/api-reference.md)
 - [Error Reference](../api/error-reference.md)
-- [Response Handling Guide](../guides/response_handling.md)
+- [Response Handling Guide](../guides/response-handling.md)
 - [Code Examples](../examples/code-examples.md)
 
 <br>
