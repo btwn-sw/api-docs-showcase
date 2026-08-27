@@ -103,7 +103,7 @@ DELETE requests.
 | `currency` | String | ISO 4217 currency code (for example, `USD`, `EUR`) |
 | `url` | String | Public URL of the event on Eventbrite |
 
-👉 [Response Handling Guide](../guides/response_handling.md)
+👉 [Response Handling Guide](../guides/response-handling.md)
 
 <br>
 <br>
