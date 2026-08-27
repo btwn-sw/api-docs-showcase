@@ -1,7 +1,6 @@
 # Developer Portal — Information Architecture Design
 
 <br>
-<br>
 
 ## What you'll get from this
 
@@ -10,20 +9,17 @@ When a platform opens a specialized API to external developers for the first tim
 [Korean →](/ia-design/ko/README-ko.md)
 
 <br>
-<br>
 
 ## The situation
 
 A logistics platform is opening its real-time shipment-tracking API to external developers — retailers, fulfillment partners, and integration vendors — for the first time. The platform holds a category of data competitors don't: live shipment and delivery signals generated inside its own network. That data only becomes a real advantage if the developer portal is structured to make it easy to find and use.
 
 <br>
-<br>
 
 ## What this design covers
 
 Full reasoning, structure decisions, and the final sitemap are in → [Information Architecture Design](../ia-design/en/ia-design.md)
 
-<br>
 <br>
 
 > *This is a portfolio case study. The API specification used as context is fictional. All design decisions are the author's own.*

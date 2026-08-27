@@ -1,7 +1,6 @@
 # Information Architecture Design: A Developer Portal Case Study
 
 <br>
-<br>
 
 ## Overview
 
@@ -9,7 +8,6 @@ By the end of this page, you'll understand the reasoning behind one developer po
 
 This case study assumes basic familiarity with developer portals and REST APIs.
 
-<br>
 <br>
 
 ## The Design Challenge
@@ -22,18 +20,15 @@ This case study covers the information architecture (IA) design for that platfor
 
 The design challenge: build an IA that scales cleanly as more APIs get added, while making sure the platform's data advantage is visible in the structure from day one — not bolted on afterward.
 
-## Design Rationale
+<br>
 
-<br>
-<br>
+## Design Rationale
 
 ### External Developer Needs
 
 The platform's existing internal documentation was built for engineers who already work inside the company and understand its systems: long descriptions of objects and data models come first, with code examples appearing narrow and secondary. That approach works for someone who already knows the domain.
 
 External developers work differently. They arrive with one specific goal — "connect this API to my system" — and need to confirm they're on the right track by running actual code as fast as possible. Every screen of object definitions they must scroll past before reaching a working example adds time before their first success.
-
-<br>
 
 ### API Playground Decision
 
@@ -47,7 +42,6 @@ After reviewing five real developer portals — Payabli, Stripe, Twilio, Plaid, 
 
 The decision: a **code-first, single-screen layout** — because it removes the step between reading what a parameter does and trying it to see the result.
 
-<br>
 <br>
 
 ## Developer Portal Sitemap
@@ -71,17 +65,24 @@ Developer Portal
 └── Changelog                   # RSS feed · Breaking-change notices
 ```
 
-**The structural decisions that matter most:**
+### The structural decisions that matter most:
 
-- **Error codes and field definitions live in one shared Common Reference section — not repeated on every API page.** Copying the same definition onto ten pages means updating ten pages every time it changes. One shared source avoids that problem at any scale.
+**Error codes and field definitions live in one shared Common Reference section — not repeated on every API page.** 
 
-- **Concept Guides come before Integration Guides.** A developer who doesn't understand how shipment events, delivery windows, or tracking accuracy work can't finish an integration guide without that foundation. Skipping straight to integration guides helps developers who already know the domain move faster, but leaves everyone else stuck without support.
+Copying the same definition onto ten pages means updating ten pages every time it changes. One shared source avoids that problem at any scale.
 
-- **Changelog is a top-level section, not buried in Advanced.** API changes matter to developers who already integrated: they need a reliable place to check, and ideally a way to subscribe. RSS support and dedicated breaking-change notices must exist from launch, not get added after the first incident.
+**Concept Guides come before Integration Guides.** 
 
-- **The Advanced section is built to expand.** Historical data access, bulk operations, and sandbox tools are grouped together so that as more advanced features get added, the core path — Get Started → Integration Guides → API Reference — stays uncluttered.
+A developer who doesn't understand how shipment events, delivery windows, or tracking accuracy work can't finish an integration guide without that foundation. Skipping straight to integration guides helps developers who already know the domain move faster, but leaves everyone else stuck without support.
 
-<br>
+**Changelog is a top-level section, not buried in Advanced.** 
+
+API changes matter to developers who already integrated: they need a reliable place to check, and ideally a way to subscribe. RSS support and dedicated breaking-change notices must exist from launch, not get added after the first incident.
+
+**The Advanced section is built to expand.** 
+
+Historical data access, bulk operations, and sandbox tools are grouped together so that as more advanced features get added, the core path — Get Started → Integration Guides → API Reference — stays uncluttered.
+
 <br>
 
 ## Launch Feature Priorities
@@ -96,7 +97,6 @@ Developer Portal
 > **What got pushed to later, and why:** the team considered search and API versioning but didn't build either for the initial launch. Search becomes necessary once the portal has more than roughly 15 pages — before that, a developer can scan the sidebar. Versioning matters only once a breaking change happens. Both can be added later without restructuring anything already built.
 
 <br>
-<br>
 
 ## Documentation Sync Process
 
@@ -108,7 +108,7 @@ Keeping documentation *accurate* isn't the same as keeping developers *successfu
 Engineer (knows what changed and why)  →  Technical Writer (judges the impact, translates it)  →  External developer (needs to know what to do about it)
 ```
 
-**The process:**
+### The process:
 
 ```
 Spec changes
@@ -120,11 +120,14 @@ Spec changes
 → If something's clearly not working → revise the documentation → update the quality checklist
 ```
 
-> **Why the Technical Writer reviews the change request itself, not just the final merged version.** The change request is where the *intent* behind a change is still visible: why it's happening, not just what changed. Once merged, a diff shows what's different, but not why. Nor does it show what the change means for developers who already built against the old version. Reviewing at this earlier stage catches that context before it disappears into commit history.
+**Why the Technical Writer reviews the change request itself, not just the final merged version.** 
 
-> **Documentation isn't finished the moment it's published.** How external developers respond after a release is the real signal for what the documentation missed. Monitoring isn't optional: it closes the loop between what developers experience and what gets fixed next.
+> The change request is where the *intent* behind a change is still visible: why it's happening, not just what changed. Once merged, a diff shows what's different, but not why. Nor does it show what the change means for developers who already built against the old version. Reviewing at this earlier stage catches that context before it disappears into commit history.
 
-<br>
+**Documentation isn't finished the moment it's published.** 
+
+> How external developers respond after a release is the real signal for what the documentation missed. Monitoring isn't optional: it closes the loop between what developers experience and what gets fixed next.
+
 <br>
 
 ## Reference Portals Studied
@@ -139,7 +142,6 @@ The design phase reviewed five portals in total. The table above highlights the 
 | Plaid | How a sandbox environment is presented alongside live documentation |
 | Eventbrite | Section-based structure by developer goal |
 
-<br>
 <br>
 
 > *This is a portfolio case study. The API specification used as context is fictional. All design decisions are the author's own.*
