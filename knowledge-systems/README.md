@@ -23,15 +23,15 @@ By the end, you'll see exactly where knowledge breaks down, how to build one tru
 
 ## Three principles behind every decision in this design
 
-**Establish one trustworthy source before automating anything.** 
+**1. Establish one trustworthy source before automating anything.** 
 
 Automating a structure that doesn't exist yet just produces inconsistency faster. The first step is always deciding which single place is the trustworthy one for each type of knowledge — automation gets built on top of that, never before it.
 
-**Put human judgment only where it's actually needed.** 
+**2. Put human judgment only where it's actually needed.** 
 
 The goal isn't removing people from documentation. It's freeing people from the parts a system can reliably handle, so their judgment is available for the parts that genuinely require it.
 
-**Treat adoption as something you design, not something you announce.** 
+**3. Treat adoption as something you design, not something you announce.** 
 
 If using the system takes more effort than not using it, people won't use it — no matter how good the system is. Adoption has to be built into the design from the start, not added afterward as a training session.
 
