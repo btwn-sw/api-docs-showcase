@@ -1,14 +1,12 @@
 # Designing a System That Keeps Organizational Knowledge Current
 
-<br>
-
 ## What you'll get from this
 
 Fast-growing organizations run into the same knowledge problem again and again: a decision gets made in a conversation, and it never reaches the documentation, the wiki, or the AI assistant employees rely on for answers. This case study designs a system that closes that gap — not with a new tool, but with a structure connecting the tools already in place.
 
 By the end, you'll see exactly where knowledge breaks down, how to build one trustworthy source for it, how to keep that source current without relying on memory alone, and how to get people to actually use it.
 
-[한국어 →](../knowledge-systems/ko/README-ko.md)
+[Korean →](../knowledge-systems/ko/README-ko.md)
 
 <br>
 
@@ -25,11 +23,17 @@ By the end, you'll see exactly where knowledge breaks down, how to build one tru
 
 ## Three principles behind every decision in this design
 
-- **Establish one trustworthy source before automating anything.** Automating a structure that doesn't exist yet just produces inconsistency faster. The first step is always deciding which single place is the trustworthy one for each type of knowledge — automation gets built on top of that, never before it.
+**Establish one trustworthy source before automating anything.** 
 
-- **Put human judgment only where it's actually needed.** The goal isn't removing people from documentation. It's freeing people from the parts a system can reliably handle, so their judgment is available for the parts that genuinely require it.
+Automating a structure that doesn't exist yet just produces inconsistency faster. The first step is always deciding which single place is the trustworthy one for each type of knowledge — automation gets built on top of that, never before it.
 
-- **Treat adoption as something you design, not something you announce.** If using the system takes more effort than not using it, people won't use it — no matter how good the system is. Adoption has to be built into the design from the start, not added afterward as a training session.
+**Put human judgment only where it's actually needed.** 
+
+The goal isn't removing people from documentation. It's freeing people from the parts a system can reliably handle, so their judgment is available for the parts that genuinely require it.
+
+**Treat adoption as something you design, not something you announce.** 
+
+If using the system takes more effort than not using it, people won't use it — no matter how good the system is. Adoption has to be built into the design from the start, not added afterward as a training session.
 
 <br>
 
