@@ -131,7 +131,7 @@ The key fields are:
 Notice that `name` and `description` each return two variants — `text`
 and `html`. Use `text` for plain string contexts like notifications, and
 `html` when rendering in a web interface. For more on this pattern, see
-the [Response Handling Guide](../guides/response_handling.md).
+the [Response Handling Guide](../guides/response-handling.md).
 
 ### Result
 
@@ -201,7 +201,7 @@ environment to explore the rest of the Eventbrite API.
 ## Next Steps
 
 - [API Reference](../api/api-reference.md)
-- [Response Handling Guide](../guides/response_handling.md)
+- [Response Handling Guide](../guides/response-handling.md)
 - [Code Examples](../examples/code-examples.md)
 
 <br>
