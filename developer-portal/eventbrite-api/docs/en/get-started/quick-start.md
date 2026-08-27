@@ -97,7 +97,7 @@ Choose what to do next based on your goal.
 | --- | --- |
 | Learn the full API flow step by step | [First API Call Tutorial](../tutorials/first-api-call.md) |
 | See all available endpoints | [API Reference](../api/api-reference.md) |
-| Handle responses safely in code | [Response Handling Guide](../guides/response_handling.md) |
+| Handle responses safely in code | [Response Handling Guide](../guides/response-handling.md) |
 | Fix a problem | [Troubleshooting Guide](../guides/troubleshooting.md) |
 
 <br>
