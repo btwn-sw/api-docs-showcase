@@ -45,7 +45,7 @@ When someone submits a decision or asks a question, they see a response right aw
 Each role has a specific habit today, and a specific habit this system is trying to build instead. The shift isn't left to chance — each one is paired with something concrete that makes the new habit easier than the old one.
 
 | Role | Habit today | Habit this builds | What makes the shift stick |
-|:---|:---|:---|:---|
+|---|---|---|---|
 | Product manager | Scrolls chat history looking for a past decision | Searches the `decisions/` folder | The speed difference is obvious the first time they try it |
 | Sales / customer-facing | Messages an engineer directly when unsure of current policy | Checks the "last reviewed" date on the wiki page | The date is visible on every single document, without having to ask |
 | New hire | Follows onboarding material without checking if it's current | Checks the version and date before relying on it | Version and date are shown prominently, not buried |
