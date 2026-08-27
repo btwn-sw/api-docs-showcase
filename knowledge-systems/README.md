@@ -14,10 +14,10 @@ By the end, you'll see exactly where knowledge breaks down, how to build one tru
 
 | Document | What it answers |
 |---|---|
-| [Problem Diagnosis](../en/problem-diagnosis.md) | Where exactly does organizational knowledge break down, and why? |
-| [Building the Foundation](../en/knowledge-architecture.md) | How should knowledge be structured and stored so there's one trustworthy version? |
-| [Keeping Documentation Current](../en/automation-pipeline.md) | How does documentation stay current without depending entirely on human memory? |
-| [Adoption & Measurement](../en/adoption-measurement.md) | How do you get people to actually use the system, and how do you know if it's working? |
+| [Problem Diagnosis](../knowledge-systems/en/problem-diagnosis.md) | Where exactly does organizational knowledge break down, and why? |
+| [Building the Foundation](../knowledge-systems/en/knowledge-architecture.md) | How should knowledge be structured and stored so there's one trustworthy version? |
+| [Keeping Documentation Current](../knowledge-systems/en/automation-pipeline.md) | How does documentation stay current without depending entirely on human memory? |
+| [Adoption & Measurement](../knowledge-systems/en/adoption-measurement.md) | How do you get people to actually use the system, and how do you know if it's working? |
 
 <br>
 
