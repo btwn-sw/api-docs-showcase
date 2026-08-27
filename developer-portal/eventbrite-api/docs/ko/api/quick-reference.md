@@ -115,7 +115,7 @@ Authorization: Bearer YOUR_PRIVATE_TOKEN
 | 전체 요청 | 일일 48,000건 |
 | 이벤트 생성 또는 게시 | 시간당 200건 |
 
-**요청 제한 헤더:**
+### 요청 제한 헤더
 
 | 헤더 | 설명 |
 | --- | --- |
@@ -147,7 +147,7 @@ Authorization: Bearer YOUR_PRIVATE_TOKEN
 
 ## 빠른 요청 예시
 
-**이벤트 조회:**
+### 이벤트 조회
 
 ```bash
 curl --request GET \
@@ -155,7 +155,7 @@ curl --request GET \
   "https://www.eventbriteapi.com/v3/events/{event_id}/"
 ```
 
-**조직별 이벤트 목록 조회:**
+### 조직별 이벤트 목록 조회
 
 ```bash
 curl --request GET \
