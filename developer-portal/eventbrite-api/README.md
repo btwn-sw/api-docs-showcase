@@ -2,7 +2,7 @@
 
 Find what you need to work with the Eventbrite API. This documentation set covers authentication, event management, response handling, pagination, and troubleshooting across 12 documents.
 
-This documentation is written in English. A Korean translation is
+This documentation is written in English. Also, Korean documents are
 available in [`docs/ko/`](./docs/ko/README.md).
 
 <br>
