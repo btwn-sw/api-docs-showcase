@@ -1,7 +1,5 @@
 # Technical Writing Portfolio
 
-<br>
-
 ## What you'll get from this
 
 This portfolio demonstrates bilingual (English/Korean) technical writing across four different kinds of work: writing API documentation end to end, designing the information architecture for a developer portal, designing a knowledge system for a fast-moving organization, and building — and documenting — an original AI-powered tool from scratch.
@@ -57,7 +55,7 @@ Every case study is written in both English and Korean. English pages live under
 <br>
 <br>
 
-*This is a technical writing portfolio. Case studies under `ia-design/` and `knowledge-systems/` are written as generic, illustrative examples. All structural decisions, frameworks, and writing are the author's own.*
+> *This is a technical writing portfolio. Case studies under `ia-design/` and `knowledge-systems/` are written as generic, illustrative examples. All structural decisions, frameworks, and writing are the author's own.*
 
 <br>
 <br>
