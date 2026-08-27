@@ -131,7 +131,7 @@ This is a portfolio project and is not intended for production use.
 The content is based on publicly available Eventbrite API documentation
 and focuses on documentation structure and best practices.
 
-For official Eventbrite API documentation, see
+For official Eventbrite API documentation, visit
 Eventbrite API Reference.
 
 <br>
