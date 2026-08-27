@@ -1,28 +1,29 @@
 # First API Call Tutorial
 
 Learn how the Eventbrite API works by making a real request and
-inspecting the response. This tutorial uses the Eventbrite API Console
-and Postman — no code editor required.
+inspecting the response. This tutorial uses the Eventbrite API Reference's interactive console and Postman — no code editor required.
 
 **By the end of this tutorial, you will be able to:**
 
 - Authenticate an API request using a Private Token
-- Call the Retrieve an Event endpoint from the Eventbrite API Console
+- Call the Retrieve an Event endpoint using the interactive console
 - Read and interpret the JSON response
 - Import and re-run the request in Postman
 
+<br>
 <br>
 
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)
 - [Step 1: Open the API Reference](#step-1-open-the-api-reference)
-- [Step 2: Enable the Interactive Console](#step-2-enable-the-interactive-console)
+- [Step 2: Enable the Console](#step-2-enable-the-console)
 - [Step 3: Configure the Request](#step-3-configure-the-request)
 - [Step 4: Inspect the Response](#step-4-inspect-the-response)
-- [Step 5: Export as cURL](#step-5-export-as-curl)
+- [Step 5: Export as curl](#step-5-export-as-curl)
 - [Step 6: Import into Postman](#step-6-import-into-postman)
 
+<br>
 <br>
 
 ## Prerequisites
@@ -33,6 +34,7 @@ and Postman — no code editor required.
 - Postman installed or accessible at [postman.com](https://www.postman.com/)
 
 <br>
+<br>
 
 ## Step 1: Open the API Reference
 
@@ -42,28 +44,34 @@ for a single Eventbrite event.
 1. Open the Eventbrite [API Reference](https://www.eventbrite.com/platform/api/).
 2. In the sidebar, navigate to **Reference → Event → Retrieve an Event**.
 
-**Result:** The endpoint page displays the request format, required
-parameters, and a live console on the right-hand side.
+### Result
+
+The endpoint page displays the request format, required
+parameters, and an interactive console on the right-hand side.
 
 <br>
+<br>
 
-## Step 2: Enable the Interactive Console
+## Step 2: Enable the Console
 
 The Eventbrite API Reference includes an interactive console powered by
 Apiary. It lets you send live requests directly from the browser.
 
 1. In the right-hand pane, click the **Try** button.
 
-**Result:** The console becomes active and input fields for parameters
+### Result
+
+The console becomes active and input fields for parameters
 and headers appear.
 
+<br>
 <br>
 
 ## Step 3: Configure the Request
 
 Enter the following values in the console.
 
-**URI Parameters**
+### URI Parameters
 
 | Parameter | Value |
 | --- | --- |
@@ -78,7 +86,9 @@ https://www.eventbrite.com/e/my-event-name-12345678901
                                     This is your event_id
 ```
 
-**Headers**
+### Headers
+
+Add these two headers to the request:
 
 ```
 Authorization: Bearer YOUR_PRIVATE_TOKEN
@@ -87,13 +97,18 @@ Content-Type: application/json
 
 Replace `YOUR_PRIVATE_TOKEN` with your token.
 
-**Request Body:** Not required for this endpoint.
+### Request Body
+
+Not required for this endpoint.
 
 When you have filled in all fields, click **Call Resource**.
 
-**Result:** The console sends a GET request to
+### Result
+
+The console sends a GET request to
 `https://www.eventbriteapi.com/v3/events/{event_id}/`.
 
+<br>
 <br>
 
 ## Step 4: Inspect the Response
@@ -118,14 +133,17 @@ and `html`. Use `text` for plain string contexts like notifications, and
 `html` when rendering in a web interface. For more on this pattern, see
 the [Response Handling Guide](../guides/response_handling.md).
 
-**Result:** You have successfully called a live Eventbrite API endpoint
+### Result
+
+You have successfully called a live Eventbrite API endpoint
 and received a structured response.
 
 <br>
+<br>
 
-## Step 5: Export as cURL
+## Step 5: Export as curl
 
-To reuse this request outside the console, export it as a cURL command.
+To reuse this request outside the console, export it as a curl command.
 
 1. Click **Show Code Example**, located below the parameters section.
 2. Select **cURL** from the language dropdown.
@@ -138,17 +156,21 @@ curl --request GET \
   "https://www.eventbriteapi.com/v3/events/{event_id}/"
 ```
 
+### Result
+
+You now have the request copied as a curl command, ready to import into Postman in the next step.
+
+<br>
 <br>
 
 ## Step 6: Import into Postman
 
-Import the cURL command into Postman to inspect headers, parameters,
+Import the curl command into Postman to inspect headers, parameters,
 and the response in detail.
 
 1. Open Postman and sign in.
 2. In the menu bar, click **File → Import**.
-3. Select the **Paste** tab and paste the cURL command you copied
-in Step 5.
+3. Select the **Paste** tab and paste the curl command you copied in Step 5.
 4. Optionally rename the collection — for example, `Eventbrite API`.
 5. Click **Import Into Collection**.
 
@@ -157,10 +179,13 @@ Authorization header already filled in.
 
 6. Click **Send**.
 
-**Result:** A `200 OK` response appears in the response panel.
+### Result
+
+A `200 OK` response appears in the response panel. 
 Select **JSON** from the format dropdown to view the formatted
 response body.
 
+<br>
 <br>
 
 ## What You Accomplished
@@ -171,6 +196,7 @@ the request in Postman for future use. You now have a working
 environment to explore the rest of the Eventbrite API.
 
 <br>
+<br>
 
 ## Next Steps
 
@@ -178,4 +204,5 @@ environment to explore the rest of the Eventbrite API.
 - [Response Handling Guide](../guides/response_handling.md)
 - [Code Examples](../examples/code-examples.md)
 
+<br>
 <br>
