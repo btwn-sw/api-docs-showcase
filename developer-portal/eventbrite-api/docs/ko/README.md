@@ -3,7 +3,6 @@
 이 문서 세트를 통해 Eventbrite API 연동에 필요한 모든 것을 한 곳에서 찾을 수 있습니다. 인증 설정부터 이벤트 관리, 응답 처리, 오류 해결까지 전체 연동 흐름을 다룹니다.
 
 <br>
-<br>
 
 ## 문서 구조
 
@@ -50,7 +49,6 @@ docs/ko/
 | [용어집](../ko/reference/glossary.md) | Reference | 문서 전반에서 사용하는 주요 용어 정의 |
 
 <br>
-<br>
 
 ## 시작점 선택하기
 
@@ -96,7 +94,6 @@ Eventbrite API 콘솔과 Postman을 사용한 단계별 가이드입니다.
 문서 전반에서 사용하는 주요 용어를 정의합니다.
 
 <br>
-<br>
 
 ## HTTP 클라이언트 직접 사용하기
 
@@ -116,7 +113,6 @@ API는 표준 RESTful HTTP 인터페이스로, 인증·요청·응답을 표준 
 실제 요청 예제는 [코드 예제](../ko/examples/code-examples.md)를 참고하세요.
 
 <br>
-<br>
 
 ## 대상 독자
 
@@ -125,7 +121,6 @@ API는 표준 RESTful HTTP 인터페이스로, 인증·요청·응답을 표준 
 - 문서 구조와 품질을 평가하는 검토자
 
 <br>
-<br>
 
 ## 프로젝트 상태
 
@@ -133,9 +128,7 @@ API는 표준 RESTful HTTP 인터페이스로, 인증·요청·응답을 표준 
 Eventbrite의 공개 API 문서를 바탕으로 작성됐으며,
 문서 구조와 모범 사례에 초점을 맞추고 있습니다.
 
-공식 Eventbrite API 문서는
-Eventbrite [API 레퍼런스](https://www.eventbrite.com/platform/api/)를
-참고하세요.
+공식 Eventbrite API 문서는 Eventbrite API 레퍼런스를 참고하세요.
 
 <br>
 <br>
