@@ -155,7 +155,7 @@ A field type used for event names and descriptions. Returns two variants
 in the API response: `text` (plain text, for use in notifications and
 logs) and `html` (HTML-formatted, for rendering in a web interface).
 Never pass the `html` variant where plain text is expected.
-See [Response Handling Guide](../guides/response_handling.md).
+See [Response Handling Guide](../guides/response-handling.md).
 
 <br>
 
