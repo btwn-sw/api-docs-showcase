@@ -1,7 +1,5 @@
 # Adoption & Measurement: Getting People to Actually Use It, and Knowing If It's Working
 
-<br>
-
 ## What you'll get from this
 
 A trustworthy source of documentation that nobody uses isn't documentation — it's just storage. This page answers two separate questions: how do you get people to actually use the system day to day, and how do you know if it's working at all?
@@ -28,11 +26,17 @@ Trust isn't built by announcing the system is ready. It's built by repetition �
 
 ## Three design principles for making it easy
 
-**Simple:** no multi-step process to remember. One consistent way to interact with the AI assistant, the same everywhere it's used.
+### Simple
 
-**Natural:** the system meets people where they already work, instead of asking them to adopt a new tool. If the team already lives in team chat, that's the entry point — not a separate portal.
+No multi-step process to remember. One consistent way to interact with the AI assistant, the same everywhere it's used.
 
-**Immediate:** when someone submits a decision or asks a question, they see a response right away. A system that responds slowly teaches people not to bother using it.
+### Natural
+
+The system meets people where they already work, instead of asking them to adopt a new tool. If the team already lives in team chat, that's the entry point — not a separate portal.
+
+### Immediate
+
+When someone submits a decision or asks a question, they see a response right away. A system that responds slowly teaches people not to bother using it.
 
 <br>
 
@@ -41,7 +45,7 @@ Trust isn't built by announcing the system is ready. It's built by repetition �
 Each role has a specific habit today, and a specific habit this system is trying to build instead. The shift isn't left to chance — each one is paired with something concrete that makes the new habit easier than the old one.
 
 | Role | Habit today | Habit this builds | What makes the shift stick |
-|---|---|---|---|
+|:---|:---|:---|:---|
 | Product manager | Scrolls chat history looking for a past decision | Searches the `decisions/` folder | The speed difference is obvious the first time they try it |
 | Sales / customer-facing | Messages an engineer directly when unsure of current policy | Checks the "last reviewed" date on the wiki page | The date is visible on every single document, without having to ask |
 | New hire | Follows onboarding material without checking if it's current | Checks the version and date before relying on it | Version and date are shown prominently, not buried |
@@ -54,10 +58,12 @@ Each role has a specific habit today, and a specific habit this system is trying
 
 Two predictable objections come up early. Both need a real answer, not a policy statement.
 
-**"This has too many steps to remember."**
+### "This has too many steps to remember."
+
 Solved by keeping the interaction as simple as possible — one entry point opens a short guided form. Nothing to memorize.
 
-**"I don't believe the documentation will actually get updated."**
+### "I don't believe the documentation will actually get updated."
+
 Solved by making the first update visible and fast. When someone submits a decision and sees it reflected in the source of truth within hours — not days — the system earns credibility through what people actually see happen, not through a promise.
 
 <br>
@@ -78,8 +84,6 @@ Trying to launch everything at once is a way to lose trust before you've earned 
 
 The system is working when the five failures from the [Problem Diagnosis](../en/problem-diagnosis.md) stop happening. Thirteen measurements are grouped into three sets: what got fixed, what got produced, and how efficiently the process ran.
 
-<br>
-
 ### Group 1 — Are the five failures actually going away? (M1–M5)
 
 Each measurement maps directly to one of the five failures.
@@ -92,8 +96,6 @@ Each measurement maps directly to one of the five failures.
 | M4. New-document term compliance | Inconsistent terminology | % of new documents using the approved glossary term | Monthly | ↑ |
 | M5. AI citation accuracy | Stale documents misleading everyone at once | % of AI assistant answers that cite a current document, sampled | Monthly | ↓ in outdated citations |
 
-<br>
-
 ### Group 2 — Is knowledge actually building up and getting used? (M6–M9)
 
 | Metric | How it's measured | How often | Direction we want |
@@ -102,8 +104,6 @@ Each measurement maps directly to one of the five failures.
 | M7. Decision capture rate | % of real decisions formally recorded | Monthly | ↑ |
 | M8. AI assistant usage | How often it's used, by channel | Weekly | ↑ |
 | M9. Document views | Page views and time spent, per document | Monthly | ↑ |
-
-<br>
 
 ### Group 3 — Is the pipeline itself running efficiently? (M10–M13)
 
@@ -135,7 +135,8 @@ M4 (term compliance) is low, but M3 (direct messages) is unchanged
 
 Once a quarter, the Technical Writer reviews the whole system against all thirteen metrics.
 
-**What gets checked:**
+### What gets checked:
+
 - Is each metric trending up, flat, or down?
 - Which stage is causing the most loop-backs?
 - Where is usage lowest, and by which role?
