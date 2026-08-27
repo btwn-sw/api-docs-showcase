@@ -85,7 +85,7 @@ Eventbrite Event Order API를 연동하기 전에 이 문서에서 공식 문서
 
 **대상 엔드포인트:** `GET /events/{event_id}/orders?status=both`
 
-공식 문서는 `status` 파라미터의 유효한 값으로 `active`, `inactive`, `both`, `all_not_deleted` 4가지를 명시합니다. `both`로 요청하면 API는 유효하지 않은 값이라는 `400 ARGUMENTS_ERROR`를 반환하며 거부합니다. 원인은 현재 확인할 수 없습니다.
+> 공식 문서는 `status` 파라미터의 유효한 값으로 `active`, `inactive`, `both`, `all_not_deleted` 4가지를 명시합니다. `both`로 요청하면 API는 유효하지 않은 값이라는 `400 ARGUMENTS_ERROR`를 반환하며 거부합니다. 원인은 현재 확인할 수 없습니다.
 
 | 항목 | 내용 |
 | --- | --- |
@@ -306,7 +306,7 @@ curl --request GET \
 
 **목적:** `refund_request_statuses` 필터 값 5가지의 동작을 검증합니다.
 
-유효값: `completed`, `pending`, `outside_policy`, `disputed`, `denied`
+**유효값:** `completed`, `pending`, `outside_policy`, `disputed`, `denied`
 
 | 파라미터 값 | 실제 결과 | 판정 |
 | --- | --- | --- |
@@ -328,7 +328,7 @@ curl --request GET \
 
 **목적:** 조직 단위로 주문 목록을 가져오고, `time_filter` 파라미터의 동작을 검증합니다.
 
-유효값: `all`, `past`, `current_future`
+**유효값:** `all`, `past`, `current_future`
 
 | 조건 | 예상 결과 | 실제 결과 | 판정 |
 | --- | --- | --- | --- |
